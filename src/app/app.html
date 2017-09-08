@@ -6,22 +6,22 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <button ion-item>
+      <button ion-item (click)="openPage(inicio)" menuClose>
+            <img name="img-ficha-medica" src="../assets/icon/menu/inicio.png" float-left>  <span float-left>Início</span>
+      </button>
+      <button ion-item (click)="openPage(fichaMedica)" menuClose>
           <img name="img-ficha-medica" src="../assets/icon/menu/ficha-medica.png" float-left>  <span float-left>Ficha Médica</span>
       </button>
-      <button ion-item>
+      <button ion-item (click)="openPage(historico)" menuClose>
          <img name="img-historico" src="../assets/icon/menu/historico.png" float-left>  <span float-left>Histórico</span>
       </button>
-      <button ion-item>
+      <button ion-item (click)="openPage(medicos)" menuClose>
         <img name="img-medicos" src="../assets/icon/menu/medico.png" float-left>  <span float-left>Médicos</span>
       </button>
-      <button ion-item>
+      <button ion-item (click)="openPage(cartao)" menuClose>
         <img name="img-cartao" src="../assets/icon/menu/cartao.png" float-left>  <span float-left>Cartão</span>
       </button>
-      <button ion-item>
-        <img name="img-sobre" src="../assets/icon/menu/desenvolvedor.png" float-left>  <span float-left>Desenvolvedores</span>
-      </button>
-      <button ion-item>
+      <button ion-item (click)="openPage(sobre)" menuClose>
         <img name="img-sobre" src="../assets/icon/menu/sobre.png" float-left>  <span float-left>Sobre</span>
       </button>
     </ion-list>
