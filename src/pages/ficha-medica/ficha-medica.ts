@@ -14,7 +14,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'ficha-medica.html',
 })
 export class FichaMedicaPage {
-
+  fichaMedica:any = "infoPessoal";
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 

@@ -10,6 +10,57 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      Ficha Médica
+    </ion-card-header>
+      <ion-card-content>
 
+  <div>
+    <ion-segment [(ngModel)]="fichaMedica">
+      <ion-segment-button value="infoPessoal">
+        Informações Pessoais
+      </ion-segment-button>
+      <ion-segment-button value="endereco">
+        Endereços
+      </ion-segment-button>
+      <ion-segment-button value="parentes">
+        Parentes
+      </ion-segment-button>
+      <ion-segment-button value="alergias">
+        Alergias
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  
+  <div [ngSwitch]="fichaMedica">
+    <ion-list *ngSwitchCase="'infoPessoal'">
+      <ion-item>
+        <h2>1</h2>
+      </ion-item>
+    </ion-list>
+  
+    <ion-list *ngSwitchCase="'endereco'">
+      <ion-item>
+        <h2>2</h2>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'parentes'">
+      <ion-item>
+        <h2>3</h2>
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'alergias'">
+      <ion-item>
+        <h2>4</h2>
+      </ion-item>
+    </ion-list>
+  </div>
+        <!-- Add card content here! -->
+      </ion-card-content>
+      
+      </ion-card>
 </ion-content>
