@@ -14,7 +14,7 @@ import { FichaMedicaPage } from './../pages/ficha-medica/ficha-medica';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = FichaMedicaPage;
+  rootPage:any = HomePage;
   fichaMedica:any = FichaMedicaPage;
   historico:any = HistoricoPage;
   medicos:any = MedicosPage;

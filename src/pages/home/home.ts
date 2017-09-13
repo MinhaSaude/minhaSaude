@@ -8,7 +8,9 @@ import { NavController } from 'ionic-angular';
 export class HomePage {
 
   constructor(public navCtrl: NavController) {
-
+    setTimeout(function(){
+      document.getElementById("custom-overlay").style.display = "none";      
+    }, 3000);
   }
 
 }
