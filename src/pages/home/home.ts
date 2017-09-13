@@ -1,16 +1,15 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 
+@IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-
+  inicio:any = "Plataforma em construção";
   constructor(public navCtrl: NavController) {
-    setTimeout(function(){
-      document.getElementById("custom-overlay").style.display = "none";      
-    }, 3000);
+
   }
 
 }

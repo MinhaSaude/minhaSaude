@@ -64,3 +64,9 @@ $FONT_COLOR: #FAFAFA;
   margin-left: 10px;
   padding-top: 10px;
 }
+
+.bar-button-default-md:hover:not(.disable-hover),
+.bar-button-clear-md-default:hover:not(.disable-hover),
+.bar-button-md-default:hover:not(.disable-hover) {
+  color: $FONT_COLOR;
+}
