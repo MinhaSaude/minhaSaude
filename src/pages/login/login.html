@@ -1,0 +1,73 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center>
+      Minha Saúde
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row offset-md-3>
+      <ion-col col-md-8>
+        <ion-card>
+          <ion-card-header>
+            <h1>Entrar</h1>
+          </ion-card-header>
+
+          <ion-card-content>
+
+            <ion-grid>
+              <ion-row>
+                <ion-col col-md-6 col-12>
+                  <h3 text-center padding></h3>
+                  <ion-list>
+
+                    <ion-item>
+                      <ion-label>Email</ion-label>
+                      <ion-input type="text" value=""></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                      <ion-label>Senha</ion-label>
+                      <ion-input type="password"></ion-input>
+                    </ion-item>
+
+                  </ion-list>
+
+                  <button ion-button full round color="dark" (click)="showMessage()">Entrar</button>
+
+                </ion-col>
+                <ion-col col-md-6 col-12>
+                  <h2 text-center padding>Entrar com um click</h2>
+                  <button ion-button full round color="danger" (click)="showMessage()">Google+</button>
+                  <button ion-button full round color="facebook" (click)="showMessage()">Facebook</button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+            <ion-grid>
+              <ion-row>
+                <ion-col col-md-6>
+                  <button ion-button full outline small (click)="openPage('CadastroPage')">Cadastrar</button>
+                </ion-col>
+                <ion-col col-md-6>
+                  <button ion-button full outline small color="secondary" (click)="openPage('ResetarSenhaPage')">Esqueci a senha</button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+          </ion-card-content>
+
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

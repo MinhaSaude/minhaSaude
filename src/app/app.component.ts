@@ -7,7 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = 'FichaMedicaPage';
+  rootPage:any = 'HomePage';
   fichaMedica:any = 'FichaMedicaPage';
   historico:any = 'HistoricoPage';
   medicos:any = 'MedicosPage';
@@ -27,5 +27,6 @@ export class MyApp {
   openPage(page){
     this.rootPage = page;
   }
+  
 }
 

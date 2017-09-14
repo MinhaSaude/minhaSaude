@@ -1,0 +1,146 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title text-center>
+      Minha Saúde
+    </ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-grid>
+    <ion-row offset-md-3>
+      <ion-col col-md-8>
+        <ion-card>
+          <ion-card-header>
+            <h1>Cadastro</h1>
+          </ion-card-header>
+
+          <ion-card-content>
+
+            <div>
+              <ion-segment [(ngModel)]="cadastro">
+                <ion-segment-button value="paciente">
+                  Paciente
+                </ion-segment-button>
+                <ion-segment-button value="medico">
+                  Medico
+                </ion-segment-button>
+              </ion-segment>
+            </div>
+
+            <div [ngSwitch]="cadastro">
+              <ion-list *ngSwitchCase="'paciente'">
+
+                  <ion-grid>
+                      <ion-row>
+                        <ion-col col-md-6 col-12>
+                          <ion-list>
+    
+                            <ion-item>
+                              <ion-label>Nome</ion-label>
+                              <ion-input type="text" value=""></ion-input>
+                            </ion-item>
+    
+                            <ion-item>
+                              <ion-label>Email</ion-label>
+                              <ion-input type="text" value=""></ion-input>
+                            </ion-item>
+    
+                            <ion-item>
+                              <ion-label>Senha</ion-label>
+                              <ion-input type="password"></ion-input>
+                            </ion-item>
+    
+                            <ion-item>
+                              <ion-label>Confirmar Senha</ion-label>
+                              <ion-input type="password"></ion-input>
+                            </ion-item>
+    
+                          </ion-list>
+    
+                          <button ion-button full round color="dark" (click)="showMessage()">Cadastrar</button>
+    
+                        </ion-col>
+                        <ion-col col-md-6 col-12>
+                          <h2 text-center padding>Ou cadastre-se com um click</h2>
+                          <button ion-button full round color="danger" (click)="showMessage()">Google+</button>
+                          <button ion-button full round color="facebook" (click)="showMessage()">Facebook</button>
+                        </ion-col>
+                      </ion-row>
+                    </ion-grid>
+              </ion-list>
+
+              <ion-list *ngSwitchCase="'medico'">
+
+                <ion-grid>
+                  <ion-row>
+                    <ion-col col-md-6 col-12>
+                      <ion-list>
+
+                        <ion-item>
+                          <ion-label>Nome</ion-label>
+                          <ion-input type="text" value=""></ion-input>
+                        </ion-item>
+
+                        <ion-item>
+                          <ion-label>CRM</ion-label>
+                          <ion-input type="text" value=""></ion-input>
+                        </ion-item>
+
+                        <ion-item>
+                          <ion-label>Email</ion-label>
+                          <ion-input type="text" value=""></ion-input>
+                        </ion-item>
+
+                        <ion-item>
+                          <ion-label>Senha</ion-label>
+                          <ion-input type="password"></ion-input>
+                        </ion-item>
+
+                        <ion-item>
+                          <ion-label>Confirmar Senha</ion-label>
+                          <ion-input type="password"></ion-input>
+                        </ion-item>
+
+                      </ion-list>
+
+                      <button ion-button full round color="dark" (click)="showMessage()">Cadastrar</button>
+
+                    </ion-col>
+                    <ion-col col-md-6 col-12>
+                      <ion-item>
+                        <ion-label>CRM</ion-label>
+                        <ion-input type="text" value=""></ion-input>
+                      </ion-item>
+                      <h2 text-center padding>Ou cadastre-se com um click</h2>
+                      <button ion-button full round color="danger" (click)="showMessage()">Google+</button>
+                      <button ion-button full round color="facebook" (click)="showMessage()">Facebook</button>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+
+              </ion-list>
+            </div>
+
+            <ion-grid>
+              <ion-row>
+                <ion-col col-md-6>
+                  <button ion-button full outline small (click)="openPage('LoginPage')">Entrar</button>
+                </ion-col>
+                <ion-col col-md-6>
+                  <button ion-button full outline small color="secondary" (click)="openPage('ResetarSenhaPage')">Esqueci a senha</button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

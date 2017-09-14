@@ -11,5 +11,9 @@ export class HomePage {
   constructor(public navCtrl: NavController) {
 
   }
+  
+  openPage(page){
+    this.navCtrl.push(page);
+  }
 
 }

@@ -70,3 +70,9 @@ $FONT_COLOR: #FAFAFA;
 .bar-button-md-default:hover:not(.disable-hover) {
   color: $FONT_COLOR;
 }
+
+.bar-button-default-ios:hover:not(.disable-hover),
+.bar-button-default.bar-button-ios-default:hover:not(.disable-hover),
+.bar-button-clear-ios-default:hover:not(.disable-hover) {
+  color: $FONT_COLOR;
+}

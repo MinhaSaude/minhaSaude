@@ -11,56 +11,122 @@
 
 
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      Ficha Médica
-    </ion-card-header>
-      <ion-card-content>
 
-  <div>
-    <ion-segment [(ngModel)]="fichaMedica">
-      <ion-segment-button value="infoPessoal">
-        Informações Pessoais
-      </ion-segment-button>
-      <ion-segment-button value="endereco">
-        Endereços
-      </ion-segment-button>
-      <ion-segment-button value="parentes">
-        Parentes
-      </ion-segment-button>
-      <ion-segment-button value="alergias">
-        Alergias
-      </ion-segment-button>
-    </ion-segment>
-  </div>
-  
-  <div [ngSwitch]="fichaMedica">
-    <ion-list *ngSwitchCase="'infoPessoal'">
-      <ion-item>
-        <h2>1</h2>
-      </ion-item>
-    </ion-list>
-  
-    <ion-list *ngSwitchCase="'endereco'">
-      <ion-item>
-        <h2>2</h2>
-      </ion-item>
-    </ion-list>
+  <ion-grid>
+    <ion-row offset-md-3>
+      <ion-col col-md-8>
 
-    <ion-list *ngSwitchCase="'parentes'">
-      <ion-item>
-        <h2>3</h2>
-      </ion-item>
-    </ion-list>
+        <ion-card>
+          <ion-card-header>
+            <h1>Informações Pessoais</h1>
+          </ion-card-header>
+          <ion-card-content>
 
-    <ion-list *ngSwitchCase="'alergias'">
-      <ion-item>
-        <h2>4</h2>
-      </ion-item>
-    </ion-list>
-  </div>
-        <!-- Add card content here! -->
-      </ion-card-content>
-      
-      </ion-card>
+            <div>
+              <ion-segment [(ngModel)]="fichaMedica">
+                <ion-segment-button value="infoPessoal">
+                  <ion-icon name="list-box"></ion-icon>
+                </ion-segment-button>
+                <ion-segment-button value="endereco">
+                  <ion-icon name="pin"></ion-icon>
+                </ion-segment-button>
+                <ion-segment-button value="parentes">
+                  <ion-icon name="people"></ion-icon>
+                </ion-segment-button>
+                <ion-segment-button value="alergias">
+                  <ion-icon name="bug"></ion-icon>
+                </ion-segment-button>
+              </ion-segment>
+            </div>
+
+            <div [ngSwitch]="fichaMedica">
+              <ion-list *ngSwitchCase="'infoPessoal'">
+
+                <img src="./assets/images/profile.jpg" class="profile" padding>
+
+                <ion-grid>
+                  <ion-row>
+                    <ion-col>
+                      <ion-list>
+
+                        <ion-item>
+                          <ion-label>Nome</ion-label>
+                          <ion-input type="text" value=""></ion-input>
+                        </ion-item>
+
+                        <ion-item>
+                          <ion-label>CPF</ion-label>
+                          <ion-input type="text"></ion-input>
+                        </ion-item>
+
+
+                        <ion-item>
+                          <ion-label>Tel - Fixo</ion-label>
+                          <ion-input type="text"></ion-input>
+                        </ion-item>
+
+                        <ion-item>
+                          <ion-label>Tel - Celular</ion-label>
+                          <ion-input type="text"></ion-input>
+                        </ion-item>
+
+                      </ion-list>
+
+
+                    </ion-col>
+                    <ion-col>
+
+
+
+                      <ion-item>
+                        <ion-label>Sexo</ion-label>
+                        <ion-select [(ngModel)]="sexo">
+                          <ion-option value="M">Masculino</ion-option>
+                          <ion-option value="F">Feminino</ion-option>
+                        </ion-select>
+                      </ion-item>
+
+                      <ion-item>
+                        <ion-label>Estado Civil</ion-label>
+                        <ion-select [(ngModel)]="estadoCivil">
+                          <ion-option value="1">Solteiro</ion-option>
+                          <ion-option value="2">Casado</ion-option>
+                          <ion-option value="3">Separado</ion-option>
+                          <ion-option value="4">Divorciado</ion-option>
+                          <ion-option value="5">Viuvo</ion-option>
+                        </ion-select>
+                      </ion-item>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+
+              </ion-list>
+
+              <ion-list *ngSwitchCase="'endereco'">
+                <ion-item>
+                  <h2>2</h2>
+                </ion-item>
+              </ion-list>
+
+              <ion-list *ngSwitchCase="'parentes'">
+                <ion-item>
+                  <h2>3</h2>
+                </ion-item>
+              </ion-list>
+
+              <ion-list *ngSwitchCase="'alergias'">
+                <ion-item>
+                  <h2>4</h2>
+                </ion-item>
+              </ion-list>
+            </div>
+          </ion-card-content>
+
+        </ion-card>
+
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

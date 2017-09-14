@@ -10,31 +10,36 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
-    
-      <ion-card-header>
-      {{inicio}}
-      </ion-card-header>
-    
-      <ion-card-content>
-        Tenha apenas uma ficha medica e use em qualquer hospital<br>
-        Um historico feito por medicos e pacientes<br>
-        Encontre medicos especialistas proximo a você.
-      </ion-card-content>
-    
-    </ion-card>
-
   <ion-grid>
-    <ion-row offset-md-5>
-      <ion-col col-md-2>
-        <button ion-button full color="dark">Cadastrar</button>
+    <ion-row offset-md-3>
+      <ion-col col-md-8>
+        <ion-card>
+
+          <ion-card-header>
+            <h1> {{inicio}}</h1>
+          </ion-card-header>
+
+          <ion-card-content>
+            Tenha apenas uma ficha medica e use em qualquer hospital<br> Um historico feito por medicos e pacientes<br> Encontre
+            medicos especialistas proximo a você.
+
+            <ion-grid>
+              <ion-row offset-md-3>
+                <ion-col col-md-4>
+                  <button ion-button full color="dark" round (click)="openPage('CadastroPage')">Cadastrar</button>
+                </ion-col>
+                <ion-col col-md-4>
+                  <button ion-button full round (click)="openPage('LoginPage')">Entrar</button>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+          </ion-card-content>
+
+        </ion-card>
       </ion-col>
-      <ion-col col-md-2>
-        <button ion-button full>Entrar</button>
-      </ion-col>
+
     </ion-row>
   </ion-grid>
-
-
 
 </ion-content>
