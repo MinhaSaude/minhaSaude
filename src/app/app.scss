@@ -76,3 +76,13 @@ $FONT_COLOR: #FAFAFA;
 .bar-button-clear-ios-default:hover:not(.disable-hover) {
   color: $FONT_COLOR;
 }
+
+.title.title-md {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  z-index: -1;
+}
