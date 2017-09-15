@@ -35,7 +35,7 @@ Uma plataforma que conseguisse aumentar a velocidade no atendimento e permita o 
 7. Sigilo de informações
 8. Cartão de Identificação do Paciente
 ```
-### Divisão do Projeto:
+## Divisão do Projeto
 
 
 O projeto é dividido em três partes, documentação,servidor e cliente, cada um possui o seu repositorio especifico com documentação.
