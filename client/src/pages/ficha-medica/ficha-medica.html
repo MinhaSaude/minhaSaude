@@ -25,16 +25,16 @@
             <div>
               <ion-segment [(ngModel)]="fichaMedica" (ionChange)="segmentChanged($event)">
                 <ion-segment-button value="infoPessoal">
-                  <ion-icon name="list-box"></ion-icon>
+                  <img name="img-ficha-medica" src="./assets/icon/ficha-medica/informacoes_pessoais.png" class="img-ficha-medica">
                 </ion-segment-button>
                 <ion-segment-button value="endereco">
-                  <ion-icon name="pin"></ion-icon>
+                  <img name="img-endereco" src="./assets/icon/ficha-medica/endereco.png" class="img-ficha-medica">
                 </ion-segment-button>
                 <ion-segment-button value="parentes">
-                  <ion-icon name="people"></ion-icon>
+                  <img name="img-parentes" src="./assets/icon/ficha-medica/parentes.png" class="img-ficha-medica">
                 </ion-segment-button>
                 <ion-segment-button value="alergias">
-                  <ion-icon name="bug"></ion-icon>
+                  <img name="img-alergias" src="./assets/icon/ficha-medica/alergias.png" class="img-ficha-medica">
                 </ion-segment-button>
               </ion-segment>
             </div>
@@ -48,10 +48,10 @@
                   <ion-row>
                     <ion-col>
                       <ion-list>
-
+                        
                         <ion-item>
                           <ion-label>Nome</ion-label>
-                          <ion-input type="text" value=""></ion-input>
+                          <ion-input type="text"></ion-input>
                         </ion-item>
 
                         <ion-item>
