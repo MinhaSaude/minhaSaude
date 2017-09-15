@@ -1,26 +1,36 @@
-This is a starter template for [Ionic](http://ionicframework.com/docs/) projects.
 
-## How to use this template
+<p align="center">
+  <img src="https://raw.githubusercontent.com/MinhaSaude/minhaSaude/master/client/resources/android/splash/drawable-land-ldpi-screen.png" alt="A Plataforma que descomplica a forma como os pacientes e hospitais mantem o histórico médico"/>
+</p>
 
-*This template does not work on its own*. The shared files for each starter are found in the [ionic2-app-base repo](https://github.com/ionic-team/ionic2-app-base).
+## PWA e APK
 
-To use this template, either create a new ionic project using the ionic node.js utility, or copy the files from this repository into the [Starter App Base](https://github.com/ionic-team/ionic2-app-base).
+<p><a href="https://minhasaude.io" target="_blank">PWA link</a></p>
+<p><a href="https://drive.google.com/open?id=0ByiDi-nlXfgVZ1dOLUVUYTIySkU" target="_blank">APK link</a></p>
 
-### With the Ionic CLI:
+## Justificativa do Projeto
 
-Take the name after `ionic2-starter-`, and that is the name of the template to be used when using the `ionic start` command below:
+Uma das maiores reclamações dos brasileiros é sobre a saúde, as filas inacabáveis, demora no atendimento e a falta de profissionais para atender toda a demanda. 
+O Manual de Auditoria de Atenção Básica do Ministério da Saúde considera os 15 minutos como referência de produtividade na rede pública, porém, sabemos que esse tempo é muito inferior ao recomendado. Em muitos hospitais, há a necessidade de preencher uma ficha médica, muitas vezes o paciente está em impossibilitado de fazê-la por estar desacordado ou impossibilitado de realizar movimentos, este fato acaba prejudicando o diagnóstico do médico que atua sem um conhecimento prévio. Uma plataforma que conseguisse aumentar a velocidade no atendimento e permita o médico acompanhar todo o histórico do paciente, mesmo se o paciente tenha realizado consultas em outros hospitais em diferentes estados, além de claro, as disponibilizasse de maneira simples e concisa para o consumidor melhorando o acesso a saúde e facilitando a vida da população.
 
-```bash
-$ sudo npm install -g ionic cordova
-$ ionic start myBlank blank
+## Escopo
 ```
-
-Then, to run it, cd into `myBlank` and run:
-
-```bash
-$ ionic cordova platform add ios
-$ ionic cordova run ios
+1. Ficha Médica Unificada
+2. Inclusão de parentes (por CPF)
+3. Sintomas do paciente (sintomas)
+4. Histórico de Sintomas
+  4.1 Rastreabilidade de Consultas
+  4.2 Doenças e diagnósticos
+  4.3 Linha do tempo
+  4.4 Medicamentos
+  4.5 Histórico de anaminésia *
+5. Indicação por especialidade
+6. Filtro por Região 
+  6.1 Ranking por tratamento dos médicos *
+7. Sigilo de informações
+8. Cartão de Identificação do Paciente
 ```
+### Divisão do Projeto:
 
-Substitute ios for android if not on a Mac.
 
+O projeto é dividido em três partes, documentação,servidor e cliente, cada um possui o seu repositorio especifico com documentação.
