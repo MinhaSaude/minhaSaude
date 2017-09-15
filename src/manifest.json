@@ -1,13 +1,13 @@
 {
-  "name": "Ionic",
-  "short_name": "Ionic",
+  "name": "MinhaSaude",
+  "short_name": "MinhaSaude",
   "start_url": "index.html",
   "display": "standalone",
   "icons": [{
-    "src": "assets/imgs/logo.png",
+    "src": "assets/images/main.png",
     "sizes": "512x512",
     "type": "image/png"
   }],
-  "background_color": "#4e8ef7",
-  "theme_color": "#4e8ef7"
+  "background_color": "#E9E9E9",
+  "theme_color": "#E9E9E9"
 }

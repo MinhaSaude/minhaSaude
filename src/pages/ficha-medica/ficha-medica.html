@@ -18,12 +18,12 @@
 
         <ion-card>
           <ion-card-header>
-            <h1>Informações Pessoais</h1>
+            <h1>{{titulo}}</h1>
           </ion-card-header>
           <ion-card-content>
 
             <div>
-              <ion-segment [(ngModel)]="fichaMedica">
+              <ion-segment [(ngModel)]="fichaMedica" (ionChange)="segmentChanged($event)">
                 <ion-segment-button value="infoPessoal">
                   <ion-icon name="list-box"></ion-icon>
                 </ion-segment-button>

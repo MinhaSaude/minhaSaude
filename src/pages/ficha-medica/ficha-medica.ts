@@ -15,11 +15,32 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class FichaMedicaPage {
   fichaMedica:any = "infoPessoal";
+  titulo:any = "Informações Pessoais";
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FichaMedicaPage');
   }
+  
+  segmentChanged(event){
 
+    switch(event.value){
+      case 'infoPessoal':
+      this.titulo = "Informações Pessoais";
+      break;
+      case 'endereco':
+      this.titulo = "Endereços";
+      break;
+      case 'parentes':
+      this.titulo = "Parentes";
+      break;
+      case 'alergias':
+      this.titulo = "Alergias";
+      break;
+      default:
+      this.titulo = "Informações Pessoais";
+    }
+    
+  }
 }
