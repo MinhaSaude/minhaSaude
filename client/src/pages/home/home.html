@@ -6,40 +6,32 @@
     <ion-title>
       Minha Saúde
     </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="openPage('LoginPage')">
+        Entrar
+        </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-    <ion-row offset-md-3>
-      <ion-col col-md-8>
-        <ion-card>
-
-          <ion-card-header>
-            <h1> {{inicio}}</h1>
-          </ion-card-header>
-
-          <ion-card-content>
-            Tenha apenas uma ficha medica e use em qualquer hospital<br> Um historico feito por medicos e pacientes<br> Encontre
-            medicos especialistas proximo a você.
-
-            <ion-grid>
-              <ion-row offset-md-3>
-                <ion-col col-md-4>
-                  <button ion-button full color="dark" round (click)="openPage('CadastroPage')">Cadastrar</button>
-                </ion-col>
-                <ion-col col-md-4>
-                  <button ion-button full round (click)="openPage('LoginPage')">Entrar</button>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
-
-          </ion-card-content>
-
-        </ion-card>
-      </ion-col>
-
-    </ion-row>
-  </ion-grid>
-
+  <div class="splash">
+    <ion-grid>
+      <ion-row offset-md-3 class="splash-content">
+        <ion-col col-md-2 col-12 text-center>
+          <img name="img-brasil" class="img-splash" src="./assets/images/brasil.png">
+        </ion-col>
+        <ion-col col-md-6 text-center>
+          <h1 class="splash"> Mantenha suas informações de saúde sempre contigo, de graça. Para sempre.</h1>
+          <ion-grid>
+            <ion-row offset-md-3>
+              <ion-col col-md-8>
+                <button ion-button full color="success" round (click)="openPage('CadastroPage')">Começar agora</button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

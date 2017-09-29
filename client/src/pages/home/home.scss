@@ -1,3 +1,25 @@
 page-home {
 
+    div.splash {
+            width: 100%;
+            background-image: url("../assets/images/splash.svg");
+            background-size: cover;
+            padding: 0; /* reset */
+            padding-bottom: calc(100% * 3 / 4);
+    }
+
+    h1.splash {
+        font-size: 28px;
+        color: #fff;
+    }
+
+    img.img-splash{
+        width: 148px;
+        height:148px;
+    }
+    @media (min-width:1025px) { 
+        .splash-content{
+        margin-top:150px;
+    }
+     }
 }
