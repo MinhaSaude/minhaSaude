@@ -4,28 +4,14 @@
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
-  <ion-content>
+
+    <ion-content>
     <ion-list>
-      <button ion-item (click)="openPage(inicio)" menuClose>
-            <img name="img-ficha-medica" src="./assets/icon/menu/inicio.png" float-left class="app-icons">  <span float-left>Início</span>
-      </button>
-      <button ion-item (click)="openPage(fichaMedica)" menuClose>
-          <img name="img-ficha-medica" src="./assets/icon/menu/ficha-medica.png" float-left class="app-icons">  <span float-left>Ficha Médica</span>
-      </button>
-      <button ion-item (click)="openPage(historico)" menuClose>
-         <img name="img-historico" src="./assets/icon/menu/historico.png" float-left class="app-icons">  <span float-left>Histórico</span>
-      </button>
-      <button ion-item (click)="openPage(medicos)" menuClose>
-        <img name="img-medicos" src="./assets/icon/menu/medico.png" float-left class="app-icons">  <span float-left>Médicos</span>
-      </button>
-      <button ion-item (click)="openPage(cartao)" menuClose>
-        <img name="img-cartao" src="./assets/icon/menu/cartao.png" float-left class="app-icons">  <span float-left>Cartão</span>
-      </button>
-      <button ion-item (click)="openPage(sobre)" menuClose>
-        <img name="img-sobre" src="./assets/icon/menu/sobre.png" float-left class="app-icons">  <span float-left>Sobre</span>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <img name="{{p.titulo}}" src="{{p.image}}" float-left class="app-icons">  <span float-left>{{p.title}}</span>
       </button>
     </ion-list>
   </ion-content>
 </ion-menu>
 
-<ion-nav id="nav" #content [root]="rootPage"></ion-nav>
+<ion-nav id="nav" #content [root]="rootPage" swipeBackEnabled="false"></ion-nav>
