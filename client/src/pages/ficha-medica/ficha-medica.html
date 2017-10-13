@@ -27,9 +27,6 @@
                 <ion-segment-button value="infoPessoal">
                   <img name="img-ficha-medica" src="./assets/icon/ficha-medica/informacoes_pessoais.png" class="img-ficha-medica">
                 </ion-segment-button>
-                <ion-segment-button value="endereco">
-                  <img name="img-endereco" src="./assets/icon/ficha-medica/endereco.png" class="img-ficha-medica">
-                </ion-segment-button>
                 <ion-segment-button value="parentes">
                   <img name="img-parentes" src="./assets/icon/ficha-medica/parentes.png" class="img-ficha-medica">
                 </ion-segment-button>
@@ -42,7 +39,7 @@
             <div [ngSwitch]="fichaMedica">
               <ion-list *ngSwitchCase="'infoPessoal'">
 
-                <img src="./assets/images/profile.jpg" class="profile" padding>
+                <img src="{{photoURL}}" class="profile" padding>
 
                 <ion-grid>
                   <ion-row>
@@ -51,7 +48,7 @@
                         
                         <ion-item>
                           <ion-label>Nome</ion-label>
-                          <ion-input type="text"></ion-input>
+                          <ion-input type="text" [(ngModel)]="displayName"></ion-input>
                         </ion-item>
 
                         <ion-item>
@@ -102,21 +99,15 @@
 
               </ion-list>
 
-              <ion-list *ngSwitchCase="'endereco'">
+              <ion-list *ngSwitchCase="'parentes'">
                 <ion-item>
                   <h2>2</h2>
                 </ion-item>
               </ion-list>
 
-              <ion-list *ngSwitchCase="'parentes'">
-                <ion-item>
-                  <h2>3</h2>
-                </ion-item>
-              </ion-list>
-
               <ion-list *ngSwitchCase="'alergias'">
                 <ion-item>
-                  <h2>4</h2>
+                  <h2>3</h2>
                 </ion-item>
               </ion-list>
             </div>

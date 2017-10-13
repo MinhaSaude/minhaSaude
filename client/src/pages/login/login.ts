@@ -1,12 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,ToastController} from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 
 @IonicPage()
 @Component({
@@ -15,11 +11,42 @@ import { IonicPage, NavController, NavParams,ToastController} from 'ionic-angula
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public toastCtrl: ToastController) {
+  user: any = { email: '', password: '' };
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public toastCtrl: ToastController,
+    private afAuth: AngularFireAuth) {
+
+
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+
+  signInWithEmailAndPass(user) {
+    this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
+      .then(res => {
+        this.navCtrl.setRoot('FichaMedicaPage');
+      });
+  }
+
+
+  signInWithFacebook() {
+    this.afAuth.auth
+      .signInWithPopup(new firebase.auth.FacebookAuthProvider())
+      .then(res => {
+        console.log(res);
+        this.navCtrl.setRoot('FichaMedicaPage');
+      });
+  }
+
+  signInWithGoogle() {
+    this.afAuth.auth
+      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .then(res => {
+        console.log(res);
+        this.navCtrl.setRoot('FichaMedicaPage');
+      });
   }
 
   showMessage() {
@@ -32,7 +59,7 @@ export class LoginPage {
     toast.present();
   }
 
-  openPage(page){
+  openPage(page) {
     this.navCtrl.push(page);
   }
 

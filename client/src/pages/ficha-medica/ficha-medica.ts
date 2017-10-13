@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 /**
  * Generated class for the FichaMedicaPage page.
  *
@@ -14,33 +15,47 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'ficha-medica.html',
 })
 export class FichaMedicaPage {
-  fichaMedica:any = "infoPessoal";
-  titulo:any = "Informações Pessoais";
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  fichaMedica: any = "infoPessoal";
+  titulo: any = "Informações Pessoais";
+  displayName:string;
+  page:any;
+  photoURL:string;
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private afAuth: AngularFireAuth) {
+    this.afAuth.authState.subscribe((user: firebase.User) => {
+      if (!user) {
+        this.displayName = null;
+        return;
+      }
+      this.displayName = user.displayName;
+      this.photoURL = user.photoURL;
+    });
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FichaMedicaPage');
   }
-  
-  segmentChanged(event){
 
-    switch(event.value){
+  segmentChanged(event) {
+
+    switch (event.value) {
       case 'infoPessoal':
-      this.titulo = "Informações Pessoais";
-      break;
+        this.titulo = "Informações Pessoais";
+        break;
       case 'endereco':
-      this.titulo = "Endereços";
-      break;
+        this.titulo = "Endereços";
+        break;
       case 'parentes':
-      this.titulo = "Parentes";
-      break;
+        this.titulo = "Parentes";
+        break;
       case 'alergias':
-      this.titulo = "Alergias";
-      break;
+        this.titulo = "Alergias";
+        break;
       default:
-      this.titulo = "Informações Pessoais";
+        this.titulo = "Informações Pessoais";
     }
-    
+
   }
 }
