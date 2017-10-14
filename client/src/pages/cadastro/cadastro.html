@@ -22,7 +22,6 @@
           </ion-card-header>
 
           <ion-card-content>
-
             <div>
               <ion-segment [(ngModel)]="cadastro">
                 <ion-segment-button value="paciente">
@@ -40,27 +39,28 @@
                 <ion-grid>
                   <ion-row>
                     <ion-col col-md-6 col-12>
-                      <ion-list>
+                      <form [formGroup]="patient" (ngSubmit)="createUserWithEmailAndPassPatient()">
+                        <ion-list>
 
-                        <ion-item>
-                          <ion-label>Email</ion-label>
-                          <ion-input type="text" [(ngModel)]="user.email"></ion-input>
-                        </ion-item>
+                          <ion-item>
+                            <ion-label>Email</ion-label>
+                            <ion-input type="text" formControlName="email"></ion-input>
+                          </ion-item>
 
-                        <ion-item>
-                          <ion-label>Senha</ion-label>
-                          <ion-input type="password" [(ngModel)]="user.password"></ion-input>
-                        </ion-item>
+                          <ion-item>
+                            <ion-label>Senha</ion-label>
+                            <ion-input type="password" formControlName="password"></ion-input>
+                          </ion-item>
 
-                        <ion-item>
-                          <ion-label>Confirmar Senha</ion-label>
-                          <ion-input type="password"></ion-input>
-                        </ion-item>
+                          <ion-item>
+                            <ion-label>Confirmar Senha</ion-label>
+                            <ion-input type="password" formControlName="password_confirm"></ion-input>
+                          </ion-item>
 
-                      </ion-list>
+                        </ion-list>
 
-                      <button ion-button full round color="dark" (click)="createUserWithEmailAndPass()">Cadastrar</button>
-
+                        <button ion-button full round color="dark" type="submit" [disabled]="!patient.valid">Cadastrar</button>
+                      </form>
                     </ion-col>
                     <ion-col col-md-6 col-12>
                       <h2 text-center padding>Ou cadastre-se com um click</h2>
@@ -76,36 +76,34 @@
                 <ion-grid>
                   <ion-row>
                     <ion-col col-md-6 col-12>
-                      <ion-list>
 
-                        <ion-item>
-                          <ion-label>Nome</ion-label>
-                          <ion-input type="text" value=""></ion-input>
-                        </ion-item>
+                      <form [formGroup]="doctor" (ngSubmit)="createUserWithEmailAndPassDoctor()">
+                        <ion-list>
 
-                        <ion-item>
-                          <ion-label>CRM</ion-label>
-                          <ion-input type="text" value=""></ion-input>
-                        </ion-item>
+                          <ion-item>
+                            <ion-label>CRM</ion-label>
+                            <ion-input type="text" formControlName="crm"></ion-input>
+                          </ion-item>
 
-                        <ion-item>
-                          <ion-label>Email</ion-label>
-                          <ion-input type="text" value=""></ion-input>
-                        </ion-item>
+                          <ion-item>
+                            <ion-label>Email</ion-label>
+                            <ion-input type="text" formControlName="email"></ion-input>
+                          </ion-item>
 
-                        <ion-item>
-                          <ion-label>Senha</ion-label>
-                          <ion-input type="password"></ion-input>
-                        </ion-item>
+                          <ion-item>
+                            <ion-label>Senha</ion-label>
+                            <ion-input type="password" formControlName="password"></ion-input>
+                          </ion-item>
 
-                        <ion-item>
-                          <ion-label>Confirmar Senha</ion-label>
-                          <ion-input type="password"></ion-input>
-                        </ion-item>
+                          <ion-item>
+                            <ion-label>Confirmar Senha</ion-label>
+                            <ion-input type="password" formControlName="password_confirm"></ion-input>
+                          </ion-item>
 
-                      </ion-list>
+                        </ion-list>
 
-                      <button ion-button full round color="dark" (click)="createUserWithEmailAndPass()">Cadastrar</button>
+                        <button ion-button full round color="dark" type="submit" [disabled]="!doctor.valid">Cadastrar</button>
+                      </form>
 
                     </ion-col>
                     <ion-col col-md-6 col-12>

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angu
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @IonicPage()
 @Component({
@@ -11,20 +12,25 @@ import * as firebase from 'firebase/app';
 })
 export class LoginPage {
 
-  user: any = { email: '', password: '' };
+  private user: FormGroup;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public toastCtrl: ToastController,
-    private afAuth: AngularFireAuth) {
+    private afAuth: AngularFireAuth,
+    private formBuilder: FormBuilder) {
 
+    this.user = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required],
+    });
 
   }
 
 
-  signInWithEmailAndPass(user) {
-    this.afAuth.auth.signInWithEmailAndPassword(user.email, user.password)
+  signInWithEmailAndPass() {
+    this.afAuth.auth.signInWithEmailAndPassword(this.user.value.email, this.user.value.password)
       .then(res => {
         this.navCtrl.setRoot('FichaMedicaPage');
       });
