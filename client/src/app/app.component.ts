@@ -1,3 +1,4 @@
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -15,33 +16,32 @@ export class MyApp {
   constructor(
     platform: Platform,
     statusBar: StatusBar,
-    splashScreen: SplashScreen) {
+    splashScreen: SplashScreen,
+    private afAuth: AngularFireAuth) {
     platform.ready().then(() => {
       statusBar.styleDefault();
       splashScreen.hide();
-      this.auth();
+      afAuth.authState.subscribe(user => {
+        if (!user) {
+          this.pages = [
+            { title: 'Início', component: 'HomePage', image: './assets/icon/menu/inicio.png' },
+            { title: 'Sobre', component: 'SobrePage', image: './assets/icon/menu/sobre.png' }
+          ];
+          return;
+        }
+        this.rootPage = 'FichaMedicaPage';
+        this.pages = [
+          { title: 'Ficha Médica', component: 'FichaMedicaPage', image: './assets/icon/menu/ficha-medica.png' },
+          { title: 'Histórico', component: 'HistoricoPage', image: './assets/icon/menu/historico.png' },
+          { title: 'Médicos', component: 'MedicosPage', image: './assets/icon/menu/medico.png' },
+          { title: 'Cartão', component: 'CartaoPage', image: './assets/icon/menu/cartao.png' },
+          { title: 'Sobre', component: 'SobrePage', image: './assets/icon/menu/sobre.png' }
+        ];
+
+      });
     });
   }
 
-  auth() {
-
-    if (this.isAuthenticated) {
-      this.pages = [
-        { title: 'Início', component: 'HomePage', image: './assets/icon/menu/inicio.png' },
-        { title: 'Ficha Médica', component: 'FichaMedicaPage', image: './assets/icon/menu/ficha-medica.png' },
-        { title: 'Histórico', component: 'HistoricoPage', image: './assets/icon/menu/historico.png' },
-        { title: 'Médicos', component: 'MedicosPage', image: './assets/icon/menu/medico.png' },
-        { title: 'Cartão', component: 'CartaoPage', image: './assets/icon/menu/cartao.png' },
-        { title: 'Sobre', component: 'SobrePage', image: './assets/icon/menu/sobre.png' }
-      ];
-    } else {
-      this.pages = [
-        { title: 'Início', component: 'HomePage', image: './assets/icon/menu/inicio.png' },
-        { title: 'Sobre', component: 'SobrePage', image: './assets/icon/menu/sobre.png' }
-      ];
-    }
-
-  }
   openPage(page) {
     this.nav.setRoot(page.component);
   }

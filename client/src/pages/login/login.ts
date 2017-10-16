@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -11,18 +11,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-
   private user: FormGroup;
-
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public toastCtrl: ToastController,
     private afAuth: AngularFireAuth,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    public loadingCtrl: LoadingController) {
 
     this.user = this.formBuilder.group({
-      email: ['', Validators.required],
+      email: ['', Validators.email],
       password: ['', Validators.required],
     });
 
@@ -30,39 +29,52 @@ export class LoginPage {
 
 
   signInWithEmailAndPass() {
+    this.presentLoading();
     this.afAuth.auth.signInWithEmailAndPassword(this.user.value.email, this.user.value.password)
-      .then(res => {
-        this.navCtrl.setRoot('FichaMedicaPage');
-      });
+    .then(res => {
+      this.navCtrl.setRoot('FichaMedicaPage');
+    }).catch(error => {
+      this.showMessage(error);
+    });
   }
 
 
   signInWithFacebook() {
+    this.presentLoading();
     this.afAuth.auth
       .signInWithPopup(new firebase.auth.FacebookAuthProvider())
       .then(res => {
-        console.log(res);
         this.navCtrl.setRoot('FichaMedicaPage');
+      }).catch(error => {
+        this.showMessage(error);
       });
   }
 
   signInWithGoogle() {
+    this.presentLoading();
     this.afAuth.auth
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(res => {
-        console.log(res);
         this.navCtrl.setRoot('FichaMedicaPage');
+      }).catch(error => {
+        this.showMessage(error);
       });
   }
 
-  showMessage() {
+  showMessage(m) {
     let toast = this.toastCtrl.create({
-      message: 'Método em construção.',
+      message: m,
       showCloseButton: true,
-      closeButtonText: 'Ok',
-      duration: 3000
+      closeButtonText: 'Ok'
     });
     toast.present();
+  }
+
+  presentLoading() {
+    this.loadingCtrl.create({
+      content: 'Carregando..',
+      dismissOnPageChange: true
+    }).present();
   }
 
   openPage(page) {

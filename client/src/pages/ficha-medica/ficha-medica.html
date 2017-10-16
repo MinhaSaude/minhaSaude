@@ -6,6 +6,11 @@
     <ion-title>
       Minha Saúde
     </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="deslogar()">
+        Deslogar
+        </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -45,7 +50,7 @@
                   <ion-row>
                     <ion-col>
                       <ion-list>
-                        
+
                         <ion-item>
                           <ion-label>Nome</ion-label>
                           <ion-input type="text" [(ngModel)]="displayName"></ion-input>

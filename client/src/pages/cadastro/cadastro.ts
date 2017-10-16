@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
@@ -14,23 +14,24 @@ export class CadastroPage {
   cadastro: string = 'paciente';
   private patient: FormGroup;
   private doctor: FormGroup;
-  
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public toastCtrl: ToastController,
     private afAuth: AngularFireAuth,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    public loadingCtrl: LoadingController) {
 
     this.patient = this.formBuilder.group({
-      email: ['', Validators.required],
+      email: ['', Validators.email],
       password: ['', Validators.required],
       password_confirm: ['', Validators.required],
     });
 
     this.doctor = this.formBuilder.group({
       crm: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', Validators.email],
       password: ['', Validators.required],
       password_confirm: ['', Validators.required],
     });
@@ -38,45 +39,59 @@ export class CadastroPage {
   }
 
   createUserWithEmailAndPassPatient() {
+    this.presentLoading();
     this.afAuth.auth.createUserWithEmailAndPassword(this.patient.value.email, this.patient.value.password)
       .then(res => {
         this.navCtrl.setRoot('FichaMedicaPage');
+      }).catch(error => {
+        this.showMessage(error);
       });
   }
 
   createUserWithEmailAndPassDoctor() {
+    this.presentLoading();
     this.afAuth.auth.createUserWithEmailAndPassword(this.patient.value.email, this.patient.value.password)
       .then(res => {
         this.navCtrl.setRoot('FichaMedicaPage');
+      }).catch(error => {
+        this.showMessage(error);
       });
   }
 
   signInWithFacebook() {
-    this.afAuth.auth
-      .signInWithPopup(new firebase.auth.FacebookAuthProvider())
-      .then(res => {
-        console.log(res);
-        this.navCtrl.setRoot('FichaMedicaPage');
-      });
+    this.presentLoading();
+    this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(res => {
+      this.navCtrl.setRoot('FichaMedicaPage');
+    }).catch(error => {
+      this.showMessage(error);
+    });
   }
 
   signInWithGoogle() {
+    this.presentLoading();
     this.afAuth.auth
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(res => {
-        console.log(res);
         this.navCtrl.setRoot('FichaMedicaPage');
+      }).catch(error => {
+        this.showMessage(error);
       });
   }
 
-  showMessage() {
+  showMessage(m) {
     let toast = this.toastCtrl.create({
-      message: 'Método em construção.',
+      message: m,
       showCloseButton: true,
-      closeButtonText: 'Ok',
-      duration: 3000
+      closeButtonText: 'Ok'
     });
     toast.present();
+  }
+
+  presentLoading() {
+    this.loadingCtrl.create({
+      content: 'Carregando..',
+      dismissOnPageChange: true
+    }).present();
   }
 
   openPage(page) {

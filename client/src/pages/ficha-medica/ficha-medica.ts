@@ -17,9 +17,9 @@ import * as firebase from 'firebase/app';
 export class FichaMedicaPage {
   fichaMedica: any = "infoPessoal";
   titulo: any = "Informações Pessoais";
-  displayName:string;
-  page:any;
-  photoURL:string;
+  displayName: string;
+  page: any;
+  photoURL: string;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -31,6 +31,7 @@ export class FichaMedicaPage {
       }
       this.displayName = user.displayName;
       this.photoURL = user.photoURL;
+      this.fichaMedica = "infoPessoal";
     });
   }
 
@@ -39,13 +40,10 @@ export class FichaMedicaPage {
   }
 
   segmentChanged(event) {
-
+    console.log(event);
     switch (event.value) {
       case 'infoPessoal':
         this.titulo = "Informações Pessoais";
-        break;
-      case 'endereco':
-        this.titulo = "Endereços";
         break;
       case 'parentes':
         this.titulo = "Parentes";
@@ -57,5 +55,11 @@ export class FichaMedicaPage {
         this.titulo = "Informações Pessoais";
     }
 
+  }
+
+  deslogar() {
+    this.afAuth.auth.signOut().then(() => {
+      this.navCtrl.setRoot('HomePage');
+    });
   }
 }
