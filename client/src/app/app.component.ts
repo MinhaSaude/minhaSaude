@@ -17,9 +17,11 @@ export class MyApp {
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
-    private afAuth: AngularFireAuth) {
+    afAuth: AngularFireAuth) {
     platform.ready().then(() => {
       afAuth.authState.subscribe(user => {
+        console.log('app.component');
+        console.log(user);
         if (user) {
           this.pages = [
             { title: 'Ficha Médica', component: 'FichaMedicaPage', image: './assets/icon/menu/ficha-medica.png' },
@@ -28,7 +30,7 @@ export class MyApp {
             { title: 'Cartão', component: 'CartaoPage', image: './assets/icon/menu/cartao.png' },
             { title: 'Sobre', component: 'SobrePage', image: './assets/icon/menu/sobre.png' }
           ];
-          this.rootPage = 'FichaMedicaPage';
+          this.nav.setRoot('FichaMedicaPage');
         } else {
           this.pages = [
             { title: 'Início', component: 'HomePage', image: './assets/icon/menu/inicio.png' },

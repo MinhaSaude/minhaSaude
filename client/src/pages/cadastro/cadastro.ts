@@ -14,7 +14,7 @@ export class CadastroPage {
   cadastro: string = 'paciente';
   private patient: FormGroup;
   private doctor: FormGroup;
-
+  private loading: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -36,19 +36,15 @@ export class CadastroPage {
       password_confirm: ['', Validators.required],
     });
 
-    afAuth.authState.subscribe(user => {
-      if (user) {
-        this.navCtrl.setRoot('FichaMedicaPage');
-      }
-    });
-
   }
 
   createUserWithEmailAndPassPatient() {
     this.presentLoading();
     this.afAuth.auth.createUserWithEmailAndPassword(this.patient.value.email, this.patient.value.password)
       .then(res => {
+        this.loading.dismiss();
       }).catch(error => {
+        this.loading.dismiss();
         this.showMessage(error);
       });
   }
@@ -57,7 +53,9 @@ export class CadastroPage {
     this.presentLoading();
     this.afAuth.auth.createUserWithEmailAndPassword(this.patient.value.email, this.patient.value.password)
       .then(res => {
+        this.loading.dismiss();
       }).catch(error => {
+        this.loading.dismiss();
         this.showMessage(error);
       });
   }
@@ -65,8 +63,9 @@ export class CadastroPage {
   signInWithFacebook() {
     this.presentLoading();
     this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(res => {
-
+      this.loading.dismiss();
     }).catch(error => {
+      this.loading.dismiss();
       this.showMessage(error);
     });
   }
@@ -76,7 +75,9 @@ export class CadastroPage {
     this.afAuth.auth
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(res => {
+        this.loading.dismiss();
       }).catch(error => {
+        this.loading.dismiss();
         this.showMessage(error);
       });
   }
@@ -91,10 +92,11 @@ export class CadastroPage {
   }
 
   presentLoading() {
-    this.loadingCtrl.create({
+    this.loading = this.loadingCtrl.create({
       content: 'Carregando..',
       dismissOnPageChange: true
-    }).present();
+    });
+    this.loading.present();
   }
 
   openPage(page) {

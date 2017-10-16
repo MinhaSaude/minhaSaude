@@ -25,13 +25,13 @@ export class FichaMedicaPage {
     public navParams: NavParams,
     private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe((user: firebase.User) => {
-      if (!user) {
-        this.displayName = null;
-        return;
-      }
+      if (user) {
       this.displayName = user.displayName;
       this.photoURL = user.photoURL;
       this.fichaMedica = "infoPessoal";
+      }else{
+        this.navCtrl.setRoot('HomePage');
+      }
     });
   }
 

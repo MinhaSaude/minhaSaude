@@ -12,6 +12,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class LoginPage {
   private user: FormGroup;
+  private loading: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -31,11 +32,12 @@ export class LoginPage {
   signInWithEmailAndPass() {
     this.presentLoading();
     this.afAuth.auth.signInWithEmailAndPassword(this.user.value.email, this.user.value.password)
-    .then(res => {
-      this.navCtrl.setRoot('FichaMedicaPage');
-    }).catch(error => {
-      this.showMessage(error);
-    });
+      .then(res => {
+        this.loading.dismiss();
+      }).catch(error => {
+        this.loading.dismiss();
+        this.showMessage(error);
+      });
   }
 
 
@@ -44,8 +46,9 @@ export class LoginPage {
     this.afAuth.auth
       .signInWithPopup(new firebase.auth.FacebookAuthProvider())
       .then(res => {
-        this.navCtrl.setRoot('FichaMedicaPage');
+        this.loading.dismiss();
       }).catch(error => {
+        this.loading.dismiss();
         this.showMessage(error);
       });
   }
@@ -55,8 +58,9 @@ export class LoginPage {
     this.afAuth.auth
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(res => {
-        this.navCtrl.setRoot('FichaMedicaPage');
+        this.loading.dismiss();
       }).catch(error => {
+        this.loading.dismiss();
         this.showMessage(error);
       });
   }
@@ -71,10 +75,11 @@ export class LoginPage {
   }
 
   presentLoading() {
-    this.loadingCtrl.create({
+    this.loading = this.loadingCtrl.create({
       content: 'Carregando..',
       dismissOnPageChange: true
-    }).present();
+    });
+    this.loading.present();
   }
 
   openPage(page) {
