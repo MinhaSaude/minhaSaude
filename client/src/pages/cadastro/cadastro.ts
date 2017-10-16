@@ -36,13 +36,18 @@ export class CadastroPage {
       password_confirm: ['', Validators.required],
     });
 
+    afAuth.authState.subscribe(user => {
+      if (user) {
+        this.navCtrl.setRoot('FichaMedicaPage');
+      }
+    });
+
   }
 
   createUserWithEmailAndPassPatient() {
     this.presentLoading();
     this.afAuth.auth.createUserWithEmailAndPassword(this.patient.value.email, this.patient.value.password)
       .then(res => {
-        this.navCtrl.setRoot('FichaMedicaPage');
       }).catch(error => {
         this.showMessage(error);
       });
@@ -52,7 +57,6 @@ export class CadastroPage {
     this.presentLoading();
     this.afAuth.auth.createUserWithEmailAndPassword(this.patient.value.email, this.patient.value.password)
       .then(res => {
-        this.navCtrl.setRoot('FichaMedicaPage');
       }).catch(error => {
         this.showMessage(error);
       });
@@ -61,7 +65,7 @@ export class CadastroPage {
   signInWithFacebook() {
     this.presentLoading();
     this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(res => {
-      this.navCtrl.setRoot('FichaMedicaPage');
+
     }).catch(error => {
       this.showMessage(error);
     });
@@ -72,7 +76,6 @@ export class CadastroPage {
     this.afAuth.auth
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(res => {
-        this.navCtrl.setRoot('FichaMedicaPage');
       }).catch(error => {
         this.showMessage(error);
       });

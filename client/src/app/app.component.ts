@@ -19,26 +19,26 @@ export class MyApp {
     splashScreen: SplashScreen,
     private afAuth: AngularFireAuth) {
     platform.ready().then(() => {
-      statusBar.styleDefault();
-      splashScreen.hide();
       afAuth.authState.subscribe(user => {
-        if (!user) {
+        if (user) {
+          this.pages = [
+            { title: 'Ficha Médica', component: 'FichaMedicaPage', image: './assets/icon/menu/ficha-medica.png' },
+            { title: 'Histórico', component: 'HistoricoPage', image: './assets/icon/menu/historico.png' },
+            { title: 'Médicos', component: 'MedicosPage', image: './assets/icon/menu/medico.png' },
+            { title: 'Cartão', component: 'CartaoPage', image: './assets/icon/menu/cartao.png' },
+            { title: 'Sobre', component: 'SobrePage', image: './assets/icon/menu/sobre.png' }
+          ];
+          this.rootPage = 'FichaMedicaPage';
+        } else {
           this.pages = [
             { title: 'Início', component: 'HomePage', image: './assets/icon/menu/inicio.png' },
             { title: 'Sobre', component: 'SobrePage', image: './assets/icon/menu/sobre.png' }
           ];
           return;
         }
-        this.rootPage = 'FichaMedicaPage';
-        this.pages = [
-          { title: 'Ficha Médica', component: 'FichaMedicaPage', image: './assets/icon/menu/ficha-medica.png' },
-          { title: 'Histórico', component: 'HistoricoPage', image: './assets/icon/menu/historico.png' },
-          { title: 'Médicos', component: 'MedicosPage', image: './assets/icon/menu/medico.png' },
-          { title: 'Cartão', component: 'CartaoPage', image: './assets/icon/menu/cartao.png' },
-          { title: 'Sobre', component: 'SobrePage', image: './assets/icon/menu/sobre.png' }
-        ];
-
       });
+      statusBar.styleDefault();
+      splashScreen.hide();
     });
   }
 
