@@ -34,17 +34,18 @@
               <ion-row>
                 <ion-col>
                   <h3 text-center padding></h3>
+                  <form [formGroup]="user" (ngSubmit)="resetPassword()">
                   <ion-list>
 
                     <ion-item>
                       <ion-label>Email</ion-label>
-                      <ion-input type="text" value=""></ion-input>
+                      <ion-input type="text" formControlName="email"></ion-input>
                     </ion-item>
 
                   </ion-list>
 
-                  <button ion-button full round color="dark">Enviar</button>
-
+                  <button ion-button full round color="dark" type="submit" [disabled]="!user.valid">Enviar</button>
+                  </form>
                 </ion-col>
               </ion-row>
             </ion-grid>

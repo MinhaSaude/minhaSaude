@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AngularFireAuth } from 'angularfire2/auth';
 
 /**
  * Generated class for the CartaoPage page.
@@ -18,18 +17,10 @@ export class CartaoPage {
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams,
-    private afAuth: AngularFireAuth
-  ) {
+    public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CartaoPage');
-  }
-
-  deslogar() {
-    this.afAuth.auth.signOut().then(() => {
-      this.navCtrl.setRoot('HomePage');
-    });
   }
 }

@@ -95,3 +95,12 @@ $FONT_COLOR: #FAFAFA;
 .list-md .item-block .item-inner {
   border-bottom: 1px solid #dedede !important;
 }
+
+.menu-bottom{
+  left:0;
+  right:0;
+  margin:0;
+   width: 100%;
+   position: fixed;
+   bottom:0;
+}

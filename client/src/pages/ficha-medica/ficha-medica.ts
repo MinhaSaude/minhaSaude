@@ -57,9 +57,4 @@ export class FichaMedicaPage {
 
   }
 
-  deslogar() {
-    this.afAuth.auth.signOut().then(() => {
-      this.navCtrl.setRoot('HomePage');
-    });
-  }
 }
