@@ -20,8 +20,6 @@ export class MyApp {
     private afAuth: AngularFireAuth) {
     platform.ready().then(() => {
       afAuth.authState.subscribe(user => {
-        console.log('app.component');
-        console.log(user);
         if (user) {
           this.isAuthenticated = true;
           this.pages = [

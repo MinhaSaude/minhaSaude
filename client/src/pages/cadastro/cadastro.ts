@@ -66,7 +66,8 @@ export class CadastroPage {
       this.loading.dismiss();
     }).catch(error => {
       this.loading.dismiss();
-      this.showMessage(error);
+      console.log(error);
+      this.showMessage("Falha na autenticação com o facebook, por favor, tente novamente.");
     });
   }
 
@@ -78,11 +79,13 @@ export class CadastroPage {
         this.loading.dismiss();
       }).catch(error => {
         this.loading.dismiss();
-        this.showMessage(error);
+        console.log(error);
+        this.showMessage("Falha na autenticação com o google, por favor, tente novamente.");
       });
   }
 
   showMessage(m) {
+    console.log(m);
     let toast = this.toastCtrl.create({
       message: m,
       showCloseButton: true,
