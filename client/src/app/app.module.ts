@@ -16,7 +16,7 @@ import { MyApp } from './app.component';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, { mode: 'md' }),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule
   ],

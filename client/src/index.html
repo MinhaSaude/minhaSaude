@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br" dir="ltr">
+
 <head>
   <meta charset="UTF-8">
   <title>Minha Saúde</title>
@@ -15,19 +16,23 @@
   <!-- cordova.js required for cordova apps -->
   <script src="cordova.js"></script>
 
-  <!-- un-comment this code to enable service worker
   <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js')
         .then(() => console.log('service worker installed'))
         .catch(err => console.error('Error', err));
     }
-  </script>-->
+  </script>
   <link href="build/main.css" rel="stylesheet">
 
 </head>
+
 <body>
 
+  <noscript>
+    <h1>Você não tem javascript habilitado.</h1>
+    <p>Por favor habilite para ter uma experiencia completa.</p>
+  </noscript>
   <!-- Ionic's root component and where the app will load -->
   <ion-app></ion-app>
 
@@ -42,4 +47,5 @@
   <script src="build/main.js"></script>
 
 </body>
+
 </html>

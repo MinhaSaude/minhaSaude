@@ -59,5 +59,8 @@
             "android",
             "browser"
         ]
+    },
+    "config": {
+        "ionic_sass": "./sass.js"
     }
 }
