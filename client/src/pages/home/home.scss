@@ -17,9 +17,16 @@ page-home {
         width: 148px;
         height:148px;
     }
+  
     @media (min-width:1025px) { 
         .splash-content{
-        margin-top:150px;
-    }
+          margin-top:150px;
+        }
+     }
+  
+      @media (min-width:1500px) { 
+        .splash-content{
+          margin-top:220px;
+        }
      }
 }
