@@ -40,7 +40,7 @@ export class ResetarSenhaPage {
     this.presentLoading();
     this.afAuth.auth.sendPasswordResetEmail(this.user.value.email).then(() => {
       this.loading.dismiss();
-      this.showMessage("Um email foi enviado para resetar sua senha.");
+      this.showMessage("Um email foi enviado para resetar sua senha, caso não encontre verifique na caixa de spam.");
     }).catch(error => {
       this.loading.dismiss();
       this.showMessage(error);
