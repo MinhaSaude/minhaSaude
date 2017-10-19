@@ -6,7 +6,8 @@
   </ion-header>
 
   <ion-content>
-    <ion-list>
+
+    <ion-list [hidden]="!isAuthenticated">
       <button ion-item (click)="clickFichaMedica()">
         <img name="fichaMedica" src="./assets/icon/menu/ficha-medica.png" float-left class="app-icons">
         <span float-left>Ficha Médica</span>
@@ -16,12 +17,14 @@
         <span float-left>{{f.title}}</span>
       </button>
     </ion-list>
+
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         <img name="{{p.titulo}}" src="{{p.image}}" float-left class="app-icons">
         <span float-left>{{p.title}}</span>
       </button>
     </ion-list>
+
   </ion-content>
   <ion-footer class="bar-stable" [hidden]="!isAuthenticated">
     <button menuClose ion-item (click)="deslogar()">

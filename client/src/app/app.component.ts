@@ -26,9 +26,12 @@ export class MyApp {
           this.isAuthenticated = true;
 
           this.fichaMedica = [
-            { title: 'Informações Básicas', component: 'HomePage', image: './assets/icon/ficha-medica/informacoes_pessoais.png' },
-            { title: 'Parentes', component: 'SobrePage', image: './assets/icon/ficha-medica/parentes.png' },
-            { title: 'Alergias', component: 'SobrePage', image: './assets/icon/ficha-medica/alergias.png' }
+            { title: 'Informações Pessoais', component: 'InfoPessoalPage', image: './assets/icon/ficha-medica/informacoes_pessoais.png' },
+            { title: 'Parentes', component: 'ParentesPage', image: './assets/icon/ficha-medica/parentes.png' },
+            { title: 'Alergias', component: 'AlergiasPage', image: './assets/icon/ficha-medica/alergias.png' },
+            { title: 'Médicamento de uso contínuo', component: 'MedUsoContinuoPage', image: './assets/icon/ficha-medica/med_uso_continuo.png' },
+            { title: 'Doenças Cronicas', component: 'DoencasCronicasPage', image: './assets/icon/ficha-medica/doencas_cronicas.png' },
+            { title: 'Cirurgias', component: 'CirurgiasPage', image: './assets/icon/ficha-medica/cirurgias.png' }
           ];
 
           this.pages = [
@@ -37,13 +40,16 @@ export class MyApp {
             { title: 'Cartão', component: 'CartaoPage', image: './assets/icon/menu/cartao.png' },
             { title: 'Sobre', component: 'SobrePage', image: './assets/icon/menu/sobre.png' }
           ];
-          this.nav.setRoot('FichaMedicaPage');
+
+          this.nav.setRoot('InfoPessoalPage');
         } else {
           this.isAuthenticated = false;
+
           this.pages = [
             { title: 'Início', component: 'HomePage', image: './assets/icon/menu/inicio.png' },
             { title: 'Sobre', component: 'SobrePage', image: './assets/icon/menu/sobre.png' }
           ];
+
           return;
         }
       });

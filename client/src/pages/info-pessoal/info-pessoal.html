@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>
+      Minha Saúde
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-grid>
+    <ion-row offset-md-3>
+      <ion-col col-md-8>
+
+        <ion-card>
+          <ion-card-header>
+            <h2 text-justify>Informações Pessoais</h2>
+          </ion-card-header>
+          <ion-card-content>
+
+            <img src="{{photoURL}}" class="profile" padding>
+
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-list>
+
+                    <ion-item>
+                      <ion-label>Nome</ion-label>
+                      <ion-input type="text" [(ngModel)]="displayName"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                      <ion-label>CPF</ion-label>
+                      <ion-input type="text"></ion-input>
+                    </ion-item>
+
+
+                    <ion-item>
+                      <ion-label>Tel - Fixo</ion-label>
+                      <ion-input type="text"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                      <ion-label>Tel - Celular</ion-label>
+                      <ion-input type="text"></ion-input>
+                    </ion-item>
+
+                  </ion-list>
+
+
+                </ion-col>
+                <ion-col>
+                  <ion-item>
+                    <ion-label>Sexo</ion-label>
+                    <ion-select [(ngModel)]="sexo">
+                      <ion-option value="M">Masculino</ion-option>
+                      <ion-option value="F">Feminino</ion-option>
+                    </ion-select>
+                  </ion-item>
+
+                  <ion-item>
+                    <ion-label>Estado Civil</ion-label>
+                    <ion-select [(ngModel)]="estadoCivil">
+                      <ion-option value="1">Solteiro</ion-option>
+                      <ion-option value="2">Casado</ion-option>
+                      <ion-option value="3">Separado</ion-option>
+                      <ion-option value="4">Divorciado</ion-option>
+                      <ion-option value="5">Viuvo</ion-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+          </ion-card-content>
+        </ion-card>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col col-md-3>
+            </ion-col>
+            <ion-col col-md-3>
+            </ion-col>
+            <ion-col col-md-3>
+            </ion-col>
+            <ion-col col-md-3 col-12>
+              <button ion-button full color="success" round>Salvar</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>

@@ -51,7 +51,7 @@ $FONT_COLOR: #FAFAFA;
 
 .menu-inner .content,
 .menu-principal .item {
-    background-color: $FONT_COLOR;
+  background-color: $FONT_COLOR;
 }
 
 .card {
@@ -87,7 +87,7 @@ $FONT_COLOR: #FAFAFA;
   z-index: -1;
 }
 
-.app-icons{
+.app-icons {
   width: 40px;
   height: 40px;
 }
@@ -96,26 +96,31 @@ $FONT_COLOR: #FAFAFA;
   border-bottom: 1px solid #dedede !important;
 }
 
-.menu-bottom{
-  left:0;
-  right:0;
-  margin:0;
-   width: 100%;
-   position: fixed;
-   bottom:0;
+.menu-bottom {
+  left: 0;
+  right: 0;
+  margin: 0;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
 }
 
-.sub-menu .label-md{
+.sub-menu .label-md {
   margin-top: 10px!important;
   margin-right: 10px!important;
-  margin-left:10px!important;
+  margin-left: 10px!important;
   font-size: 1.3rem !important;
 }
 
-.sub-menu .label-md img{
-  margin-top:5px!important;
+.sub-menu .label-md img {
+  margin-top: 5px!important;
 }
-.sub-menu img{
+
+.sub-menu img {
   width: 20px;
   height: 20px
+}
+
+.list-md {
+  margin: 0px!important;
 }

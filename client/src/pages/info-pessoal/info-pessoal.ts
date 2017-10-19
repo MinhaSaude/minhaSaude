@@ -2,55 +2,39 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
-
+/*
+Aba de informações básicas (nome, foto, CPF,
+  telefone, tipo sanguíneo, telefone fixo, telefone celular, estado civil, endereço, e-mail,
+  altura, peso e convênio)
+*/
 @IonicPage()
 @Component({
-  selector: 'page-ficha-medica',
-  templateUrl: 'ficha-medica.html',
+  selector: 'page-info-pessoal',
+  templateUrl: 'info-pessoal.html',
 })
-export class FichaMedicaPage {
+export class InfoPessoalPage {
   fichaMedica: any = "infoPessoal";
   titulo: any = "Informações Pessoais";
   displayName: string;
   page: any;
   photoURL: string;
-  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe((user: firebase.User) => {
       if (user) {
-      this.displayName = user.displayName;
-      this.photoURL = user.photoURL;
-      this.fichaMedica = "infoPessoal";
-      }else{
+        this.displayName = user.displayName;
+        this.photoURL = user.photoURL;
+        this.fichaMedica = "infoPessoal";
+      } else {
         this.navCtrl.setRoot('HomePage');
       }
     });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad FichaMedicaPage');
+    console.log('ionViewDidLoad InfoPessoalPage');
   }
-
-  
-  segmentChanged(event) {
-    switch (event.value) {
-      case 'infoPessoal':
-        this.titulo = "Informações Pessoais";
-        break;
-      case 'parentes':
-        this.titulo = "Parentes";
-        break;
-      case 'alergias':
-        this.titulo = "Alergias";
-        break;
-      default:
-        this.titulo = "Informações Pessoais";
-    }
-
-  }
-  
 
 }
