@@ -26,53 +26,108 @@
 
             <ion-grid>
               <ion-row>
+                <ion-col col-md-5>
+                </ion-col>
+                <ion-col col-md-2 col-12>
+                  <button ion-button full color="primary" round>Upload</button>
+                </ion-col>
+                <ion-col col-md-5>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+            <ion-grid>
+              <ion-row>
                 <ion-col>
                   <ion-list>
 
                     <ion-item>
-                      <ion-label>Nome</ion-label>
+                      <ion-label floating>Nome</ion-label>
                       <ion-input type="text" [(ngModel)]="displayName"></ion-input>
                     </ion-item>
 
                     <ion-item>
-                      <ion-label>CPF</ion-label>
+                      <ion-label floating>CPF</ion-label>
                       <ion-input type="text"></ion-input>
                     </ion-item>
 
 
                     <ion-item>
-                      <ion-label>Tel - Fixo</ion-label>
+                      <ion-label floating>Telefone Residencial</ion-label>
                       <ion-input type="text"></ion-input>
                     </ion-item>
 
                     <ion-item>
-                      <ion-label>Tel - Celular</ion-label>
+                      <ion-label floating>Telefone Celular</ion-label>
+                      <ion-input type="text"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                      <ion-label floating>E-mail</ion-label>
+                      <ion-input type="text"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                      <ion-label floating>Endereço</ion-label>
                       <ion-input type="text"></ion-input>
                     </ion-item>
 
                   </ion-list>
 
-
                 </ion-col>
-                <ion-col>
-                  <ion-item>
-                    <ion-label>Sexo</ion-label>
-                    <ion-select [(ngModel)]="sexo">
-                      <ion-option value="M">Masculino</ion-option>
-                      <ion-option value="F">Feminino</ion-option>
-                    </ion-select>
-                  </ion-item>
 
-                  <ion-item>
-                    <ion-label>Estado Civil</ion-label>
-                    <ion-select [(ngModel)]="estadoCivil">
-                      <ion-option value="1">Solteiro</ion-option>
-                      <ion-option value="2">Casado</ion-option>
-                      <ion-option value="3">Separado</ion-option>
-                      <ion-option value="4">Divorciado</ion-option>
-                      <ion-option value="5">Viuvo</ion-option>
-                    </ion-select>
-                  </ion-item>
+                <ion-col>
+                  <ion-list>
+                    <ion-item>
+                      <ion-label floating>Sexo</ion-label>
+                      <ion-select [(ngModel)]="sexo">
+                        <ion-option value="M">Masculino</ion-option>
+                        <ion-option value="F">Feminino</ion-option>
+                      </ion-select>
+                    </ion-item>
+
+                    <ion-item>
+                      <ion-label floating>Estado Civil</ion-label>
+                      <ion-select [(ngModel)]="estadoCivil">
+                        <ion-option value="1">Solteiro</ion-option>
+                        <ion-option value="2">Casado</ion-option>
+                        <ion-option value="3">Separado</ion-option>
+                        <ion-option value="4">Divorciado</ion-option>
+                        <ion-option value="5">Viuvo</ion-option>
+                      </ion-select>
+                    </ion-item>
+
+                    <ion-item>
+                      <ion-label floating>Tipo Sanguineo</ion-label>
+                      <ion-select [(ngModel)]="estadoCivil">
+                        <ion-option value="1">A+</ion-option>
+                        <ion-option value="2">A-</ion-option>
+                        <ion-option value="3">B+</ion-option>
+                        <ion-option value="4">B-</ion-option>
+                        <ion-option value="5">AB+</ion-option>
+                        <ion-option value="5">AB-</ion-option>
+                        <ion-option value="5">AB+</ion-option>
+                        <ion-option value="5">O+</ion-option>
+                        <ion-option value="5">O-</ion-option>
+                      </ion-select>
+                    </ion-item>
+
+
+                    <ion-item>
+                      <ion-label floating>Altura</ion-label>
+                      <ion-input type="text"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                      <ion-label floating>Peso</ion-label>
+                      <ion-input type="text"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                      <ion-label floating>Convênio</ion-label>
+                      <ion-input type="text"></ion-input>
+                    </ion-item>
+                  </ion-list>
                 </ion-col>
               </ion-row>
             </ion-grid>
