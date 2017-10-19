@@ -2,8 +2,8 @@
 
   <ion-navbar>
     <button ion-button menuToggle icon-only>
-          <ion-icon name='menu'></ion-icon>
-        </button>
+      <ion-icon name='menu'></ion-icon>
+    </button>
     <ion-title>
       Minha Saúde
     </ion-title>
@@ -64,8 +64,8 @@
                     </ion-col>
                     <ion-col col-md-6 col-12>
                       <h2 text-center padding>Ou cadastre-se com um click</h2>
-                      <button ion-button full round color="danger" (click)="signInWithGoogle()">Google+</button>
-                      <button ion-button full round color="facebook" (click)="signInWithFacebook()">Facebook</button>
+                      <button ion-button full round color="danger" (click)="signInWithGoogle('P')">Google+</button>
+                      <button ion-button full round color="facebook" (click)="signInWithFacebook('P')">Facebook</button>
                     </ion-col>
                   </ion-row>
                 </ion-grid>
@@ -107,13 +107,15 @@
 
                     </ion-col>
                     <ion-col col-md-6 col-12>
-                      <ion-item>
-                        <ion-label>CRM</ion-label>
-                        <ion-input type="text" value=""></ion-input>
-                      </ion-item>
-                      <h2 text-center padding>Ou cadastre-se com um click</h2>
-                      <button ion-button full round color="danger" (click)="signInWithGoogle()">Google+</button>
-                      <button ion-button full round color="facebook" (click)="signInWithFacebook()">Facebook</button>
+                      <form [formGroup]="socialNetwork"  (ngSubmit)="signInWithGoogleAndFacebook()">
+                        <ion-item>
+                          <ion-label>CRM</ion-label>
+                          <ion-input type="text" formControlName="crm"></ion-input>
+                        </ion-item>
+                        <h2 text-center padding>Ou cadastre-se com um click</h2>
+                        <button ion-button full round color="danger" type="submit" [disabled]="!socialNetwork.valid">Google+</button>
+                        <button ion-button full round color="facebook" type="submit" [disabled]="!socialNetwork.valid">Facebook</button>
+                      </form>
                     </ion-col>
                   </ion-row>
                 </ion-grid>

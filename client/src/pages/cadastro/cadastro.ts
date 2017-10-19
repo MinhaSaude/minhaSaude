@@ -14,6 +14,7 @@ export class CadastroPage {
   cadastro: string = 'paciente';
   private patient: FormGroup;
   private doctor: FormGroup;
+  private socialNetwork: FormGroup;
   private loading: any;
   constructor(
     public navCtrl: NavController,
@@ -30,10 +31,14 @@ export class CadastroPage {
     });
 
     this.doctor = this.formBuilder.group({
-      crm: ['', Validators.required],
+      crm: ['', [Validators.required, Validators.minLength(4)]],
       email: ['', Validators.email],
       password: ['', Validators.required],
       password_confirm: ['', Validators.required],
+    });
+
+    this.socialNetwork = this.formBuilder.group({
+      crm: ['', [Validators.required, Validators.minLength(4)]]
     });
 
   }
@@ -60,7 +65,7 @@ export class CadastroPage {
       });
   }
 
-  signInWithFacebook() {
+  signInWithFacebook(tipoUsuario) {
     this.presentLoading();
     this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(res => {
       this.loading.dismiss();
@@ -84,6 +89,9 @@ export class CadastroPage {
       });
   }
 
+  signInWithGoogleAndFacebook() {
+
+  }
   showMessage(m) {
     console.log(m);
     let toast = this.toastCtrl.create({

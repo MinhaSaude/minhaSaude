@@ -7,14 +7,26 @@
 
   <ion-content>
     <ion-list>
+      <button ion-item (click)="clickFichaMedica()">
+        <img name="fichaMedica" src="./assets/icon/menu/ficha-medica.png" float-left class="app-icons">
+        <span float-left>Ficha Médica</span>
+      </button>
+      <button menuClose class="sub-menu" ion-item *ngFor="let f of fichaMedica" (click)="openPage(f)" [hidden]="!fichaMedicaClick">
+        <img name="{{f.titulo}}" src="{{f.image}}" float-left>
+        <span float-left>{{f.title}}</span>
+      </button>
+    </ion-list>
+    <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        <img name="{{p.titulo}}" src="{{p.image}}" float-left class="app-icons">  <span float-left>{{p.title}}</span>
+        <img name="{{p.titulo}}" src="{{p.image}}" float-left class="app-icons">
+        <span float-left>{{p.title}}</span>
       </button>
     </ion-list>
   </ion-content>
   <ion-footer class="bar-stable" [hidden]="!isAuthenticated">
     <button menuClose ion-item (click)="deslogar()">
-      <img name="deslogar" src="./assets/icon/menu/deslogar.png" float-left class="app-icons">  <span float-left>Deslogar</span>
+      <img name="deslogar" src="./assets/icon/menu/deslogar.png" float-left class="app-icons">
+      <span float-left>Deslogar</span>
     </button>
   </ion-footer>
 </ion-menu>

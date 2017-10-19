@@ -11,6 +11,8 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = 'HomePage';
   pages: Array<{ title: string, component: any, image: string }>;
+  fichaMedica: Array<{ title: string, component: any, image: string }>;
+  fichaMedicaClick: boolean = false;
   isAuthenticated: boolean = false;
 
   constructor(
@@ -22,8 +24,14 @@ export class MyApp {
       afAuth.authState.subscribe(user => {
         if (user) {
           this.isAuthenticated = true;
+
+          this.fichaMedica = [
+            { title: 'Informações Básicas', component: 'HomePage', image: './assets/icon/ficha-medica/informacoes_pessoais.png' },
+            { title: 'Parentes', component: 'SobrePage', image: './assets/icon/ficha-medica/parentes.png' },
+            { title: 'Alergias', component: 'SobrePage', image: './assets/icon/ficha-medica/alergias.png' }
+          ];
+
           this.pages = [
-            { title: 'Ficha Médica', component: 'FichaMedicaPage', image: './assets/icon/menu/ficha-medica.png' },
             { title: 'Histórico', component: 'HistoricoPage', image: './assets/icon/menu/historico.png' },
             { title: 'Médicos', component: 'MedicosPage', image: './assets/icon/menu/medico.png' },
             { title: 'Cartão', component: 'CartaoPage', image: './assets/icon/menu/cartao.png' },
@@ -52,6 +60,14 @@ export class MyApp {
     this.afAuth.auth.signOut().then(() => {
       this.nav.setRoot('HomePage');
     });
+  }
+
+  clickFichaMedica() {
+    if (this.fichaMedicaClick) {
+      this.fichaMedicaClick = false;
+    } else {
+      this.fichaMedicaClick = true;
+    }
   }
 }
 

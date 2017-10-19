@@ -7,7 +7,7 @@ import { IonicPage, NavController } from 'ionic-angular';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  inicio:any = "Plataforma em construção";
+  
   constructor(public navCtrl: NavController) {
 
   }
