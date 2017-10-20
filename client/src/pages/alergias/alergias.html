@@ -9,9 +9,7 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content>
-
   <ion-grid>
     <ion-row offset-md-3>
       <ion-col col-md-8>
@@ -21,6 +19,72 @@
             <h2 text-justify>Alergias</h2>
           </ion-card-header>
           <ion-card-content>
+
+            <div padding>
+              <ion-segment [(ngModel)]="alergiaSegment">
+                <ion-segment-button value="lista">
+                  Lista
+                </ion-segment-button>
+                <ion-segment-button value="adicionar">
+                  Adicionar
+                </ion-segment-button>
+              </ion-segment>
+            </div>
+
+            <div [ngSwitch]="alergiaSegment">
+              <ion-list *ngSwitchCase="'lista'">
+
+                <ion-item *ngFor="let a of alergias; let i = index; ">
+                  <button color="danger" item-end ion-button (click)="deleteItem(alergias, i)">
+                    <ion-icon name="trash"></ion-icon>
+                  </button>
+                  {{ a.tipo }} - {{a.descricao}}
+                </ion-item>
+
+              </ion-list>
+
+              <ion-list *ngSwitchCase="'adicionar'">
+                <form [formGroup]="alergiasForm" (ngSubmit)="addAlergias()" id="alergiasForm">
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col col-md-6 col-12>
+                        <ion-list>
+                          <ion-item>
+                            <ion-label floating>Tipo de Alergia</ion-label>
+                            <ion-select formControlName="tipo">
+                              <ion-option value="respiratoria">Respiratória</ion-option>
+                              <ion-option value="alimentar">Alimentar</ion-option>
+                              <ion-option value="animais">Animais</ion-option>
+                              <ion-option value="cutaneas">Cutâneas</ion-option>
+                              <ion-option value="latex">Látex</ion-option>
+                              <ion-option value="outros">Outros</ion-option>
+                            </ion-select>
+                          </ion-item>
+
+
+                        </ion-list>
+
+                      </ion-col>
+
+                      <ion-col col-md-6 col-12>
+                        <ion-list>
+
+                          <ion-item>
+                            <ion-label floating>Descrição</ion-label>
+                            <ion-input type="text" formControlName="descricao"></ion-input>
+                          </ion-item>
+
+
+                        </ion-list>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+
+                </form>
+
+              </ion-list>
+            </div>
+
 
 
           </ion-card-content>
@@ -35,7 +99,7 @@
             <ion-col col-md-3>
             </ion-col>
             <ion-col col-md-3 col-12>
-              <button ion-button full color="success" round>Salvar</button>
+              <button ion-button full color="success" round type="submit" [disabled]="!alergiasForm.valid" form="alergiasForm">Salvar</button>
             </ion-col>
           </ion-row>
         </ion-grid>

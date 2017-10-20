@@ -1,46 +1,116 @@
 <ion-header>
-    <ion-navbar>
-      <button ion-button menuToggle icon-only>
-        <ion-icon name='menu'></ion-icon>
-      </button>
-      <ion-title>
-        Minha Saúde
-      </ion-title>
-    </ion-navbar>
-  </ion-header>
-  
-  
-  <ion-content>
-  
-    <ion-grid>
-      <ion-row offset-md-3>
-        <ion-col col-md-8>
-  
-          <ion-card>
-            <ion-card-header>
-              <h2 text-justify>Parentes</h2>
-            </ion-card-header>
-            <ion-card-content>
-  
-  
-            </ion-card-content>
-          </ion-card>
-  
-          <ion-grid>
-            <ion-row>
-              <ion-col col-md-3>
-              </ion-col>
-              <ion-col col-md-3>
-              </ion-col>
-              <ion-col col-md-3>
-              </ion-col>
-              <ion-col col-md-3 col-12>
-                <button ion-button full color="success" round>Salvar</button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-col>
-  
-      </ion-row>
-    </ion-grid>
-  </ion-content>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>
+      Minha Saúde
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-grid>
+    <ion-row offset-md-3>
+      <ion-col col-md-8>
+
+        <ion-card>
+          <ion-card-header>
+            <h2 text-justify>Parentes</h2>
+          </ion-card-header>
+          <ion-card-content>
+
+            <div padding>
+              <ion-segment [(ngModel)]="parentSegment">
+                <ion-segment-button value="lista">
+                  Lista
+                </ion-segment-button>
+                <ion-segment-button value="adicionar">
+                  Adicionar
+                </ion-segment-button>
+              </ion-segment>
+            </div>
+
+            <div [ngSwitch]="parentSegment">
+              <ion-list *ngSwitchCase="'lista'">
+
+                <ion-item *ngFor="let p of parentes; let i = index; ">
+                  <button color="danger" item-end ion-button (click)="deleteItem(parentes, i)">
+                    <ion-icon name="trash"></ion-icon>
+                  </button>
+                  {{ p.nome }} - {{p.parentesco}}
+                </ion-item>
+
+              </ion-list>
+
+              <ion-list *ngSwitchCase="'adicionar'">
+                <form [formGroup]="parentesForm" (ngSubmit)="addParentes()" id="parentesForm">
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col col-md-6 col-12>
+                        <ion-list>
+
+                          <ion-item>
+                            <ion-label floating>CPF</ion-label>
+                            <ion-input type="text" formControlName="cpf"></ion-input>
+                          </ion-item>
+
+                        </ion-list>
+
+                      </ion-col>
+
+                      <ion-col col-md-6 col-12>
+                        <ion-list>
+
+                          <ion-item>
+                            <ion-label floating>Parentesco</ion-label>
+                            <ion-select formControlName="parentesco">
+                              <ion-option value="pai">Pai</ion-option>
+                              <ion-option value="mae">Mãe</ion-option>
+                              <ion-option value="irmao">Irmãos</ion-option>
+                              <ion-option value="filhos">Filhos</ion-option>
+                              <ion-option value="primos">Primos</ion-option>
+                              <ion-option value="avos">Avós</ion-option>
+                              <ion-option value="netos">Netos</ion-option>
+                              <ion-option value="tios">Tios</ion-option>
+                              <ion-option value="sobrinhos">Sobrinhos</ion-option>
+                              <ion-option value="bisavos">Bisavós</ion-option>
+                              <ion-option value="bisnetos">Bisnetos</ion-option>
+                            </ion-select>
+                          </ion-item>
+
+                        </ion-list>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+
+
+                </form>
+
+              </ion-list>
+            </div>
+
+
+
+          </ion-card-content>
+        </ion-card>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col col-md-3>
+            </ion-col>
+            <ion-col col-md-3>
+            </ion-col>
+            <ion-col col-md-3>
+            </ion-col>
+            <ion-col col-md-3 col-12>
+              <button ion-button full color="success" round type="submit" [disabled]="!parentesForm.valid" form="parentesForm">Salvar</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>

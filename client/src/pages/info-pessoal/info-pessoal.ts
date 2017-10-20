@@ -3,9 +3,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 /*
-Aba de informações básicas (nome, foto, CPF,
-  telefone, tipo sanguíneo, telefone fixo, telefone celular, estado civil, endereço, e-mail,
-  altura, peso e convênio)
+Aba de informações pessoais
+O caso de uso tem o objetivo de persistir as informações básicas do paciente (foto,
+altura, peso, convênio, estado civil, endereço, e-mail, telefone, profissão, escolaridade, registro do SUS e tipo sanguíneo).
+
+
 */
 @IonicPage()
 @Component({
@@ -17,7 +19,7 @@ export class InfoPessoalPage {
   titulo: any = "Informações Pessoais";
   displayName: string;
   page: any;
-  photoURL: string;
+  photoURL: string = "./assets/images/profile.jpg";
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,

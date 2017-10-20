@@ -79,7 +79,6 @@ export class LoginPage {
 
   presentLoading() {
     this.loading = this.loadingCtrl.create({
-      content: 'Carregando..',
       dismissOnPageChange: true
     });
     this.loading.present();

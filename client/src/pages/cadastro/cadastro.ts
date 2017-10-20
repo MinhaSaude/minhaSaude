@@ -104,7 +104,6 @@ export class CadastroPage {
 
   presentLoading() {
     this.loading = this.loadingCtrl.create({
-      content: 'Carregando..',
       dismissOnPageChange: true
     });
     this.loading.present();
