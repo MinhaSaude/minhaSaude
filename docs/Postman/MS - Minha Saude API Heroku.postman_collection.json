@@ -1,0 +1,534 @@
+{
+	"info": {
+		"name": "MS - Minha Saude API Heroku",
+		"_postman_id": "0285dffa-816c-4787-e265-39a752c14e13",
+		"description": "Projeto final ADS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Pacientes",
+			"description": "",
+			"item": [
+				{
+					"name": "Tipos Sanguineos",
+					"description": "",
+					"item": [
+						{
+							"name": "Listar todos tipos sanguineos",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/tipos_sanguineos",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"tipos_sanguineos"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Endereços",
+					"description": "",
+					"item": [
+						{
+							"name": "Listar todos endereços",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "https://teste-api-ms.herokuapp.com/enderecos",
+									"protocol": "https",
+									"host": [
+										"teste-api-ms",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"enderecos"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "Listar endereço pelo ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "https://teste-api-ms.herokuapp.com/enderecos/1",
+									"protocol": "https",
+									"host": [
+										"teste-api-ms",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"enderecos",
+										"1"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "Deletar endereço pelo ID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "https://teste-api-ms.herokuapp.com/enderecos/2",
+									"protocol": "https",
+									"host": [
+										"teste-api-ms",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"enderecos",
+										"2"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrando endereço",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"cep\": \"7546-00\",\n\t\"estado\": \"GO\",\n\t\"cidade\": \"Neropolis\",\n\t\"bairro\": \"Setor São Paulo\",\n\t\"logradouro\": \"Rua Tiradentes\",\n\t\"complemento\": \"Q18 L25\"\n}"
+								},
+								"url": {
+									"raw": "https://teste-api-ms.herokuapp.com/enderecos",
+									"protocol": "https",
+									"host": [
+										"teste-api-ms",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"enderecos"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar endereço pelo ID",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"cep\": \"7546-00\",\n    \"estado\": \"GO\",\n    \"cidade\": \"Goiania\",\n    \"bairro\": \"Setor São Paulo\",\n    \"logradouro\": \"Rua Tiradentes\",\n\t\"complemento\": \"Q18 L25\"\n}"
+								},
+								"url": {
+									"raw": "https://teste-api-ms.herokuapp.com/enderecos/1",
+									"protocol": "https",
+									"host": [
+										"teste-api-ms",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"enderecos",
+										"1"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Telefones",
+					"description": "",
+					"item": [
+						{
+							"name": "Listar todos telefones",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"uid\": \"8888888888\",\r\n\t\"rg\": \"987654321\",\r\n\t\"cpfCnpj\": \"600.300.231-68\",\r\n\t\"nome\": \"Eliana Cristina Deus Santos\",\r\n\t\"dataNascimento\": \"1990-03-09\",\r\n\t\"sexo\": \"F\",\r\n\t\"statusCivil\": \"SOLTEIRO\",\r\n\t\"ocupacaoProfissional\": \"Estudante\",\r\n\t\"graEscolaridade\": \"SUPERIOR_INCOMPLETO\",\r\n\t\"foto\": null,\r\n\t\"email\": \"elianacris@hotmail.com\"\r\n}"
+								},
+								"url": {
+									"raw": "https://teste-api-ms.herokuapp.com//telefones",
+									"protocol": "https",
+									"host": [
+										"teste-api-ms",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"",
+										"telefones"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "Listar telefone por ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"uid\": \"8888888888\",\r\n\t\"rg\": \"987654321\",\r\n\t\"cpfCnpj\": \"600.300.231-68\",\r\n\t\"nome\": \"Eliana Cristina Deus Santos\",\r\n\t\"dataNascimento\": \"1990-03-09\",\r\n\t\"sexo\": \"F\",\r\n\t\"statusCivil\": \"SOLTEIRO\",\r\n\t\"ocupacaoProfissional\": \"Estudante\",\r\n\t\"graEscolaridade\": \"SUPERIOR_INCOMPLETO\",\r\n\t\"foto\": null,\r\n\t\"email\": \"elianacris@hotmail.com\"\r\n}"
+								},
+								"url": {
+									"raw": "https://teste-api-ms.herokuapp.com/telefones/1",
+									"protocol": "https",
+									"host": [
+										"teste-api-ms",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"telefones",
+										"1"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "Cadastrar telefone",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tipoTelefone\": \"MOVEL\",\n    \"numero\": \"3513-1200\"\n}"
+								},
+								"url": {
+									"raw": "https://teste-api-ms.herokuapp.com/telefones",
+									"protocol": "https",
+									"host": [
+										"teste-api-ms",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"telefones"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "Deletar telefone por ID",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/telefones/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"telefones",
+										"1"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						},
+						{
+							"name": "Atualizar telefone por ID",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"tipoTelefone\": \"MOVEL\",\n    \"numero\": \"3513-1288\"\n}"
+								},
+								"url": {
+									"raw": "https://teste-api-ms.herokuapp.com/telefones/1",
+									"protocol": "https",
+									"host": [
+										"teste-api-ms",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"telefones",
+										"1"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Status Civil",
+					"description": "",
+					"item": [
+						{
+							"name": "Listar todos status civil",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/status_civil",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"status_civil"
+									]
+								},
+								"description": "Listar todos status civil cadastrado na base de dados."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Estatos Brasileiros",
+					"description": "",
+					"item": [
+						{
+							"name": "Listar todos estados brasileiros",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/estados_brasileiros",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"estados_brasileiros"
+									]
+								},
+								"description": "Listar todos os estados brasileiros cadastrado na base de dados"
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Graus Escolaridade",
+					"description": "",
+					"item": [
+						{
+							"name": "Listar todos graus escolaridade",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/graus_escolaridade",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"graus_escolaridade"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Listar todos o pacientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://teste-api-ms.herokuapp.com/pacientes",
+							"protocol": "https",
+							"host": [
+								"teste-api-ms",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pacientes"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Paciente pelo ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://teste-api-ms.herokuapp.com/pacientes/1",
+							"protocol": "https",
+							"host": [
+								"teste-api-ms",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pacientes",
+								"1"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Paciente pelo ID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"uid\": \"999999999999\",\n\t\"rg\": \"123456789\",\n\t\"cpfCnpj\": \"750.336.231-68\",\n\t\"nome\": \"Haryel Fernandes Nascimento\",\n\t\"dataNascimento\": \"1993-03-09\",\n\t\"sexo\": \"MASCULINO\",\n\t\"statusCivil\": \"SOLTEIRO\",\n\t\"ocupacaoProfissional\": \"Estudante\",\n\t\"graEscolaridade\": \"SUPERIOR_INCOMPLETO\",\n\t\"foto\": \"data:image/jpeg;base64,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\",\n\t\"email\": \"haryeufernandesnascimento@gmai\",\n\t\"endereco\": {\n\t\t\"codigo\": 1\n\t},\n\t\"telefone\": {\n\t\t\"codigo\": 1\n\t},\n\t\"altura\": 170,\n\t\"peso\": 71,\n\t\"tipoSanguineo\": \"AB_NEGATIVO\",\n\t\"registroSus\": \"987654321\",\n\t\"responsavel\": null,\n\t\"nomeResponsavel\": \"Werton Nascimento\"\n}"
+						},
+						"url": {
+							"raw": "https://teste-api-ms.herokuapp.com/pacientes/1",
+							"protocol": "https",
+							"host": [
+								"teste-api-ms",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pacientes",
+								"1"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar paciente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"uid\": \"8888888888888\",\n\t\"rg\": \"987654321\",\n\t\"cpfCnpj\": \"128.611.319-93\",\n\t\"nome\": \"Eliana Cristina Santos\",\n\t\"dataNascimento\": \"1997-10-05\",\n\t\"sexo\": \"FEMENINO\",\n\t\"statusCivil\": \"SOLTEIRO\",\n\t\"ocupacaoProfissional\": \"Estudante\",\n\t\"graEscolaridade\": \"SUPERIOR_INCOMPLETO\",\n\t\"foto\": \"data:image/jpeg;base64,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\",\n\t\"email\": \"elianacris@gmail.com\",\n\t\"endereco\": {\n\t\t\"codigo\": 1\n\t},\n\t\"telefone\": {\n\t\t\"codigo\": 1\n\t},\n\t\"altura\": 160,\n\t\"peso\": 60,\n\t\"tipoSanguineo\": \"A_POSITIVO\",\n\t\"registroSus\": \"987654321\",\n\t\"responsavel\": null,\n\t\"nomeResponsavel\": \"Marcia Santos\"\n}"
+						},
+						"url": {
+							"raw": "https://teste-api-ms.herokuapp.com/pacientes",
+							"protocol": "https",
+							"host": [
+								"teste-api-ms",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pacientes"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar paciente pelo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/pacientes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pacientes",
+								"1"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

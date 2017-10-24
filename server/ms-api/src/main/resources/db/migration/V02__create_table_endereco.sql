@@ -1,0 +1,9 @@
+CREATE TABLE endereco (
+	codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+	cep VARCHAR(20),
+    estado VARCHAR(30) NOT NULL,
+    cidade VARCHAR(30) NOT NULL,
+    bairro VARCHAR(30) NOT NULL,
+    logradouro VARCHAR(30) NOT NULL,
+    complemento VARCHAR(30)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
