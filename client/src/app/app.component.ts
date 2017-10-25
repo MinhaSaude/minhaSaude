@@ -3,13 +3,14 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Storage } from '@ionic/storage';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = 'HomePage';
+  rootPage: any;
   pages: Array<{ title: string, component: any, image: string }>;
   fichaMedica: Array<{ title: string, component: any, image: string }>;
   fichaMedicaClick: boolean = false;
@@ -19,38 +20,21 @@ export class MyApp {
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
+    private storage: Storage,
     private afAuth: AngularFireAuth) {
     platform.ready().then(() => {
+      this.init();
       afAuth.authState.subscribe(user => {
         if (user) {
+          storage.set('user', JSON.stringify(user));
           this.isAuthenticated = true;
-
-          this.fichaMedica = [
-            { title: 'Informações Pessoais', component: 'InfoPessoalPage', image: './assets/icon/ficha-medica/informacoes_pessoais.png' },
-            { title: 'Parentes', component: 'ParentesPage', image: './assets/icon/ficha-medica/parentes.png' },
-            { title: 'Alergias', component: 'AlergiasPage', image: './assets/icon/ficha-medica/alergias.png' },
-            { title: 'Médicamento de uso contínuo', component: 'MedUsoContinuoPage', image: './assets/icon/ficha-medica/med_uso_continuo.png' },
-            { title: 'Doenças Cronicas', component: 'DoencasCronicasPage', image: './assets/icon/ficha-medica/doencas_cronicas.png' },
-            { title: 'Cirurgias', component: 'CirurgiasPage', image: './assets/icon/ficha-medica/cirurgias.png' }
-          ];
-
-          this.pages = [
-            { title: 'Histórico', component: 'HistoricoPage', image: './assets/icon/menu/historico.png' },
-            { title: 'Médicos', component: 'MedicosPage', image: './assets/icon/menu/medico.png' },
-            { title: 'Cartão', component: 'CartaoPage', image: './assets/icon/menu/cartao.png' },
-            { title: 'Sobre', component: 'SobrePage', image: './assets/icon/menu/sobre.png' }
-          ];
-
-          this.nav.setRoot('InfoPessoalPage');
+          this.menu(this.isAuthenticated);
+          this.openPage('InfoPessoalPage');
         } else {
+          storage.set('user', '');
           this.isAuthenticated = false;
-
-          this.pages = [
-            { title: 'Início', component: 'HomePage', image: './assets/icon/menu/inicio.png' },
-            { title: 'Sobre', component: 'SobrePage', image: './assets/icon/menu/sobre.png' }
-          ];
-
-          return;
+          this.menu(this.isAuthenticated);
+          this.openPage('HomePage');
         }
       });
       statusBar.styleDefault();
@@ -58,9 +42,65 @@ export class MyApp {
     });
   }
 
-  openPage(page) {
-    this.nav.setRoot(page.component);
+  init() {
+
+    this.storage.get('user').then((user) => {
+      if (user != '') {
+        this.rootPage = 'InfoPessoalPage';
+      } else {
+        this.rootPage = "HomePage";
+      }
+    });
   }
+
+  menu(isAuthenticated) {
+
+    if (isAuthenticated) {
+      this.fichaMedica = [
+        { title: 'Informações Pessoais', component: 'InfoPessoalPage', image: './assets/icon/ficha-medica/informacoes_pessoais.png' },
+        { title: 'Parentes', component: 'ParentesPage', image: './assets/icon/ficha-medica/parentes.png' },
+        { title: 'Alergias', component: 'AlergiasPage', image: './assets/icon/ficha-medica/alergias.png' },
+        { title: 'Médicamento de uso contínuo', component: 'MedUsoContinuoPage', image: './assets/icon/ficha-medica/med_uso_continuo.png' },
+        { title: 'Doenças Cronicas', component: 'DoencasCronicasPage', image: './assets/icon/ficha-medica/doencas_cronicas.png' },
+        { title: 'Cirurgias', component: 'CirurgiasPage', image: './assets/icon/ficha-medica/cirurgias.png' }
+      ];
+
+      this.pages = [
+        { title: 'Histórico', component: 'HistoricoPage', image: './assets/icon/menu/historico.png' },
+        { title: 'Médicos', component: 'MedicosPage', image: './assets/icon/menu/medico.png' },
+        { title: 'Cartão', component: 'CartaoPage', image: './assets/icon/menu/cartao.png' },
+        { title: 'Sobre', component: 'SobrePage', image: './assets/icon/menu/sobre.png' }
+      ];
+    } else {
+      this.pages = [
+        { title: 'Início', component: 'HomePage', image: './assets/icon/menu/inicio.png' },
+        { title: 'Sobre', component: 'SobrePage', image: './assets/icon/menu/sobre.png' }
+      ];
+    }
+
+  }
+
+  openPage(page) {
+    let view = this.nav.getActive();
+    if (view == undefined) {
+      this.nav.setRoot(page);
+    } else {
+      if (view.component.name === page) { // Previnir que ela tente acessar a mesma view
+        console.log('permaneça na página');
+      } else {
+        this.nav.setRoot(page);
+      }
+    }
+  }
+
+  openPageMenu(page) {
+    let view = this.nav.getActive();
+    if (view.component.name != page.component) { // Previnir que ela tente acessar a mesma view
+      this.nav.setRoot(page.component);
+    }
+  }
+
+
 
   deslogar() {
     this.afAuth.auth.signOut().then(() => {

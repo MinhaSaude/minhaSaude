@@ -90,18 +90,14 @@ export class CadastroPage {
   }
 
   signInWithGoogle() {
-
-
-
-
+    this.presentLoading();
     if (this.platform.is('cordova')) {
-      this.presentLoading();      
       this.googlePlus.login({
         'webClientId': '16912875697-dbcv548e0df2h119sp6iifgqdu388p66.apps.googleusercontent.com',
         'offline': true
       }).then(res => {
-        const googleCredential = firebase.auth.GoogleAuthProvider.credential(res.idToken);
         this.loading.dismiss();
+        const googleCredential = firebase.auth.GoogleAuthProvider.credential(res.idToken);
         return firebase.auth().signInWithCredential(googleCredential);
       }).catch(err => {
         this.loading.dismiss();

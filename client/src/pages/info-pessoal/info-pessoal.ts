@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import { GlobalProvider } from './../../providers/global/global';
+
 /*
 Aba de informações pessoais
 O caso de uso tem o objetivo de persistir as informações básicas do paciente (foto,
@@ -20,19 +22,15 @@ export class InfoPessoalPage {
   displayName: string;
   page: any;
   photoURL: string = "./assets/images/profile.jpg";
+  user: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private afAuth: AngularFireAuth) {
-    this.afAuth.authState.subscribe((user: firebase.User) => {
-      if (user) {
-        this.displayName = user.displayName;
-        this.photoURL = user.photoURL;
-        this.fichaMedica = "infoPessoal";
-      } else {
-        this.navCtrl.setRoot('HomePage');
-      }
-    });
+    private afAuth: AngularFireAuth,
+    private global: GlobalProvider) {
+    this.user = this.global.getCurrentUser();
+    // this.displayName = this.user.displayName;
+    // this.photoURL = this.user.photoURL;
   }
 
   ionViewDidLoad() {
