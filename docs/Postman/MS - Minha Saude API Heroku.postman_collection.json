@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8080/estados_brasileiros",
+							"raw": "teste-api-ms.herokuapp.com/estados_brasileiros",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -44,7 +44,7 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8080/graus_escolaridade",
+							"raw": "teste-api-ms.herokuapp.com/graus_escolaridade",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -71,7 +71,7 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8080/status_civil",
+							"raw": "teste-api-ms.herokuapp.com/status_civil",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -98,7 +98,7 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8080/tipos_sanguineos",
+							"raw": "teste-api-ms.herokuapp.com/tipos_sanguineos",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -128,7 +128,7 @@
 							"raw": "{\r\n\t\"uid\": \"8888888888\",\r\n\t\"rg\": \"987654321\",\r\n\t\"cpfCnpj\": \"600.300.231-68\",\r\n\t\"nome\": \"Eliana Cristina Deus Santos\",\r\n\t\"dataNascimento\": \"1990-03-09\",\r\n\t\"sexo\": \"F\",\r\n\t\"statusCivil\": \"SOLTEIRO\",\r\n\t\"ocupacaoProfissional\": \"Estudante\",\r\n\t\"graEscolaridade\": \"SUPERIOR_INCOMPLETO\",\r\n\t\"foto\": null,\r\n\t\"email\": \"elianacris@hotmail.com\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/telefones",
+							"raw": "teste-api-ms.herokuapp.com/telefones",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -152,7 +152,7 @@
 							"raw": "{\r\n\t\"uid\": \"8888888888\",\r\n\t\"rg\": \"987654321\",\r\n\t\"cpfCnpj\": \"600.300.231-68\",\r\n\t\"nome\": \"Eliana Cristina Deus Santos\",\r\n\t\"dataNascimento\": \"1990-03-09\",\r\n\t\"sexo\": \"F\",\r\n\t\"statusCivil\": \"SOLTEIRO\",\r\n\t\"ocupacaoProfissional\": \"Estudante\",\r\n\t\"graEscolaridade\": \"SUPERIOR_INCOMPLETO\",\r\n\t\"foto\": null,\r\n\t\"email\": \"elianacris@hotmail.com\"\r\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/telefones/1",
+							"raw": "teste-api-ms.herokuapp.com/telefones/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -203,7 +203,7 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8080/telefones/1",
+							"raw": "teste-api-ms.herokuapp.com/telefones/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -233,7 +233,7 @@
 							"raw": "{\n    \"tipoTelefone\": \"MOVEL\",\n    \"numero\": \"3513-1288\"\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/telefones/1",
+							"raw": "teste-api-ms.herokuapp.com/telefones/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -261,7 +261,7 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8080/pacientes",
+							"raw": "teste-api-ms.herokuapp.com/pacientes",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -282,7 +282,7 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8080/pacientes/qwSv0p7eWiYK9NWA4Eu0dmF0ydY2",
+							"raw": "teste-api-ms.herokuapp.com/pacientes/qwSv0p7eWiYK9NWA4Eu0dmF0ydY2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -312,7 +312,7 @@
 							"raw": "{\n\t\"uid\": \"VhZEcaazqtWBu2GDb3sSkFLEgVJ2\",\n\t\"tipoPessoa\": \"PACIENTE\",\n\t\"rg\": null,\n\t\"cpfCnpj\": null,\n\t\"nome\": null,\n\t\"dataNascimento\": null,\n\t\"sexo\": null,\n\t\"statusCivil\": null,\n\t\"ocupacaoProfissional\": null,\n\t\"graEscolaridade\": null,\n\t\"foto\": null,\n\t\"email\": \"teste@gmail.com\",\n\t\"endereco\": null,\n\t\"telefone\": null,\n\t\"altura\": null,\n\t\"peso\": null,\n\t\"tipoSanguineo\": null,\n\t\"registroSus\": null,\n\t\"responsavel\": null,\n\t\"nomeResponsavel\": null\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/pacientes",
+							"raw": "teste-api-ms.herokuapp.com/pacientes",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -341,7 +341,7 @@
 							"raw": "{\n    \"codigo\": 6,\n    \"uid\": \"VhZEcaazqtWBu2GDb3sSkFLEgVJ2\",\n    \"tipoPessoa\": \"PACIENTE\",\n    \"rg\": null,\n    \"cpfCnpj\": null,\n    \"nome\": null,\n    \"dataNascimento\": null,\n    \"sexo\": null,\n    \"statusCivil\": null,\n    \"ocupacaoProfissional\": null,\n    \"graEscolaridade\": null,\n    \"foto\": null,\n    \"email\": \"haryeufernandesnascimento@gmail.com\",\n    \"endereco\": null,\n    \"telefone\": null,\n    \"altura\": null,\n    \"peso\": null,\n    \"tipoSanguineo\": null,\n    \"registroSus\": null,\n    \"responsavel\": null,\n    \"nomeResponsavel\": null\n}"
 						},
 						"url": {
-							"raw": "http://localhost:8080/pacientes/qwSv0p7eWiYK9NWA4Eu0dmF0ydY2",
+							"raw": "teste-api-ms.herokuapp.com/pacientes/qwSv0p7eWiYK9NWA4Eu0dmF0ydY2",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -363,7 +363,7 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "http://localhost:8080/pacientes/qwSv0p7eWiYK9NWA4Eu0dmF0ydY2",
+							"raw": "teste-api-ms.herokuapp.com/pacientes/qwSv0p7eWiYK9NWA4Eu0dmF0ydY2",
 							"protocol": "http",
 							"host": [
 								"localhost"
