@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController, LoadingController, Platform } from 'ionic-angular';
 
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Facebook } from '@ionic-native/facebook';
+import { GooglePlus } from '@ionic-native/google-plus';
 
 @IonicPage()
 @Component({
@@ -22,7 +24,10 @@ export class CadastroPage {
     public toastCtrl: ToastController,
     private afAuth: AngularFireAuth,
     private formBuilder: FormBuilder,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    private fb: Facebook,
+    private googlePlus: GooglePlus,
+    private platform: Platform) {
 
     this.patient = this.formBuilder.group({
       email: ['', Validators.email],
@@ -66,27 +71,50 @@ export class CadastroPage {
   }
 
   signInWithFacebook(tipoUsuario) {
-    this.presentLoading();
-    this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(res => {
-      this.loading.dismiss();
-    }).catch(error => {
-      this.loading.dismiss();
-      console.log(error);
-      this.showMessage("Falha na autenticação com o facebook, por favor, tente novamente.");
-    });
-  }
-
-  signInWithGoogle() {
-    this.presentLoading();
-    this.afAuth.auth
-      .signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then(res => {
+    if (this.platform.is('cordova')) {
+      return this.fb.login(['email', 'public_profile']).then(res => {
+        const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
+        return firebase.auth().signInWithCredential(facebookCredential);
+      })
+    }
+    else {
+      this.presentLoading();
+      this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(res => {
         this.loading.dismiss();
       }).catch(error => {
         this.loading.dismiss();
         console.log(error);
+        this.showMessage("Falha na autenticação com o facebook, por favor, tente novamente.");
+      });
+    }
+  }
+
+  signInWithGoogle() {
+    this.presentLoading();
+    if (this.platform.is('cordova')) {
+      this.googlePlus.login({
+        'webClientId': '16912875697-dbcv548e0df2h119sp6iifgqdu388p66.apps.googleusercontent.com',
+        'offline': true
+      }).then(res => {
+        this.loading.dismiss();
+        const googleCredential = firebase.auth.GoogleAuthProvider.credential(res.idToken);
+        return firebase.auth().signInWithCredential(googleCredential);
+      }).catch(err => {
+        this.loading.dismiss();
         this.showMessage("Falha na autenticação com o google, por favor, tente novamente.");
       });
+
+    } else {
+      this.afAuth.auth
+        .signInWithPopup(new firebase.auth.GoogleAuthProvider())
+        .then(res => {
+          this.loading.dismiss();
+        }).catch(error => {
+          this.loading.dismiss();
+          console.log(error);
+          this.showMessage("Falha na autenticação com o google, por favor, tente novamente.");
+        });
+    }
   }
 
   signInWithGoogleAndFacebook() {
