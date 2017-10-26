@@ -34,24 +34,24 @@ public class Pessoa implements Serializable {
 	private String uid;
 
 	@NotNull
+	@Enumerated(EnumType.STRING)
+	@Column(name = "tipo")
+	private TipoPessoa tipoPessoa;
+
 	private String rg;
 
 	@Column(name = "cpf_cnpj")
 	private String cpfCnpj;
 
-	@NotNull
 	@Size(min = 3, max = 30)
 	private String nome;
 
-	@NotNull
 	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
 
-	@NotNull
 	@Enumerated(EnumType.STRING)
 	private Sexo sexo;
 
-	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status_civil")
 	private StatusCivil statusCivil;
@@ -60,12 +60,10 @@ public class Pessoa implements Serializable {
 	@Column(name = "ocupacao_profissional")
 	private String ocupacaoProfissional;
 
-	@NotNull
 	@Enumerated(EnumType.STRING)
 	@Column(name = "grau_escolaridade")
 	private GrauEscolaridade graEscolaridade;
 
-	@NotNull
 	private String foto;
 
 	@NotNull
@@ -98,6 +96,14 @@ public class Pessoa implements Serializable {
 
 	public void setUid(String uid) {
 		this.uid = uid;
+	}
+
+	public TipoPessoa getTipoPessoa() {
+		return tipoPessoa;
+	}
+
+	public void setTipoPessoa(TipoPessoa tipoPessoa) {
+		this.tipoPessoa = tipoPessoa;
 	}
 
 	public String getRg() {

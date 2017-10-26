@@ -9,7 +9,6 @@ import io.minhasaude.msapi.model.Paciente;
 import io.minhasaude.msapi.model.Telefone;
 import io.minhasaude.msapi.repository.EnderecoRepository;
 import io.minhasaude.msapi.repository.PacienteRepository;
-import io.minhasaude.msapi.repository.PessoaRepository;
 import io.minhasaude.msapi.repository.TelefoneRepository;
 import io.minhasaude.msapi.service.exception.EnderecoInexistenteException;
 import io.minhasaude.msapi.service.exception.TelefoneInexistenteException;
@@ -19,9 +18,6 @@ public class PacienteService {
 
 	@Autowired
 	private PacienteRepository pacienteRepository;
-	
-	@Autowired
-	private PessoaRepository pessoaRepository;
 
 	@Autowired
 	private TelefoneRepository telefoneRepository;
@@ -38,19 +34,22 @@ public class PacienteService {
 		return pacienteRepository.save(paciente);
 	}
 
-	public Paciente atualizar(Long codigo, Paciente paciente) {
+	public Paciente atualizar(String uid, Paciente paciente) {
 
-		Paciente pacienteSalvo = buscarPacienteExistente(codigo);
+		Paciente pacienteSalvo = getPacienteByUid(uid);
 
-		if (!paciente.getTelefone().equals(pacienteSalvo.getTelefone())) {
-			validarTelefone(paciente);
+		if (paciente.getTelefone() != null) {
+			if (!paciente.getTelefone().equals(pacienteSalvo.getTelefone())) {
+				validarTelefone(paciente);
+			}
 		}
 
-		if (!paciente.getEndereco().equals(pacienteSalvo.getEndereco())) {
-			validarEndereco(paciente);
+		if (paciente.getEndereco() != null) {
+			if (!paciente.getEndereco().equals(pacienteSalvo.getEndereco())) {
+				validarEndereco(paciente);
+			}
 		}
-
-		BeanUtils.copyProperties(paciente, pacienteSalvo, "codigo");
+		BeanUtils.copyProperties(paciente, pacienteSalvo, "codigo", "uid");
 
 		return pacienteRepository.save(pacienteSalvo);
 	}
@@ -82,8 +81,8 @@ public class PacienteService {
 		}
 	}
 
-	private Paciente buscarPacienteExistente(Long codigo) {
-		Paciente pacienteSalvo = pacienteRepository.findOne(codigo);
+	public Paciente getPacienteByUid(String uid) {
+		Paciente pacienteSalvo = pacienteRepository.findByUid(uid);
 		if (pacienteSalvo == null) {
 			throw new IllegalArgumentException();
 		}

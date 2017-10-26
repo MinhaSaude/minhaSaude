@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,7 +31,7 @@ public class PacienteResource {
 
 	@Autowired
 	private PacienteRepository pacienteRepository;
-	
+
 	@Autowired
 	private PessoaRepository PessoaRepository;
 
@@ -47,10 +46,9 @@ public class PacienteResource {
 		return pacienteRepository.findAll();
 	}
 
-	@GetMapping("/{codigo}")
-	@PreAuthorize("hasAnyRole('ROLE_USER')")
-	public ResponseEntity<Paciente> buscarPeloCodigo(@PathVariable Long codigo) {
-		Paciente paciente = pacienteRepository.findOne(codigo);
+	@GetMapping("/{uid}")
+	public ResponseEntity<Paciente> buscarPeloUid(@PathVariable String uid) {
+		Paciente paciente = pacienteRepository.findByUid(uid);
 		return paciente != null ? ResponseEntity.ok(paciente) : ResponseEntity.notFound().build();
 	}
 
@@ -58,15 +56,15 @@ public class PacienteResource {
 	public ResponseEntity<Paciente> criar(@Valid @RequestBody Paciente paciente, HttpServletResponse response) {
 
 		Paciente pacienteSalvo = pacienteRepository.save(paciente);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, pacienteSalvo.getCodigo()));
+		publisher.publishEvent(new RecursoCriadoEvent(this, response, pacienteSalvo.getUid()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(pacienteSalvo);
 
 	}
 
-	@PutMapping("/{codigo}")
-	public ResponseEntity<Paciente> atualizar(@PathVariable Long codigo, @Valid @RequestBody Paciente paciente) {
+	@PutMapping("/{uid}")
+	public ResponseEntity<Paciente> atualizar(@PathVariable String uid, @Valid @RequestBody Paciente paciente) {
 		try {
-			Paciente pacienteSalvo = pacienteService.atualizar(codigo, paciente);
+			Paciente pacienteSalvo = pacienteService.atualizar(uid, paciente);
 
 			return ResponseEntity.ok(pacienteSalvo);
 		} catch (IllegalArgumentException e) {
@@ -74,10 +72,10 @@ public class PacienteResource {
 		}
 	}
 
-	@DeleteMapping("/{codigo}")
+	@DeleteMapping("/{uid}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void remover(@PathVariable Long codigo) {
-		PessoaRepository.delete(codigo);
+	public void remover(@PathVariable String uid) {
+		PessoaRepository.delete(pacienteService.getPacienteByUid(uid).getCodigo());
 	}
 
 }

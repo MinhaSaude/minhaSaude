@@ -21,7 +21,7 @@ public class Endereco {
 	@Size(max = 9)
 	private String cep;
 
-	@NotNull
+	@NotNull()
 	@Enumerated(EnumType.STRING)
 	private EstadosBrasileiros estado;
 

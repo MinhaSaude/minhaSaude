@@ -23,33 +23,48 @@ import java.util.concurrent.TimeoutException;
 @Slf4j
 public class FirebaseUserOncePerRequestFilter extends OncePerRequestFilter {
 
-    @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws IOException, ServletException {
-        String token = request.getHeader("X-Auth-Token");
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+			throws IOException, ServletException {
+		String token = request.getHeader("X-Auth-Token");
 
-        if (!StringUtils.isEmpty(token)) {
-            try {
-                FirebaseApp firebaseApp = FirebaseApp.getInstance();
-                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance(firebaseApp);
+		if (!StringUtils.isEmpty(token)) {
+			try {
+				FirebaseApp firebaseApp = FirebaseApp.getInstance();
+				FirebaseAuth firebaseAuth = FirebaseAuth.getInstance(firebaseApp);
 
-                Task<FirebaseToken> firebaseTokenTask = firebaseAuth.verifyIdToken(token);
-                Tasks.await(firebaseTokenTask, 3, TimeUnit.SECONDS);
+				System.out.println("TOKEN ================ " + token);
+				
 
-                if (!firebaseTokenTask.isSuccessful()) {
-                    throw new BadCredentialsException(firebaseTokenTask.getException().getMessage(), firebaseTokenTask.getException());
-                }
+				Task<FirebaseToken> firebaseTokenTask = firebaseAuth.verifyIdToken(token);
 
-                FirebaseToken firebaseToken = firebaseTokenTask.getResult();
+				System.out.println("TOKEN TASK ================ " + firebaseTokenTask.getException());
 
-                FirebaseUserAuthenticationToken firebaseUserAuthenticationToken = new FirebaseUserAuthenticationToken(firebaseToken);
+				Tasks.await(firebaseTokenTask, 3, TimeUnit.SECONDS);
 
-                SecurityContextHolder.getContext().setAuthentication(firebaseUserAuthenticationToken);
-                
-            } catch (ExecutionException | InterruptedException | TimeoutException e) {
-                e.printStackTrace();
-            }
-        }
+				String aux = "";
 
-        filterChain.doFilter(request, response);
-    }
+				if (!firebaseTokenTask.isSuccessful()) {
+
+					throw new BadCredentialsException(aux = firebaseTokenTask.getException().getMessage(),
+							firebaseTokenTask.getException());
+
+				}
+
+				System.out.println("Execption  task = ============= " + aux);
+
+				FirebaseToken firebaseToken = firebaseTokenTask.getResult();
+
+				FirebaseUserAuthenticationToken firebaseUserAuthenticationToken = new FirebaseUserAuthenticationToken(
+						firebaseToken);
+
+				SecurityContextHolder.getContext().setAuthentication(firebaseUserAuthenticationToken);
+
+			} catch (ExecutionException | InterruptedException | TimeoutException e) {
+				e.printStackTrace();
+			}
+		}
+
+		filterChain.doFilter(request, response);
+	}
 }
