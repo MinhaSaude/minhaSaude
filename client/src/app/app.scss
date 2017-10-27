@@ -12,9 +12,17 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+// https://coolors.co/f6511d-ffb400-00a6ed-7fb800-0d2c54
+//
+// Default Colors
 $SIDEMENU_TOP: #0097a7;
 $SIDEMENU_BOTTOM: #0097a7;
 $FONT_COLOR: #FAFAFA;
+
+// $SIDEMENU_TOP: #7FB800;
+// $SIDEMENU_BOTTOM: #7FB800;
+// $FONT_COLOR: #EDF2F4;
+
 .toolbar-background-md,
 .toolbar-background-ios,
 .tabs-md .tabbar,

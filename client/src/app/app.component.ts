@@ -3,7 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { Storage } from '@ionic/storage';
+import { GlobalProvider } from './../providers/global/global';
 
 @Component({
   templateUrl: 'app.html'
@@ -20,18 +20,18 @@ export class MyApp {
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
-    private storage: Storage,
-    private afAuth: AngularFireAuth) {
+    private afAuth: AngularFireAuth,
+    private global: GlobalProvider) {
     platform.ready().then(() => {
       this.init();
       afAuth.authState.subscribe(user => {
         if (user) {
-          storage.set('user', JSON.stringify(user));
+          this.global.setCurrentUser(user);
           this.isAuthenticated = true;
           this.menu(this.isAuthenticated);
           this.openPage('InfoPessoalPage');
         } else {
-          storage.set('user', '');
+          this.global.setCurrentUser('');
           this.isAuthenticated = false;
           this.menu(this.isAuthenticated);
           this.openPage('HomePage');
@@ -43,14 +43,14 @@ export class MyApp {
   }
 
   init() {
-
-    this.storage.get('user').then((user) => {
+    this.global.getCurrentUser().then((user) => {
       if (user != '') {
-        this.rootPage = 'InfoPessoalPage';
+        this.openPage('InfoPessoalPage');
       } else {
-        this.rootPage = "HomePage";
+        this.openPage('HomePage');
       }
     });
+
   }
 
   menu(isAuthenticated) {
@@ -86,7 +86,7 @@ export class MyApp {
       this.nav.setRoot(page);
     } else {
       if (view.component.name === page) { // Previnir que ela tente acessar a mesma view
-        console.log('permaneça na página');
+        return;
       } else {
         this.nav.setRoot(page);
       }
@@ -99,7 +99,6 @@ export class MyApp {
       this.nav.setRoot(page.component);
     }
   }
-
 
 
   deslogar() {

@@ -21,133 +21,143 @@
             <h2 text-justify>Informações Pessoais</h2>
           </ion-card-header>
           <ion-card-content>
+            <form [formGroup]="pacienteForm" (ngSubmit)="salvarPaciente(user)" id="salvarPaciente">
+              <img src="{{user.foto}}" class="profile" padding>
+              <input type="file" (change)="uploadFoto($event)" id="file-input" style="opacity: 0" #fileInp accept="image/x-png,image/jpeg">
+              <ion-grid>
+                <ion-row>
+                  <ion-col col-md-5>
+                  </ion-col>
+                  <ion-col col-md-2 col-12>
+                    <button ion-button full color="primary" round (click)="clickUploadFoto()">Upload</button>
+                  </ion-col>
+                  <ion-col col-md-5>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
 
-            <img src="{{photoURL}}" class="profile" padding>
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <ion-list>
 
-            <ion-grid>
-              <ion-row>
-                <ion-col col-md-5>
-                </ion-col>
-                <ion-col col-md-2 col-12>
-                  <button ion-button full color="primary" round>Upload</button>
-                </ion-col>
-                <ion-col col-md-5>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
+                      <ion-item>
+                        <ion-label floating>Nome</ion-label>
+                        <ion-input type="text" formControlName="nome" [(ngModel)]="user.nome"></ion-input>
+                      </ion-item>
 
-            <ion-grid>
-              <ion-row>
-                <ion-col>
-                  <ion-list>
-
-                    <ion-item>
-                      <ion-label floating>Nome</ion-label>
-                      <ion-input type="text" [(ngModel)]="displayName"></ion-input>
-                    </ion-item>
-
-                    <ion-item>
-                      <ion-label floating>CPF</ion-label>
-                      <ion-input type="text"></ion-input>
-                    </ion-item>
-
-
-                    <ion-item>
-                      <ion-label floating>Telefone Residencial</ion-label>
-                      <ion-input type="text"></ion-input>
-                    </ion-item>
-
-                    <ion-item>
-                      <ion-label floating>Telefone Celular</ion-label>
-                      <ion-input type="text"></ion-input>
-                    </ion-item>
-
-                    <ion-item>
-                      <ion-label floating>E-mail</ion-label>
-                      <ion-input type="text"></ion-input>
-                    </ion-item>
-
-                    <ion-item>
-                      <ion-label floating>Endereço</ion-label>
-                      <ion-input type="text"></ion-input>
-                    </ion-item>
+                      <ion-item>
+                        <ion-label floating>CPF</ion-label>
+                        <ion-input type="text" formControlName="cpfCnpj" [(ngModel)]="user.cpfCnpj"></ion-input>
+                      </ion-item>
 
 
-                    <ion-item>
-                      <ion-label floating>Registro SUS</ion-label>
-                      <ion-input type="text"></ion-input>
-                    </ion-item>
+                      <ion-item>
+                        <ion-label floating>Telefone Residencial</ion-label>
+                        <ion-input type="text" formControlName="telefoneResidencial"></ion-input>
+                      </ion-item>
 
-                    <ion-item>
-                      <ion-label floating>Convênio</ion-label>
-                      <ion-input type="text"></ion-input>
-                    </ion-item>
+                      <ion-item>
+                        <ion-label floating>Telefone Celular</ion-label>
+                        <ion-input type="text" formControlName="telefoneCelular"></ion-input>
+                      </ion-item>
 
-                  </ion-list>
+                      <ion-item>
+                        <ion-label floating>E-mail</ion-label>
+                        <ion-input type="text" formControlName="email" [(ngModel)]="user.email"></ion-input>
+                      </ion-item>
 
-                </ion-col>
-
-                <ion-col>
-                  <ion-list>
-                    <ion-item>
-                      <ion-label floating>Sexo</ion-label>
-                      <ion-select [(ngModel)]="sexo">
-                        <ion-option value="M">Masculino</ion-option>
-                        <ion-option value="F">Feminino</ion-option>
-                      </ion-select>
-                    </ion-item>
-
-                    <ion-item>
-                      <ion-label floating>Estado Civil</ion-label>
-                      <ion-select [(ngModel)]="estadoCivil">
-                        <ion-option value="1">Solteiro</ion-option>
-                        <ion-option value="2">Casado</ion-option>
-                        <ion-option value="3">Separado</ion-option>
-                        <ion-option value="4">Divorciado</ion-option>
-                        <ion-option value="5">Viuvo</ion-option>
-                      </ion-select>
-                    </ion-item>
-
-                    <ion-item>
-                      <ion-label floating>Tipo Sanguineo</ion-label>
-                      <ion-select [(ngModel)]="tiposanguineo">
-                        <ion-option value="1">A+</ion-option>
-                        <ion-option value="2">A-</ion-option>
-                        <ion-option value="3">B+</ion-option>
-                        <ion-option value="4">B-</ion-option>
-                        <ion-option value="5">AB+</ion-option>
-                        <ion-option value="5">AB-</ion-option>
-                        <ion-option value="5">AB+</ion-option>
-                        <ion-option value="5">O+</ion-option>
-                        <ion-option value="5">O-</ion-option>
-                      </ion-select>
-                    </ion-item>
+                      <ion-item>
+                        <ion-label floating>Endereço</ion-label>
+                        <ion-input type="text" formControlName="endereco" [(ngModel)]="user.endereco"></ion-input>
+                      </ion-item>
 
 
-                    <ion-item>
-                      <ion-label floating>Altura</ion-label>
-                      <ion-input type="text"></ion-input>
-                    </ion-item>
+                      <ion-item>
+                        <ion-label floating>Registro SUS</ion-label>
+                        <ion-input type="text" formControlName="registro_sus" [(ngModel)]="user.registro_sus"></ion-input>
+                      </ion-item>
 
-                    <ion-item>
-                      <ion-label floating>Peso</ion-label>
-                      <ion-input type="text"></ion-input>
-                    </ion-item>
+                      <ion-item>
+                        <ion-label floating>Convênio</ion-label>
+                        <ion-input type="text" formControlName="convenio" [(ngModel)]="user.convenio"></ion-input>
+                      </ion-item>
 
-                    <ion-item>
-                      <ion-label floating>Profissão</ion-label>
-                      <ion-input type="text"></ion-input>
-                    </ion-item>
+                    </ion-list>
 
-                    <ion-item>
-                      <ion-label floating>Escolaridade</ion-label>
-                      <ion-input type="text"></ion-input>
-                    </ion-item>
-                  </ion-list>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
+                  </ion-col>
 
+                  <ion-col>
+                    <ion-list>
+                      <ion-item>
+                        <ion-label floating>Sexo</ion-label>
+                        <ion-select formControlName="sexo" [(ngModel)]="user.sexo">
+                          <ion-option value="MASCULINO">Masculino</ion-option>
+                          <ion-option value="FEMININO">Feminino</ion-option>
+                        </ion-select>
+                      </ion-item>
+ 
+                      <ion-item>
+                        <ion-label floating>Estado Civil</ion-label>
+                        <ion-select [(ngModel)]="user.statusCivil" formControlName="statusCivil">
+                          <ion-option value="SOLTEIRO">Solteiro</ion-option>
+                          <ion-option value="CASADO">Casado</ion-option>
+                          <ion-option value="SEPARADO">Separado</ion-option>
+                          <ion-option value="DIVORCIADO">Divorciado</ion-option>
+                          <ion-option value="VIUVO">Viuvo</ion-option>
+                        </ion-select>
+                      </ion-item>
+
+                      <ion-item>
+                        <ion-label floating>Tipo Sanguineo</ion-label>
+                        <ion-select [(ngModel)]="user.tipoSanguineo" formControlName="tiposanguineo">
+                          <ion-option value="A_POSITIVO">A+</ion-option>
+                          <ion-option value="A_NEGATIVO">A-</ion-option>
+                          <ion-option value="B_POSITIVO">B+</ion-option>
+                          <ion-option value="B_NEGATIVO">B-</ion-option>
+                          <ion-option value="AB_POSITIVO">AB+</ion-option>
+                          <ion-option value="AB_NEGATIVO">AB-</ion-option>
+                          <ion-option value="O_POSITIVO">O+</ion-option>
+                          <ion-option value="O_NEGATIVO">O-</ion-option>
+                        </ion-select>
+                      </ion-item>
+
+
+                      <ion-item>
+                        <ion-label floating>Altura</ion-label>
+                        <ion-input type="text" formControlName="altura" [(ngModel)]="user.altura"></ion-input>
+                      </ion-item>
+
+                      <ion-item>
+                        <ion-label floating>Peso</ion-label>
+                        <ion-input type="text" formControlName="peso" [(ngModel)]="user.peso"></ion-input>
+                      </ion-item>
+
+                      <ion-item>
+                        <ion-label floating>Profissão</ion-label>
+                        <ion-input type="text" formControlName="profissao" [(ngModel)]="user.profissao"></ion-input>
+                      </ion-item>
+
+                      <ion-item>
+                        <ion-label floating>Escolaridade</ion-label>
+                        <ion-select formControlName="escolaridade" [(ngModel)]="user.graEscolaridade">
+                          <ion-option value="FUNDAMENTAL_INCOMPLETO">Fundamental Incompleto</ion-option>
+                          <ion-option value="FUNDAMENTAL_COMPLETO">Fundamental Completo</ion-option>
+                          <ion-option value="MEDIO_INCOMPLETO">Medio Incompleto</ion-option>
+                          <ion-option value="MEDIO_COMPLETO">Medio Completo</ion-option>
+                          <ion-option value="SUPERIOR_INCOMPLETO">Superior Incompleto</ion-option>
+                          <ion-option value="SUPERIOR_COMPLETO">Superior Completo</ion-option>
+                          <ion-option value="MESTRADO">Mestrado</ion-option>
+                          <ion-option value="DOUTORADO"> Doutorado</ion-option>
+                          <ion-option value="POS_DOUTORADO">Pos Doutorado</ion-option>
+                        </ion-select>
+                      </ion-item>
+
+                    </ion-list>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </form>
           </ion-card-content>
         </ion-card>
 
@@ -160,7 +170,7 @@
             <ion-col col-md-3>
             </ion-col>
             <ion-col col-md-3 col-12>
-              <button ion-button full color="success" round>Salvar</button>
+              <button ion-button full color="success" round form="salvarPaciente">Salvar</button>
             </ion-col>
           </ion-row>
         </ion-grid>
