@@ -1,33 +1,27 @@
 package io.minhasaude.msapi.model;
 
+import java.time.LocalDate;
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "telefone")
-public class Telefone {
+@Table(name = "ficha_paciente")
+public class fichaPaciente {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
-	@NotNull
-	@Column(name = "tipo")
-	private String tipoTelefone;
+	@Column(name = "data_modificacao")
+	private LocalDate dataModificacao;
 
-	@NotNull
-	@Size(min = 9, max = 20)
-	private String numero;
-
-	public Telefone() {
-		super();
-	}
+	@OneToMany(mappedBy = "fichaPaciente", cascade = CascadeType.ALL)
+	private Collection<Cirurgia> cirurgias;
 
 	public Long getCodigo() {
 		return codigo;
@@ -37,20 +31,20 @@ public class Telefone {
 		this.codigo = codigo;
 	}
 
-	public String getTipoTelefone() {
-		return tipoTelefone;
+	public LocalDate getDataModificacao() {
+		return dataModificacao;
 	}
 
-	public void setTipoTelefone(String tipoTelefone) {
-		this.tipoTelefone = tipoTelefone;
+	public void setDataModificacao(LocalDate dataModificacao) {
+		this.dataModificacao = dataModificacao;
 	}
 
-	public String getNumero() {
-		return numero;
+	public Collection<Cirurgia> getCirurgias() {
+		return cirurgias;
 	}
 
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setCirurgias(Collection<Cirurgia> cirurgias) {
+		this.cirurgias = cirurgias;
 	}
 
 	@Override
@@ -69,7 +63,7 @@ public class Telefone {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Telefone other = (Telefone) obj;
+		fichaPaciente other = (fichaPaciente) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
@@ -77,4 +71,5 @@ public class Telefone {
 			return false;
 		return true;
 	}
+
 }

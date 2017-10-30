@@ -4,13 +4,9 @@ import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMax;
@@ -40,16 +36,11 @@ public class Paciente extends Pessoa {
 	@DecimalMax(value = "300.00", message = "Peso não pode ser maior que 300 kilos.")
 	private BigDecimal peso;
 
-	@Enumerated(EnumType.STRING)
 	@Column(name = "tipo_sanguineo")
-	private TipoSanguineo tipoSanguineo;
+	private String tipoSanguineo;
 
 	@Size(max = 30)
 	private String registroSus;
-
-	@OneToOne
-	@JoinColumn(name = "codigo_responsavel")
-	private Paciente responsavel;
 
 	@Size(max = 30)
 	private String nomeResponsavel;
@@ -78,11 +69,11 @@ public class Paciente extends Pessoa {
 		this.peso = peso;
 	}
 
-	public TipoSanguineo getTipoSanguineo() {
+	public String getTipoSanguineo() {
 		return tipoSanguineo;
 	}
 
-	public void setTipoSanguineo(TipoSanguineo tipoSanguineo) {
+	public void setTipoSanguineo(String tipoSanguineo) {
 		this.tipoSanguineo = tipoSanguineo;
 	}
 
@@ -92,14 +83,6 @@ public class Paciente extends Pessoa {
 
 	public void setRegistroSus(String registroSus) {
 		this.registroSus = registroSus;
-	}
-
-	public Paciente getResponsavel() {
-		return responsavel;
-	}
-
-	public void setResponsavel(Paciente responsavel) {
-		this.responsavel = responsavel;
 	}
 
 	public String getNomeResponsavel() {

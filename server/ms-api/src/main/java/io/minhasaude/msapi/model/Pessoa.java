@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -49,20 +50,17 @@ public class Pessoa implements Serializable {
 	@Column(name = "data_nascimento")
 	private LocalDate dataNascimento;
 
-	@Enumerated(EnumType.STRING)
-	private Sexo sexo;
+	private String sexo;
 
-	@Enumerated(EnumType.STRING)
 	@Column(name = "status_civil")
-	private StatusCivil statusCivil;
+	private String estatoCivil;
 
 	@Size(max = 50)
 	@Column(name = "ocupacao_profissional")
 	private String ocupacaoProfissional;
 
-	@Enumerated(EnumType.STRING)
 	@Column(name = "grau_escolaridade")
-	private GrauEscolaridade graEscolaridade;
+	private String grauEscolaridade;
 
 	private String foto;
 
@@ -70,11 +68,11 @@ public class Pessoa implements Serializable {
 	@Size(max = 50)
 	private String email;
 
-	@OneToOne(cascade = CascadeType.REMOVE)
+	@OneToOne(fetch=FetchType.EAGER , cascade=CascadeType.ALL, orphanRemoval=true)
 	@JoinColumn(name = "codigo_endereco")
 	private Endereco endereco;
 
-	@OneToOne(cascade = CascadeType.REMOVE)
+	@OneToOne(fetch=FetchType.EAGER , cascade=CascadeType.ALL, orphanRemoval=true)
 	@JoinColumn(name = "codigo_telefone")
 	private Telefone telefone;
 
@@ -136,23 +134,22 @@ public class Pessoa implements Serializable {
 
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
-
 	}
 
-	public Sexo getSexo() {
+	public String getSexo() {
 		return sexo;
 	}
 
-	public void setSexo(Sexo sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
 
-	public StatusCivil getStatusCivil() {
-		return statusCivil;
+	public String getEstatoCivil() {
+		return estatoCivil;
 	}
 
-	public void setStatusCivil(StatusCivil statusCivil) {
-		this.statusCivil = statusCivil;
+	public void setEstatoCivil(String estatoCivil) {
+		this.estatoCivil = estatoCivil;
 	}
 
 	public String getOcupacaoProfissional() {
@@ -163,12 +160,12 @@ public class Pessoa implements Serializable {
 		this.ocupacaoProfissional = ocupacaoProfissional;
 	}
 
-	public GrauEscolaridade getGraEscolaridade() {
-		return graEscolaridade;
+	public String getGrauEscolaridade() {
+		return grauEscolaridade;
 	}
 
-	public void setGraEscolaridade(GrauEscolaridade graEscolaridade) {
-		this.graEscolaridade = graEscolaridade;
+	public void setGrauEscolaridade(String grauEscolaridade) {
+		this.grauEscolaridade = grauEscolaridade;
 	}
 
 	public String getFoto() {

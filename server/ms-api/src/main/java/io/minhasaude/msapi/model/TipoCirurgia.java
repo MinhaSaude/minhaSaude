@@ -1,33 +1,37 @@
 package io.minhasaude.msapi.model;
 
-import javax.persistence.Column;
+import java.io.Serializable;
+import java.util.Collection;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
-@Table(name = "telefone")
-public class Telefone {
+@Table(name = "tipo_cirurgia")
+public class TipoCirurgia implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
 	@NotNull
-	@Column(name = "tipo")
-	private String tipoTelefone;
+	@Size(min = 3, max = 40)
+	private String descricao;
 
-	@NotNull
-	@Size(min = 9, max = 20)
-	private String numero;
-
-	public Telefone() {
-		super();
-	}
+	@JsonIgnore
+	@OneToMany(mappedBy = "tipoCirurgia", cascade = CascadeType.ALL)
+	private Collection<Cirurgia> cirurgias;
 
 	public Long getCodigo() {
 		return codigo;
@@ -37,20 +41,20 @@ public class Telefone {
 		this.codigo = codigo;
 	}
 
-	public String getTipoTelefone() {
-		return tipoTelefone;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setTipoTelefone(String tipoTelefone) {
-		this.tipoTelefone = tipoTelefone;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
-	public String getNumero() {
-		return numero;
+	public Collection<Cirurgia> getCirurgias() {
+		return cirurgias;
 	}
 
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setCirurgias(Collection<Cirurgia> cirurgias) {
+		this.cirurgias = cirurgias;
 	}
 
 	@Override
@@ -69,7 +73,7 @@ public class Telefone {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Telefone other = (Telefone) obj;
+		TipoCirurgia other = (TipoCirurgia) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
@@ -77,4 +81,5 @@ public class Telefone {
 			return false;
 		return true;
 	}
+
 }

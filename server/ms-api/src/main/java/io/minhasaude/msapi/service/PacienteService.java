@@ -49,6 +49,7 @@ public class PacienteService {
 				validarEndereco(paciente);
 			}
 		}
+		
 		BeanUtils.copyProperties(paciente, pacienteSalvo, "codigo", "uid");
 
 		return pacienteRepository.save(pacienteSalvo);

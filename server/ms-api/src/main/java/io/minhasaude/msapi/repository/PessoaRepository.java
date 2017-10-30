@@ -6,4 +6,5 @@ import io.minhasaude.msapi.model.Pessoa;
 
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 
+	Pessoa findByUid(String uid);
 }

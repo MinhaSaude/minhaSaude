@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,17 +42,20 @@ public class PacienteResource {
 	@Autowired
 	private ApplicationEventPublisher publisher;
 
+	@CrossOrigin
 	@GetMapping
 	public List<Paciente> listar() {
 		return pacienteRepository.findAll();
 	}
 
+	@CrossOrigin
 	@GetMapping("/{uid}")
 	public ResponseEntity<Paciente> buscarPeloUid(@PathVariable String uid) {
 		Paciente paciente = pacienteRepository.findByUid(uid);
 		return paciente != null ? ResponseEntity.ok(paciente) : ResponseEntity.notFound().build();
 	}
 
+	@CrossOrigin
 	@PostMapping
 	public ResponseEntity<Paciente> criar(@Valid @RequestBody Paciente paciente, HttpServletResponse response) {
 
@@ -61,17 +65,18 @@ public class PacienteResource {
 
 	}
 
+	@CrossOrigin
 	@PutMapping("/{uid}")
 	public ResponseEntity<Paciente> atualizar(@PathVariable String uid, @Valid @RequestBody Paciente paciente) {
 		try {
 			Paciente pacienteSalvo = pacienteService.atualizar(uid, paciente);
-
 			return ResponseEntity.ok(pacienteSalvo);
 		} catch (IllegalArgumentException e) {
 			return ResponseEntity.notFound().build();
 		}
 	}
 
+	@CrossOrigin
 	@DeleteMapping("/{uid}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable String uid) {

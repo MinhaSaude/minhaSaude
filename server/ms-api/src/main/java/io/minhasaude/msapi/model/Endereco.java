@@ -1,8 +1,6 @@
 package io.minhasaude.msapi.model;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,8 +20,7 @@ public class Endereco {
 	private String cep;
 
 	@NotNull()
-	@Enumerated(EnumType.STRING)
-	private EstadosBrasileiros estado;
+	private String estado;
 
 	@NotNull
 	@Size(min = 3, max = 30)
@@ -60,11 +57,11 @@ public class Endereco {
 		this.cep = cep;
 	}
 
-	public EstadosBrasileiros getEstado() {
+	public String getEstado() {
 		return estado;
 	}
 
-	public void setEstado(EstadosBrasileiros estado) {
+	public void setEstado(String estado) {
 		this.estado = estado;
 	}
 
