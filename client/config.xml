@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.minhasaude.minhasaudeapp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Minha Saúde</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+<widget id="com.minhasaude.minhasaudeapp" version="0.1.15" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Minha Saúde - A Plataforma que descomplica a forma como os pacientes e hospitais mantem o histórico médico.</name>
+    <description>Mantenha suas informações de saúde sempre contigo, de graça. Para sempre.</description>
+    <author email="suporte@minhasaude.io" href="https://github.com/orgs/MinhaSaude/people">Time Minha Saúde</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="http://ionic.local/*" />

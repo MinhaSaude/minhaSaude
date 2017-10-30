@@ -72,9 +72,9 @@ export class CadastroPage {
 
   signInWithFacebook(tipoUsuario) {
     if (this.platform.is('cordova')) {
-      return this.fb.login(['email', 'public_profile']).then(res => {
+       this.fb.login(['email', 'public_profile']).then(res => {
         const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
-        return firebase.auth().signInWithCredential(facebookCredential);
+         firebase.auth().signInWithCredential(facebookCredential);
       })
     }
     else {
@@ -98,7 +98,7 @@ export class CadastroPage {
       }).then(res => {
         this.loading.dismiss();
         const googleCredential = firebase.auth.GoogleAuthProvider.credential(res.idToken);
-        return firebase.auth().signInWithCredential(googleCredential);
+         firebase.auth().signInWithCredential(googleCredential);
       }).catch(err => {
         this.loading.dismiss();
         this.showMessage("Falha na autenticação com o google, por favor, tente novamente.");

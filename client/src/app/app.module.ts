@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
+import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { AngularFireModule } from 'angularfire2';
 import { FIREBASE_CONFIG } from './app.firebase.config';
@@ -12,6 +13,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { GlobalProvider } from '../providers/global/global';
+import { PacientesProvider } from '../providers/pacientes/pacientes';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { GlobalProvider } from '../providers/global/global';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp, { mode: 'md' }),
+    HttpModule,
     IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule
@@ -34,7 +37,8 @@ import { GlobalProvider } from '../providers/global/global';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     Facebook,
     GooglePlus,
-    GlobalProvider
+    GlobalProvider,
+    PacientesProvider
   ]
 })
 export class AppModule { }

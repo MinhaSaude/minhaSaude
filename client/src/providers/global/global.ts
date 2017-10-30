@@ -5,15 +5,21 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class GlobalProvider {
-  private currentUser: any;
   constructor(private storage: Storage) {
-    this.storage.get('user').then((resp) => {
-      this.currentUser = JSON.parse(resp);
-    });
+
   }
 
-   getCurrentUser() {
-    return this.currentUser;
+  async getCurrentUser() {
+   const usr = await this.storage.get('user');
+   console.log(usr);
+    return JSON.parse(usr);
   }
 
+  setCurrentUser(user){
+    this.storage.set('user', JSON.stringify(user));
+  }
+  
+  webServiceUrl(){
+    return "https://teste-api-ms.herokuapp.com/";
+  }
 }
