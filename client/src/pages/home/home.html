@@ -9,29 +9,67 @@
     <ion-buttons end>
       <button ion-button (click)="openPage('LoginPage')">
         Entrar
-        </button>
+      </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
+
 <ion-content>
-  <div class="splash">
+  <div class="parallax">
+    <div text-center class="main-0">
+      <h1>Minha Saúde</h1>
+      <p>Mantenha suas informações de saúde sempre contigo, de graça. Para sempre.</p>
+    </div>
+    <div text-center>
+      <button ion-button color="success" round class="comecar" (click)="openPage('CadastroPage')">Começar Agora</button>
+    </div>
+  </div>
+
+  <div class="main-1">
+    <h1 text-center>A melhor maneira de manter um histórico médico.</h1>
+    <p text-center>
+      A plataforma que aumenta a velocidade no atendimento e permite que o médico acompanhe todo o histórico do paciente, mesmo
+      se o paciente tenha realizado consultas em outros hospitais em diferentes estados.
+    </p>
+
     <ion-grid>
-      <ion-row offset-md-3 class="splash-content">
-        <ion-col col-md-2 col-12 text-center>
-          <img name="img-brasil" class="img-splash" src="./assets/images/brasil.png">
+      <ion-row>
+        <ion-col col-12 col-md-3>
+          <div text-center>
+            <img name="fichaMedica" src="./assets/icon/menu/ficha-medica.png">
+            <h2>Ficha Médica</h2>
+            <p>Alergias, médicamentos de uso contínuo, doenças cronicas, cirurgias e  vinculo de parentes, tudo que você precisa saber e
+              ter em mãos em uma anamnese.</p>
+          </div>
         </ion-col>
-        <ion-col col-md-6 text-center>
-          <h1 class="splash">Mantenha suas informações de saúde sempre contigo, de graça. Para sempre.</h1>
-          <ion-grid>
-            <ion-row offset-md-3>
-              <ion-col col-md-8>
-                <button ion-button full color="success" round (click)="openPage('CadastroPage')">Começar agora</button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
+        <ion-col col-12 col-md-3>
+          <div text-center>
+            <img name="historico" src="./assets/icon/menu/historico.png">
+            <h2>Histórico</h2>
+            <p>Uma timeline simples porém completa capaz de guardar históricos de consultas e anexar exames.</p>
+          </div>
+        </ion-col>
+        <ion-col col-12 col-md-3>
+          <div text-center>
+            <img name="medicos" src="./assets/icon/menu/medico.png">
+            <h2>Médicos</h2>
+            <p>Encontrar médicos especialistas na área que você precisa.</p>
+          </div>
+        </ion-col>
+        <ion-col col-12 col-md-3>
+          <div text-center>
+            <img name="medicos" src="./assets/icon/menu/cartao.png">
+            <h2>Cartão</h2>
+            <p>Desmaiou e não tem ficha médica no hospital? com este cartão os médicos poderão consultar sua ficha online e
+              obter as informações necessarias.</p>
+          </div>
         </ion-col>
       </ion-row>
     </ion-grid>
+
+
   </div>
+
+
 </ion-content>

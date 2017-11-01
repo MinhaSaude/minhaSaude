@@ -1,32 +1,38 @@
 page-home {
-
-    div.splash {
-            width: 100%;
-            background-image: url("../assets/images/splash.svg");
-            background-size: cover;
-            padding: 0; /* reset */
-            padding-bottom: calc(100% * 3 / 4);
-    }
-
-    h1.splash {
-        font-size: 28px;
-        color: #fff;
-    }
-
-    img.img-splash{
-        width: 148px;
-        height:148px;
-    }
-  
-    @media (min-width:1025px) { 
-        .splash-content{
-          margin-top:150px;
-        }
-     }
-  
-      @media (min-width:1500px) { 
-        .splash-content{
-          margin-top:220px;
-        }
-     }
+  body,
+  html {
+    height: 100%;
+    margin: 0;
+    font: 400 15px/1.8 "Lato", sans-serif;
+  }
+  .content {
+    background-color: white;
+  }
+  .parallax {
+    max-width: 100%;
+    background-image: url("../assets/images/banner3.jpg");
+    height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  .main-0 {
+    color: white;
+    padding-top: 150px;
+  }
+  .main-0>h1 {
+    font-size: 4.8em;
+    font-weight: 600;
+    color: white;
+  }
+  .main-0>p {
+    font-size: 1.5em;
+  }
+  .main-1 {
+    color: #777;
+    background-color: white;
+    height: auto;
+    padding:10px;
+  }
 }

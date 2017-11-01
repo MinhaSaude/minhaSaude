@@ -24,7 +24,7 @@ export class PacientesProvider {
 
   setPacienteByUid(paciente) {
     var url = this.global.webServiceUrl() + 'pacientes/' + paciente.uid;
-   return this.http.put(url, paciente).map(res => res.json());
+    return this.http.put(url, paciente).map(res => res.json());
   }
 
 
