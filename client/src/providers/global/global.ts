@@ -10,16 +10,15 @@ export class GlobalProvider {
   }
 
   async getCurrentUser() {
-   const usr = await this.storage.get('user');
-   console.log(usr);
+    const usr = await this.storage.get('user');
     return JSON.parse(usr);
   }
 
-  setCurrentUser(user){
+  setCurrentUser(user) {
     this.storage.set('user', JSON.stringify(user));
   }
-  
-  webServiceUrl(){
+
+  webServiceUrl() {
     return "https://teste-api-ms.herokuapp.com/";
   }
 }

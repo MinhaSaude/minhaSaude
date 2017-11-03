@@ -75,7 +75,7 @@
 
                       <ion-item>
                         <ion-label floating>Registro SUS</ion-label>
-                        <ion-input type="text" formControlName="registro_sus" [(ngModel)]="user.registro_sus"></ion-input>
+                        <ion-input type="text" formControlName="registroSus" [(ngModel)]="user.registroSus"></ion-input>
                       </ion-item>
 
                       <ion-item>
@@ -99,7 +99,7 @@
  
                       <ion-item>
                         <ion-label floating>Estado Civil</ion-label>
-                        <ion-select [(ngModel)]="user.statusCivil" formControlName="statusCivil">
+                        <ion-select [(ngModel)]="user.estatoCivil" formControlName="estatoCivil">
                           <ion-option value="SOLTEIRO">Solteiro</ion-option>
                           <ion-option value="CASADO">Casado</ion-option>
                           <ion-option value="SEPARADO">Separado</ion-option>
@@ -140,7 +140,7 @@
 
                       <ion-item>
                         <ion-label floating>Escolaridade</ion-label>
-                        <ion-select formControlName="escolaridade" [(ngModel)]="user.graEscolaridade">
+                        <ion-select formControlName="escolaridade" [(ngModel)]="user.grauEscolaridade">
                           <ion-option value="FUNDAMENTAL_INCOMPLETO">Fundamental Incompleto</ion-option>
                           <ion-option value="FUNDAMENTAL_COMPLETO">Fundamental Completo</ion-option>
                           <ion-option value="MEDIO_INCOMPLETO">Medio Incompleto</ion-option>

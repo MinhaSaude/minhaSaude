@@ -1,6 +1,6 @@
 import { PacientesProvider } from './../../providers/pacientes/pacientes';
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { GlobalProvider } from './../../providers/global/global';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 /*
@@ -16,11 +16,9 @@ altura, peso, convênio, estado civil, endereço, e-mail, telefone, profissão, 
 })
 export class InfoPessoalPage {
   @ViewChild('fileInp') fileInput: ElementRef;
-  fichaMedica: any = "infoPessoal";
-  titulo: any = "Informações Pessoais";
   displayName: string;
   page: any;
-  
+
   user = {
     uid: "",
     foto: "./assets/images/profile.jpg",
@@ -33,7 +31,7 @@ export class InfoPessoalPage {
     registro_sus: "",
     convenio: "",
     sexo: "",
-    estadoCivil: "",
+    estatoCivil: "",
     tiposanguineo: "",
     altura: "",
     peso: "",
@@ -47,7 +45,8 @@ export class InfoPessoalPage {
     public navParams: NavParams,
     private global: GlobalProvider,
     private pacientes: PacientesProvider,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    public toastCtrl: ToastController) {
 
     this.pacienteForm = this.formBuilder.group({
       nome: ['', Validators.required],
@@ -56,10 +55,10 @@ export class InfoPessoalPage {
       telefoneCelular: [''],
       email: [''],
       endereco: [''],
-      registro_sus: [''],
+      registroSus: [''],
       convenio: [''],
       sexo: [''],
-      statusCivil: [''],
+      estatoCivil: [''],
       tiposanguineo: [''],
       altura: [''],
       peso: [''],
@@ -81,17 +80,20 @@ export class InfoPessoalPage {
 
   getPacienteByUid(uid) {
     this.pacientes.getPacienteByUid(uid).subscribe(user => {
-      console.log(user);
       if (user.foto == "") {
         user.foto = this.user.foto;
       }
       this.user = user;
+    }, error => {
+      this.showMessage("Ops ocorreu algum erro ao localizar o paciente.");
     });
   }
 
   salvarPaciente(user) {
     this.pacientes.setPacienteByUid(user).subscribe(data => {
-      console.log(data);
+      this.showMessage("Dados atualizados com sucesso");
+    },error =>{
+      this.showMessage("Ops ocorreu algum erro, não foi possivel atualizar o paciente.");
     });
   }
 
@@ -111,5 +113,14 @@ export class InfoPessoalPage {
 
   clickUploadFoto() {
     this.fileInput.nativeElement.click();
+  }
+
+  showMessage(m) {
+    let toast = this.toastCtrl.create({
+      message: m,
+      showCloseButton: true,
+      closeButtonText: 'Ok'
+    });
+    toast.present();
   }
 }
