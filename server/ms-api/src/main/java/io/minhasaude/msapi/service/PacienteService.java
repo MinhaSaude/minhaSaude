@@ -83,7 +83,9 @@ public class PacienteService {
 	}
 
 	public Paciente getPacienteByUid(String uid) {
+		
 		Paciente pacienteSalvo = pacienteRepository.findByUid(uid);
+		
 		if (pacienteSalvo == null) {
 			throw new IllegalArgumentException();
 		}

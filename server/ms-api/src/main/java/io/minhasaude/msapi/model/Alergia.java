@@ -1,7 +1,6 @@
 package io.minhasaude.msapi.model;
 
-import java.time.LocalDate;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,22 +14,21 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-@Table(name = "cirurgia")
-public class Cirurgia {
+@Table(name = "alergia")
+public class Alergia {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
 	@NotNull
-	@Size(min = 3, max = 40)
-	private String descricao;
+	@Size(min = 3, max = 20)
+	@Column(name = "tipo_alergia")
+	private String tipoAlergia;
 
 	@NotNull
-	@Size(min = 3, max = 20)
-	private String menbro;
-
-	private LocalDate data;
+	@Size(min = 3, max = 100)
+	private String descricao;
 
 	@JsonBackReference
 	@ManyToOne
@@ -45,20 +43,12 @@ public class Cirurgia {
 		this.codigo = codigo;
 	}
 
-	public String getMenbro() {
-		return menbro;
+	public String getTipoAlergia() {
+		return tipoAlergia;
 	}
 
-	public void setMenbro(String menbro) {
-		this.menbro = menbro;
-	}
-
-	public LocalDate getData() {
-		return data;
-	}
-
-	public void setData(LocalDate data) {
-		this.data = data;
+	public void setTipoAlergia(String tipoAlergia) {
+		this.tipoAlergia = tipoAlergia;
 	}
 
 	public String getDescricao() {
@@ -93,7 +83,7 @@ public class Cirurgia {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cirurgia other = (Cirurgia) obj;
+		Alergia other = (Alergia) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;

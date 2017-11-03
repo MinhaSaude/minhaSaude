@@ -20,31 +20,31 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.minhasaude.msapi.event.listener.RecursoCriadoEvent;
-import io.minhasaude.msapi.model.Cirurgia;
-import io.minhasaude.msapi.repository.CirurgiaRepository;
-import io.minhasaude.msapi.service.CirurgiaService;
+import io.minhasaude.msapi.model.Alergia;
+import io.minhasaude.msapi.repository.AlergiaRepository;
+import io.minhasaude.msapi.service.AlergiaService;
 
 @RestController
-@RequestMapping("/cirurgias")
-public class CirurgiaResource {
+@RequestMapping("/alergias")
+public class AlergiaResource {
 
 	@Autowired
-	private CirurgiaRepository cirurgiaRepository;
+	private AlergiaRepository alergiaRepository;
 
 	@Autowired
-	private CirurgiaService cirurgiaService;
+	private AlergiaService alergiaService;
 
 	@Autowired
 	private ApplicationEventPublisher publisher;
 
 	@CrossOrigin
 	@GetMapping("/{uid}")
-	public ResponseEntity<List<Cirurgia>> buscarCirurgiasPeloUid(@PathVariable String uid) {
+	public ResponseEntity<List<Alergia>> buscarAlergiasPeloUid(@PathVariable String uid) {
 
 		try {
 
-			List<Cirurgia> cirurgias = cirurgiaService.getAllCirurgiaByUid(uid);
-			return cirurgias != null ? ResponseEntity.ok(cirurgias) : ResponseEntity.notFound().build();
+			List<Alergia> alergias = alergiaService.getAllAlergiasByUid(uid);
+			return alergias != null ? ResponseEntity.ok(alergias) : ResponseEntity.notFound().build();
 
 		} catch (IllegalArgumentException e) {
 			return ResponseEntity.notFound().build();
@@ -52,25 +52,26 @@ public class CirurgiaResource {
 	}
 
 	@CrossOrigin
-	@GetMapping("/{uid}/{codigoCirurgia}")
-	public ResponseEntity<Cirurgia> buscarCirurgiaPeloUid(@PathVariable String uid, @PathVariable Long codigoCirurgia) {
+	@GetMapping("/{uid}/{codigoAlergia}")
+	public ResponseEntity<Alergia> buscarAlergiaPeloUidCodigo(@PathVariable String uid,
+			@PathVariable Long codigoAlergia) {
 
 		try {
 
-			Cirurgia cirurgia = null;
+			Alergia alergia = null;
 
-			List<Cirurgia> cirurgias = cirurgiaService.getAllCirurgiaByUid(uid);
+			List<Alergia> alergias = alergiaService.getAllAlergiasByUid(uid);
 
-			if (cirurgias != null) {
-				for (Cirurgia c : cirurgias) {
-					if (c.getCodigo() == codigoCirurgia) {
-						cirurgia = new Cirurgia();
-						cirurgia = c;
+			if (alergias != null) {
+				for (Alergia a : alergias) {
+					if (a.getCodigo() == codigoAlergia) {
+						alergia = new Alergia();
+						alergia = a;
 					}
 				}
 			}
 
-			return cirurgia != null ? ResponseEntity.ok(cirurgia) : ResponseEntity.notFound().build();
+			return alergia != null ? ResponseEntity.ok(alergia) : ResponseEntity.notFound().build();
 
 		} catch (IllegalArgumentException e) {
 			return ResponseEntity.notFound().build();
@@ -79,11 +80,11 @@ public class CirurgiaResource {
 
 	@CrossOrigin
 	@PostMapping
-	public ResponseEntity<Cirurgia> criar(@Valid @RequestBody Cirurgia cirurgia, HttpServletResponse response) {
+	public ResponseEntity<Alergia> criar(@Valid @RequestBody Alergia alergia, HttpServletResponse response) {
 
-		Cirurgia cirurgiaSalva = cirurgiaRepository.save(cirurgia);
-		publisher.publishEvent(new RecursoCriadoEvent(this, response, cirurgiaSalva.getCodigo()));
-		return ResponseEntity.status(HttpStatus.CREATED).body(cirurgiaSalva);
+		Alergia alergiaSalva = alergiaRepository.save(alergia);
+		publisher.publishEvent(new RecursoCriadoEvent(this, response, alergiaSalva.getCodigo()));
+		return ResponseEntity.status(HttpStatus.CREATED).body(alergiaSalva);
 
 	}
 
@@ -91,7 +92,6 @@ public class CirurgiaResource {
 	@DeleteMapping("/{codigo}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void remover(@PathVariable Long codigo) {
-		cirurgiaRepository.delete(codigo);
+		alergiaRepository.delete(codigo);
 	}
-
 }

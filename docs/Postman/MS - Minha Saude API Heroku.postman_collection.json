@@ -1,17 +1,64 @@
 {
 	"info": {
-		"name": "MS - Minha Saude API",
+		"name": "MS - Minha Saude - Heroku",
 		"_postman_id": "34500f83-218a-6e08-e96f-f8057bb22bb8",
 		"description": "Projeto final ADS",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Telefones",
+			"name": "Alergias",
 			"description": "",
 			"item": [
 				{
-					"name": "Inserir telefone",
+					"name": "Buscar alergia pelo UID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://teste-api-ms.herokuapp.com/alergias/qwSv0p7eWiYK9NWA4Eu0dmF0ydY2",
+							"protocol": "https",
+							"host": [
+								"teste-api-ms",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"alergias",
+								"qwSv0p7eWiYK9NWA4Eu0dmF0ydY2"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar alergia por UID / codigoAlergia",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://teste-api-ms.herokuapp.com/alergias/qwSv0p7eWiYK9NWA4Eu0dmF0ydY2/1",
+							"protocol": "https",
+							"host": [
+								"teste-api-ms",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"alergias",
+								"qwSv0p7eWiYK9NWA4Eu0dmF0ydY2",
+								"1"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar Alergia",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -22,10 +69,10 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"tipoTelefone\": \"MOVEL\",\n    \"numero\": \"3513-1200\"\n}"
+							"raw": "{\n    \"tipoAlergia\": \"Medicamentos\",\n    \"descricao\": \"Dipirona\",\n    \"paciente\": {\n\t\t\"codigo\": 1\n\t}\n}"
 						},
 						"url": {
-							"raw": "https://teste-api-ms.herokuapp.com/telefones",
+							"raw": "https://teste-api-ms.herokuapp.com/alergias",
 							"protocol": "https",
 							"host": [
 								"teste-api-ms",
@@ -33,7 +80,7 @@
 								"com"
 							],
 							"path": [
-								"telefones"
+								"alergias"
 							]
 						},
 						"description": ""
@@ -41,160 +88,21 @@
 					"response": []
 				},
 				{
-					"name": "Busca telefone pelo UID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\t\"uid\": \"8888888888\",\r\n\t\"rg\": \"987654321\",\r\n\t\"cpfCnpj\": \"600.300.231-68\",\r\n\t\"nome\": \"Eliana Cristina Deus Santos\",\r\n\t\"dataNascimento\": \"1990-03-09\",\r\n\t\"sexo\": \"F\",\r\n\t\"statusCivil\": \"SOLTEIRO\",\r\n\t\"ocupacaoProfissional\": \"Estudante\",\r\n\t\"graEscolaridade\": \"SUPERIOR_INCOMPLETO\",\r\n\t\"foto\": null,\r\n\t\"email\": \"elianacris@hotmail.com\"\r\n}"
-						},
-						"url": {
-							"raw": "https://teste-api-ms.herokuapp.com/telefones/0ro6gaAr4AOHMpo6jlehuksve5u1",
-							"protocol": "https",
-							"host": [
-								"teste-api-ms",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"telefones",
-								"0ro6gaAr4AOHMpo6jlehuksve5u1"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Pacientes",
-			"description": "",
-			"item": [
-				{
-					"name": "Listar todos o pacientes",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "https://teste-api-ms.herokuapp.com/pacientes",
-							"protocol": "https",
-							"host": [
-								"teste-api-ms",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"pacientes"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Buscar Paciente pelo UID",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {},
-						"url": {
-							"raw": "https://teste-api-ms.herokuapp.com/pacientes/qwSv0p7eWiYK9NWA4Eu0dmF0ydY2",
-							"protocol": "https",
-							"host": [
-								"teste-api-ms",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"pacientes",
-								"qwSv0p7eWiYK9NWA4Eu0dmF0ydY2"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Cadastrar paciente",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"uid\": \"qwSv0p7eWiYK9NWA4Eu0dmF0ydY2\",\n\t\"tipoPessoa\": \"PACIENTE\",\n    \"rg\": null,\n    \"cpfCnpj\": null,\n    \"nome\": null,\n    \"dataNascimento\": null,\n    \"sexo\": null,\n    \"estatoCivil\": null,\n    \"ocupacaoProfissional\": null,\n    \"grauEscolaridade\": null,\n    \"foto\": null,\n    \"email\": \"haryeufernandesnascimento@gmail.com\",\n    \"endereco\": null,\n    \"telefone\": null,\n    \"altura\": null,\n    \"peso\": null,\n    \"tipoSanguineo\": null,\n    \"registroSus\": null,\n    \"nomeResponsavel\": null\n}"
-						},
-						"url": {
-							"raw": "https://teste-api-ms.herokuapp.com/pacientes",
-							"protocol": "https",
-							"host": [
-								"teste-api-ms",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"pacientes"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Atualizar Paciente pelo UID",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"codigo\": 2,\n    \"uid\": \"qwSv0p7eWiYK9NWA4Eu0dmF0ydY2\",\n    \"tipoPessoa\": \"PACIENTE\",\n    \"rg\": null,\n    \"cpfCnpj\": null,\n    \"nome\": \"Haryel Fernandes Nascimento\",\n    \"dataNascimento\": null,\n    \"sexo\": null,\n    \"estatoCivil\": null,\n    \"ocupacaoProfissional\": null,\n    \"grauEscolaridade\": null,\n    \"foto\": null,\n    \"email\": \"haryelfernandes@gmail.com\",\n    \"endereco\": null,\n    \"telefone\": null,\n    \"altura\": null,\n    \"peso\": null,\n    \"tipoSanguineo\": null,\n    \"registroSus\": null,\n    \"nomeResponsavel\": null\n}"
-						},
-						"url": {
-							"raw": "https://teste-api-ms.herokuapp.com/pacientes/qwSv0p7eWiYK9NWA4Eu0dmF0ydY2",
-							"protocol": "https",
-							"host": [
-								"teste-api-ms",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"pacientes",
-								"qwSv0p7eWiYK9NWA4Eu0dmF0ydY2"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Deletar paciente pelo UID",
+					"name": "Deletar alergia pelo ID",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "https://teste-api-ms.herokuapp.com/pacientes/VhZEcaazqtWBu2GDb3sSkFLEgVJ2",
-							"protocol": "https",
+							"raw": "http://localhost:8080/alergias/2",
+							"protocol": "http",
 							"host": [
-								"teste-api-ms",
-								"herokuapp",
-								"com"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
-								"pacientes",
-								"VhZEcaazqtWBu2GDb3sSkFLEgVJ2"
+								"alergias",
+								"2"
 							]
 						},
 						"description": ""
@@ -208,51 +116,21 @@
 			"description": "",
 			"item": [
 				{
-					"name": "Tipos Cirurgias",
-					"description": "",
-					"item": [
-						{
-							"name": "Listar todos tipos cirurgias",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"body": {},
-								"url": {
-									"raw": "https://teste-api-ms.herokuapp.com/tiposCirurgia",
-									"protocol": "https",
-									"host": [
-										"teste-api-ms",
-										"herokuapp",
-										"com"
-									],
-									"path": [
-										"tiposCirurgia"
-									]
-								},
-								"description": ""
-							},
-							"response": []
-						}
-					],
-					"_postman_isSubFolder": true
-				},
-				{
 					"name": "Buscar cirurgias do paciente pelo UID",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "https://teste-api-ms.herokuapp.com/cirurgias/VhZEcaazqtWBu2GDb3sSkFLEgVJ2",
-							"protocol": "https",
+							"raw": "http://localhost:8080/cirurgias/qwSv0p7eWiYK9NWA4Eu0dmF0ydY2",
+							"protocol": "http",
 							"host": [
-								"teste-api-ms",
-								"herokuapp",
-								"com"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"cirurgias",
-								"VhZEcaazqtWBu2GDb3sSkFLEgVJ2"
+								"qwSv0p7eWiYK9NWA4Eu0dmF0ydY2"
 							]
 						},
 						"description": ""
@@ -266,17 +144,45 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "https://teste-api-ms.herokuapp.com/cirurgias/VhZEcaazqtWBu2GDb3sSkFLEgVJ2/1",
-							"protocol": "https",
+							"raw": "http://localhost:8080/cirurgias/qwSv0p7eWiYK9NWA4Eu0dmF0ydY2/1",
+							"protocol": "http",
 							"host": [
-								"teste-api-ms",
-								"herokuapp",
-								"com"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"cirurgias",
-								"VhZEcaazqtWBu2GDb3sSkFLEgVJ2",
+								"qwSv0p7eWiYK9NWA4Eu0dmF0ydY2",
 								"1"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar Cirurgia",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"descricao\": \"Ortopedica2222\",\n    \"menbro\": \"Braço direito\",\n    \"data\": \"2017-11-02\",\n\t\"paciente\": {\n\t\"codigo\": 1\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/cirurgias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cirurgias"
 							]
 						},
 						"description": ""
@@ -290,47 +196,16 @@
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "https://teste-api-ms.herokuapp.com/cirurgias/1",
-							"protocol": "https",
+							"raw": "http://localhost:8080//cirurgias/4",
+							"protocol": "http",
 							"host": [
-								"teste-api-ms",
-								"herokuapp",
-								"com"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
+								"",
 								"cirurgias",
-								"1"
-							]
-						},
-						"description": ""
-					},
-					"response": []
-				},
-				{
-					"name": "Atualizar Cirurgia pelo ID",
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n\t\"codigo\": 1,\n\t\"menbro\": \"Rosto2\",\n\t\"data\": \"2017-10-29\",\n    \"tipoCirurgia\": {\n     \"codigo\": 16,\n     \"descricao\": \"Cirurgia estética\"\n    }\n}"
-						},
-						"url": {
-							"raw": "https://teste-api-ms.herokuapp.com/cirurgias/2",
-							"protocol": "https",
-							"host": [
-								"teste-api-ms",
-								"herokuapp",
-								"com"
-							],
-							"path": [
-								"cirurgias",
-								"2"
+								"4"
 							]
 						},
 						"description": ""
@@ -340,17 +215,45 @@
 			]
 		},
 		{
-			"name": "Fichas",
+			"name": "Doenças",
 			"description": "",
 			"item": [
 				{
-					"name": "Buscar ficha do paciente pelo UID",
+					"name": "Tipos Doenças",
+					"description": "",
+					"item": [
+						{
+							"name": "Listar todos tipo de doenças conuns",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/doencas_comuns",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"doencas_comuns"
+									]
+								},
+								"description": ""
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Buscar doenças paciente pelo UID",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"body": {},
 						"url": {
-							"raw": "https://teste-api-ms.herokuapp.com/fichas/VhZEcaazqtWBu2GDb3sSkFLEgVJ2",
+							"raw": "https://teste-api-ms.herokuapp.com/paciente_doencas/qwSv0p7eWiYK9NWA4Eu0dmF0ydY2",
 							"protocol": "https",
 							"host": [
 								"teste-api-ms",
@@ -358,8 +261,59 @@
 								"com"
 							],
 							"path": [
-								"fichas",
-								"VhZEcaazqtWBu2GDb3sSkFLEgVJ2"
+								"paciente_doencas",
+								"qwSv0p7eWiYK9NWA4Eu0dmF0ydY2"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar Doença paciente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"obs\": \"teste\",\n    \"doencaComum\": {\n    \t\"codigo\": 31\n\t},\n\t\"paciente\" : {\n\t\t\"codigo\": 1\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/paciente_doencas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"paciente_doencas"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Doença Paciente pelo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/paciente_doencas/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"paciente_doencas",
+								"2"
 							]
 						},
 						"description": ""
@@ -419,6 +373,306 @@
 							"path": [
 								"enderecos",
 								"qwSv0p7eWiYK9NWA4Eu0dmF0ydY2"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Medicamentos",
+			"description": "",
+			"item": [
+				{
+					"name": "Buscar medicamentos uso continuo pelo UID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/medicamentos/qwSv0p7eWiYK9NWA4Eu0dmF0ydY2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medicamentos",
+								"qwSv0p7eWiYK9NWA4Eu0dmF0ydY2"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar medicamento uso continuo UID /  codigoMedicamento",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/medicamentos/qwSv0p7eWiYK9NWA4Eu0dmF0ydY2/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medicamentos",
+								"qwSv0p7eWiYK9NWA4Eu0dmF0ydY2",
+								"1"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar Medicamento",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nomeComercial\": \"teste\",\n    \"principioAtivo\": \"teste ativo\",\n    \"dosagem\": \"50mg\",\n    \"rms\": null,\n    \"fabricante\": null,\n\t\"paciente\": {\n\t\t\"codigo\": 1\n\t}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/medicamentos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medicamentos"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar medicamento pelo ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080//medicamentos/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"",
+								"medicamentos",
+								"1"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pacientes",
+			"description": "",
+			"item": [
+				{
+					"name": "Listar todos o pacientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://teste-api-ms.herokuapp.com/pacientes/",
+							"protocol": "https",
+							"host": [
+								"teste-api-ms",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pacientes",
+								""
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Paciente pelo UID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://teste-api-ms.herokuapp.com/pacientes/qwSv0p7eWiYK9NWA4Eu0dmF0ydY2",
+							"protocol": "https",
+							"host": [
+								"teste-api-ms",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pacientes",
+								"qwSv0p7eWiYK9NWA4Eu0dmF0ydY2"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Paciente pelo UID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo\": 2,\n    \"uid\": \"qwSv0p7eWiYK9NWA4Eu0dmF0ydY2\",\n    \"tipoPessoa\": \"PACIENTE\",\n    \"rg\": null,\n    \"cpfCnpj\": null,\n    \"nome\": \"Haryel Fernandes Nascimento\",\n    \"dataNascimento\": null,\n    \"sexo\": null,\n    \"estatoCivil\": null,\n    \"ocupacaoProfissional\": null,\n    \"grauEscolaridade\": null,\n    \"foto\": null,\n    \"email\": \"haryelfernandes@gmail.com\",\n    \"endereco\": null,\n    \"telefone\": null,\n    \"altura\": null,\n    \"peso\": null,\n    \"tipoSanguineo\": null,\n    \"registroSus\": null,\n    \"nomeResponsavel\": null\n}"
+						},
+						"url": {
+							"raw": "https://teste-api-ms.herokuapp.com/pacientes/qwSv0p7eWiYK9NWA4Eu0dmF0ydY2",
+							"protocol": "https",
+							"host": [
+								"teste-api-ms",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pacientes",
+								"qwSv0p7eWiYK9NWA4Eu0dmF0ydY2"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastrar paciente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"uid\": \"qwSv0p7eWiYK9NWA4Eu0dmF0ydY2\",\n\t\"tipoPessoa\": \"PACIENTE\",\n    \"rg\": null,\n    \"cpfCnpj\": null,\n    \"nome\": null,\n    \"dataNascimento\": null,\n    \"sexo\": null,\n    \"estatoCivil\": null,\n    \"ocupacaoProfissional\": null,\n    \"grauEscolaridade\": null,\n    \"foto\": null,\n    \"email\": \"haryeufernandesnascimento@gmail.com\",\n    \"endereco\": null,\n    \"telefone\": null,\n    \"altura\": null,\n    \"peso\": null,\n    \"tipoSanguineo\": null,\n    \"registroSus\": null,\n    \"nomeResponsavel\": null\n}"
+						},
+						"url": {
+							"raw": "https://teste-api-ms.herokuapp.com/pacientes",
+							"protocol": "https",
+							"host": [
+								"teste-api-ms",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pacientes"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar paciente pelo UID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://teste-api-ms.herokuapp.com/pacientes/qwSv0p7eWiYK9NWA4Eu0dmF0ydY2s",
+							"protocol": "https",
+							"host": [
+								"teste-api-ms",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"pacientes",
+								"qwSv0p7eWiYK9NWA4Eu0dmF0ydY2s"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Telefones",
+			"description": "",
+			"item": [
+				{
+					"name": "Inserir telefone",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tipoTelefone\": \"MOVEL\",\n    \"numero\": \"3513-1200\"\n}"
+						},
+						"url": {
+							"raw": "https://teste-api-ms.herokuapp.com/telefones",
+							"protocol": "https",
+							"host": [
+								"teste-api-ms",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"telefones"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "Busca telefone pelo UID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"uid\": \"8888888888\",\r\n\t\"rg\": \"987654321\",\r\n\t\"cpfCnpj\": \"600.300.231-68\",\r\n\t\"nome\": \"Eliana Cristina Deus Santos\",\r\n\t\"dataNascimento\": \"1990-03-09\",\r\n\t\"sexo\": \"F\",\r\n\t\"statusCivil\": \"SOLTEIRO\",\r\n\t\"ocupacaoProfissional\": \"Estudante\",\r\n\t\"graEscolaridade\": \"SUPERIOR_INCOMPLETO\",\r\n\t\"foto\": null,\r\n\t\"email\": \"elianacris@hotmail.com\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/telefones/0ro6gaAr4AOHMpo6jlehuksve5u1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"telefones",
+								"0ro6gaAr4AOHMpo6jlehuksve5u1"
 							]
 						},
 						"description": ""

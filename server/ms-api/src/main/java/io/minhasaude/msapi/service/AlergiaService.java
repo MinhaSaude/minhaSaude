@@ -5,26 +5,25 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import io.minhasaude.msapi.model.Cirurgia;
+import io.minhasaude.msapi.model.Alergia;
 import io.minhasaude.msapi.model.Paciente;
-import io.minhasaude.msapi.repository.CirurgiaRepository;
+import io.minhasaude.msapi.repository.AlergiaRepository;
 
 @Service
-public class CirurgiaService {
+public class AlergiaService {
 
 	@Autowired
 	private PacienteService pacienteService;
 
 	@Autowired
-	private CirurgiaRepository cirurgiaRepository;
+	private AlergiaRepository alergiaRepository;
 
-	public List<Cirurgia> getAllCirurgiaByUid(String uid) {
+	public List<Alergia> getAllAlergiasByUid(String uid) {
 
 		Paciente pacienteSalvo = pacienteService.getPacienteByUid(uid);
-		
-		List<Cirurgia> cirurgias = cirurgiaRepository.findByPaciente(pacienteSalvo);
+
+		List<Alergia> cirurgias = alergiaRepository.findByPaciente(pacienteSalvo);
 
 		return cirurgias;
 	}
-
 }
