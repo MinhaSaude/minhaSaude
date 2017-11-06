@@ -28,15 +28,16 @@ export class InfoPessoalPage {
     telefoneCelular: "",
     email: "",
     endereco: "",
-    registro_sus: "",
-    convenio: "",
+    registroSus: "",
     sexo: "",
     estatoCivil: "",
     tiposanguineo: "",
     altura: "",
     peso: "",
-    profissao: "",
+    ocupacaoProfissional: "",
     escolaridade: "",
+    nomeResponsavel: "",
+    dataNascimento: ""
   };
 
   private pacienteForm: FormGroup;
@@ -56,14 +57,15 @@ export class InfoPessoalPage {
       email: [''],
       endereco: [''],
       registroSus: [''],
-      convenio: [''],
       sexo: [''],
       estatoCivil: [''],
-      tiposanguineo: [''],
+      tipoSanguineo: [''],
       altura: [''],
       peso: [''],
-      profissao: [''],
+      ocupacaoProfissional: [''],
       escolaridade: [''],
+      nomeResponsavel: [''],
+      dataNascimento: ['']
     });
 
   }
@@ -79,7 +81,7 @@ export class InfoPessoalPage {
   }
 
   getPacienteByUid(uid) {
-    this.pacientes.getPacienteByUid(uid).subscribe(user => {
+    this.pacientes.select(uid).subscribe(user => {
       if (user.foto == "") {
         user.foto = this.user.foto;
       }
@@ -90,10 +92,10 @@ export class InfoPessoalPage {
   }
 
   salvarPaciente(user) {
-    this.pacientes.setPacienteByUid(user).subscribe(data => {
+    this.pacientes.update(user).subscribe(data => {
       this.showMessage("Dados atualizados com sucesso");
-    },error =>{
-      this.showMessage("Ops ocorreu algum erro, não foi possivel atualizar o paciente.");
+    }, error => {
+      this.showMessage("Ops ocorreu algum erro ao salvar o paciente.");
     });
   }
 
@@ -101,7 +103,7 @@ export class InfoPessoalPage {
     this.readThis(event.target);
   }
 
-  readThis(inputValue: any): void {
+  readThis(inputValue: any) {
     var file: File = inputValue.files[0];
     var myReader: FileReader = new FileReader();
 

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.minhasaude.minhasaudeapp" version="0.1.15" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Minha Saúde</name>
+    <name>Minha Saúde - A Plataforma que descomplica a forma como os pacientes e hospitais mantem o histórico médico.</name>
     <description>Mantenha suas informações de saúde sempre contigo, de graça. Para sempre.</description>
     <author email="suporte@minhasaude.io" href="https://github.com/orgs/MinhaSaude/people">Time Minha Saúde</author>
     <content src="index.html" />
@@ -81,6 +81,10 @@
     <engine name="browser" spec="^4.1.0" />
     <plugin name="cordova-plugin-console" spec="^1.1.0" />
     <plugin name="cordova-plugin-device" spec="^1.1.6" />
+    <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
+    <plugin name="cordova-plugin-statusbar" spec="^2.2.3" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.2" />
+    <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
     <plugin name="cordova-plugin-facebook4" spec="^1.9.1">
         <variable name="APP_ID" value="1953388814916627" />
         <variable name="APP_NAME" value="MinhaSaude" />
@@ -88,9 +92,5 @@
     <plugin name="cordova-plugin-googleplus" spec="^5.1.1">
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.216300253695-0cbj5vp05au321b3qpou332mk0anbo4l" />
     </plugin>
-    <plugin name="cordova-plugin-splashscreen" spec="^4.0.3" />
-    <plugin name="cordova-plugin-statusbar" spec="^2.2.3" />
-    <plugin name="cordova-plugin-whitelist" spec="^1.3.2" />
     <plugin name="cordova-sqlite-storage" spec="^2.0.4" />
-    <plugin name="ionic-plugin-keyboard" spec="^2.2.1" />
 </widget>

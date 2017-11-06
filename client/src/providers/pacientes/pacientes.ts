@@ -18,14 +18,19 @@ export class PacientesProvider {
     console.log('Hello PacientesProvider Provider');
   }
 
-  getPacienteByUid(uid) {
-    return this.http.get(this.global.webServiceUrl() + 'pacientes/' + uid).map(res => res.json());
+  select(uid) {
+    let url = this.global.webServiceUrl() + 'pacientes/' + uid;
+    return this.http.get(url).map(res => res.json());
   }
 
-  setPacienteByUid(paciente) {
-    var url = this.global.webServiceUrl() + 'pacientes/' + paciente.uid;
+  update(paciente) {
+    let url = this.global.webServiceUrl() + 'pacientes/' + paciente.uid;
     return this.http.put(url, paciente).map(res => res.json());
   }
 
+  create(paciente) {
+    let url = this.global.webServiceUrl() + 'pacientes/';
+    return this.http.post(url, paciente).map(res => res.json());
+  }
 
 }

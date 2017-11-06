@@ -6,6 +6,8 @@ import * as firebase from 'firebase/app';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
+import { PacientesProvider } from './../../providers/pacientes/pacientes';
+
 
 @IonicPage()
 @Component({
@@ -51,7 +53,7 @@ export class CadastroPage {
   createUserWithEmailAndPassPatient() {
     this.presentLoading();
     this.afAuth.auth.createUserWithEmailAndPassword(this.patient.value.email, this.patient.value.password)
-      .then(res => {
+      .then(user => {
         this.loading.dismiss();
       }).catch(error => {
         this.loading.dismiss();
@@ -72,9 +74,9 @@ export class CadastroPage {
 
   signInWithFacebook(tipoUsuario) {
     if (this.platform.is('cordova')) {
-       this.fb.login(['email', 'public_profile']).then(res => {
+      this.fb.login(['email', 'public_profile']).then(res => {
         const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
-         firebase.auth().signInWithCredential(facebookCredential);
+        firebase.auth().signInWithCredential(facebookCredential);
       })
     }
     else {
@@ -98,7 +100,7 @@ export class CadastroPage {
       }).then(res => {
         this.loading.dismiss();
         const googleCredential = firebase.auth.GoogleAuthProvider.credential(res.idToken);
-         firebase.auth().signInWithCredential(googleCredential);
+        firebase.auth().signInWithCredential(googleCredential);
       }).catch(err => {
         this.loading.dismiss();
         this.showMessage("Falha na autenticação com o google, por favor, tente novamente.");

@@ -5,7 +5,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content class="menu-content">
+  <ion-content>
 
     <ion-list [hidden]="!isAuthenticated">
       <button ion-item (click)="clickFichaMedica()">
@@ -26,6 +26,7 @@
     </ion-list>
 
   </ion-content>
+
   <ion-footer class="bar-stable" [hidden]="!isAuthenticated">
     <button menuClose ion-item (click)="deslogar()">
       <img name="deslogar" src="./assets/icon/menu/deslogar.png" float-left class="app-icons">

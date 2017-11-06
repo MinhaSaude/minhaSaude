@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { GlobalProvider } from './../providers/global/global';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { PacientesProvider } from '../providers/pacientes/pacientes';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,15 +22,38 @@ export class MyApp {
     statusBar: StatusBar,
     splashScreen: SplashScreen,
     private afAuth: AngularFireAuth,
-    private global: GlobalProvider) {
+    private global: GlobalProvider,
+    private paciente: PacientesProvider) {
     platform.ready().then(() => {
       this.init();
       afAuth.authState.subscribe(user => {
         if (user) {
+
           this.global.setCurrentUser(user);
           this.isAuthenticated = true;
           this.menu(this.isAuthenticated);
-          this.openPage('InfoPessoalPage');
+
+
+
+          this.paciente.select(user.uid).subscribe(data => { // se o usuario já estiver na base
+            this.openPage('InfoPessoalPage');
+          }, error => {
+
+            let pacienteAtual = {
+              uid: user.uid,
+              nome: user.displayName,
+              foto: user.photoURL,
+              tipoPessoa: 'PACIENTE',
+              email: user.email
+            };
+
+            this.paciente.create(pacienteAtual).subscribe(data => { // senão criar o usuario
+              this.openPage('InfoPessoalPage');
+            }, error => {
+              console.log(error);
+            });
+          });
+
         } else {
           this.global.setCurrentUser('');
           this.isAuthenticated = false;

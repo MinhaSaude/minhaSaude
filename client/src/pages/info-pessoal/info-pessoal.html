@@ -21,20 +21,23 @@
             <h2 text-justify>Informações Pessoais</h2>
           </ion-card-header>
           <ion-card-content>
+
+            <img src="{{user.foto}}" class="profile" padding>
+            <input type="file" (change)="uploadFoto($event)" id="file-input" style="opacity: 0" #fileInp accept="image/x-png,image/jpeg">
+            <ion-grid>
+              <ion-row>
+                <ion-col col-md-5>
+                </ion-col>
+                <ion-col col-md-2 col-12>
+                  <button ion-button full color="primary" round (click)="clickUploadFoto()">Upload</button>
+                </ion-col>
+                <ion-col col-md-5>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
             <form [formGroup]="pacienteForm" (ngSubmit)="salvarPaciente(user)" id="salvarPaciente">
-              <img src="{{user.foto}}" class="profile" padding>
-              <input type="file" (change)="uploadFoto($event)" id="file-input" style="opacity: 0" #fileInp accept="image/x-png,image/jpeg">
-              <ion-grid>
-                <ion-row>
-                  <ion-col col-md-5>
-                  </ion-col>
-                  <ion-col col-md-2 col-12>
-                    <button ion-button full color="primary" round (click)="clickUploadFoto()">Upload</button>
-                  </ion-col>
-                  <ion-col col-md-5>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
+
 
               <ion-grid>
                 <ion-row>
@@ -79,9 +82,10 @@
                       </ion-item>
 
                       <ion-item>
-                        <ion-label floating>Convênio</ion-label>
-                        <ion-input type="text" formControlName="convenio" [(ngModel)]="user.convenio"></ion-input>
+                        <ion-label floating>Responsavel</ion-label>
+                        <ion-input type="text" formControlName="nomeResponsavel" [(ngModel)]="user.nomeResponsavel"></ion-input>
                       </ion-item>
+
 
                     </ion-list>
 
@@ -96,7 +100,7 @@
                           <ion-option value="FEMININO">Feminino</ion-option>
                         </ion-select>
                       </ion-item>
- 
+
                       <ion-item>
                         <ion-label floating>Estado Civil</ion-label>
                         <ion-select [(ngModel)]="user.estatoCivil" formControlName="estatoCivil">
@@ -109,8 +113,14 @@
                       </ion-item>
 
                       <ion-item>
+                        <ion-label floating>Data Nascimento</ion-label>
+                        <ion-datetime [(ngModel)]="user.dataNascimento" formControlName="dataNascimento"  displayFormat="DD/MM/YYYY" pickerFormat="MMM DD YYYY" monthShortNames='Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro'
+                          doneText="Ok" cancelText="Cancelar"></ion-datetime>
+                      </ion-item>
+
+                      <ion-item>
                         <ion-label floating>Tipo Sanguineo</ion-label>
-                        <ion-select [(ngModel)]="user.tipoSanguineo" formControlName="tiposanguineo">
+                        <ion-select [(ngModel)]="user.tipoSanguineo" formControlName="tipoSanguineo">
                           <ion-option value="A_POSITIVO">A+</ion-option>
                           <ion-option value="A_NEGATIVO">A-</ion-option>
                           <ion-option value="B_POSITIVO">B+</ion-option>
@@ -135,7 +145,7 @@
 
                       <ion-item>
                         <ion-label floating>Profissão</ion-label>
-                        <ion-input type="text" formControlName="profissao" [(ngModel)]="user.profissao"></ion-input>
+                        <ion-input type="text" formControlName="ocupacaoProfissional" [(ngModel)]="user.ocupacaoProfissional"></ion-input>
                       </ion-item>
 
                       <ion-item>
@@ -170,7 +180,7 @@
             <ion-col col-md-3>
             </ion-col>
             <ion-col col-md-3 col-12>
-              <button ion-button full color="success" round form="salvarPaciente">Salvar</button>
+              <button ion-button full type="submit" color="success" round form="salvarPaciente">Salvar</button>
             </ion-col>
           </ion-row>
         </ion-grid>
