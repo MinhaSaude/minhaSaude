@@ -1,6 +1,5 @@
 package io.minhasaude.msapi.model;
 
-import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.CascadeType;
@@ -16,22 +15,19 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "tipo_cirurgia")
-public class TipoCirurgia implements Serializable{
-
-	private static final long serialVersionUID = 1L;
+@Table(name = "doenca_comunm")
+public class DoencaComum {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
 	@NotNull
-	@Size(min = 3, max = 40)
+	@Size(min = 3, max = 30)
 	private String descricao;
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "tipoCirurgia", cascade = CascadeType.ALL)
-	private Collection<Cirurgia> cirurgias;
+	@OneToMany(mappedBy = "doencaComum", cascade = CascadeType.ALL)
+	private Collection<PacienteDoencasComuns> pacienteDoencasComuns;
 
 	public Long getCodigo() {
 		return codigo;
@@ -49,12 +45,13 @@ public class TipoCirurgia implements Serializable{
 		this.descricao = descricao;
 	}
 
-	public Collection<Cirurgia> getCirurgias() {
-		return cirurgias;
+	@JsonIgnore
+	public Collection<PacienteDoencasComuns> getPacienteDoencasComuns() {
+		return pacienteDoencasComuns;
 	}
 
-	public void setCirurgias(Collection<Cirurgia> cirurgias) {
-		this.cirurgias = cirurgias;
+	public void setPacienteDoencasComuns(Collection<PacienteDoencasComuns> pacienteDoencasComuns) {
+		this.pacienteDoencasComuns = pacienteDoencasComuns;
 	}
 
 	@Override
@@ -73,7 +70,7 @@ public class TipoCirurgia implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		TipoCirurgia other = (TipoCirurgia) obj;
+		DoencaComum other = (DoencaComum) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
@@ -81,5 +78,4 @@ public class TipoCirurgia implements Serializable{
 			return false;
 		return true;
 	}
-
 }

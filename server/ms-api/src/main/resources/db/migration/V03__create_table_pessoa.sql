@@ -4,7 +4,7 @@ CREATE TABLE pessoa (
     uid VARCHAR(50) NOT NULL UNIQUE,
     tipo VARCHAR(10) NOT NUll,
     rg VARCHAR(20) NULL,
-    cpf_cnpj VARCHAR(20),
+    cpf_cnpj VARCHAR(20) UNIQUE,
     nome VARCHAR(30) NULL,
     data_nascimento DATE NULL,
     sexo VARCHAR(10) NULL,

@@ -1,12 +1,15 @@
 package io.minhasaude.msapi.model;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMax;
@@ -15,6 +18,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "paciente")
@@ -44,6 +49,10 @@ public class Paciente extends Pessoa {
 
 	@Size(max = 30)
 	private String nomeResponsavel;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
+	private Collection<PacienteDoencasComuns> pacienteDoencasComuns;
 
 	public Long getCodigo() {
 		return codigo;
@@ -91,6 +100,14 @@ public class Paciente extends Pessoa {
 
 	public void setNomeResponsavel(String nomeResponsavel) {
 		this.nomeResponsavel = nomeResponsavel;
+	}
+
+	public Collection<PacienteDoencasComuns> getPacienteDoencasComuns() {
+		return pacienteDoencasComuns;
+	}
+
+	public void setPacienteDoencasComuns(Collection<PacienteDoencasComuns> pacienteDoencasComuns) {
+		this.pacienteDoencasComuns = pacienteDoencasComuns;
 	}
 
 	@Override

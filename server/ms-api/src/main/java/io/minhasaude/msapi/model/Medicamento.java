@@ -1,7 +1,6 @@
 package io.minhasaude.msapi.model;
 
-import java.time.LocalDate;
-
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,22 +14,26 @@ import javax.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
-@Table(name = "cirurgia")
-public class Cirurgia {
+@Table(name = "medicamento_continuo ")
+public class Medicamento {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
 	@NotNull
-	@Size(min = 3, max = 40)
-	private String descricao;
+	@Size(min = 3, max = 45)
+	@Column(name = "nome_comercial")
+	private String nomeComercial;
 
-	@NotNull
-	@Size(min = 3, max = 20)
-	private String menbro;
+	@Column(name = "principio_ativo")
+	private String principioAtivo;
 
-	private LocalDate data;
+	private String dosagem;
+
+	private String rms;
+
+	private String fabricante;
 
 	@JsonBackReference
 	@ManyToOne
@@ -45,28 +48,44 @@ public class Cirurgia {
 		this.codigo = codigo;
 	}
 
-	public String getMenbro() {
-		return menbro;
+	public String getNomeComercial() {
+		return nomeComercial;
 	}
 
-	public void setMenbro(String menbro) {
-		this.menbro = menbro;
+	public void setNomeComercial(String nomeComercial) {
+		this.nomeComercial = nomeComercial;
 	}
 
-	public LocalDate getData() {
-		return data;
+	public String getPrincipioAtivo() {
+		return principioAtivo;
 	}
 
-	public void setData(LocalDate data) {
-		this.data = data;
+	public void setPrincipioAtivo(String principioAtivo) {
+		this.principioAtivo = principioAtivo;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public String getDosagem() {
+		return dosagem;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDosagem(String dosagem) {
+		this.dosagem = dosagem;
+	}
+
+	public String getRms() {
+		return rms;
+	}
+
+	public void setRms(String rms) {
+		this.rms = rms;
+	}
+
+	public String getFabricante() {
+		return fabricante;
+	}
+
+	public void setFabricante(String fabricante) {
+		this.fabricante = fabricante;
 	}
 
 	public Paciente getPaciente() {
@@ -93,7 +112,7 @@ public class Cirurgia {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cirurgia other = (Cirurgia) obj;
+		Medicamento other = (Medicamento) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;

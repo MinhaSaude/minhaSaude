@@ -1,7 +1,5 @@
 package io.minhasaude.msapi.model;
 
-import java.time.LocalDate;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,31 +8,29 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-@Table(name = "cirurgia")
-public class Cirurgia {
+@Table(name = "doencas_paciente")
+public class PacienteDoencasComuns {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 
+	private String obs;
+
+	@ManyToOne
+	@JoinColumn(name = "codigo_doenca")
 	@NotNull
-	@Size(min = 3, max = 40)
-	private String descricao;
+	private DoencaComum doencaComum;
 
-	@NotNull
-	@Size(min = 3, max = 20)
-	private String menbro;
-
-	private LocalDate data;
-
-	@JsonBackReference
+	@JsonBackReference(value="Paciente")
 	@ManyToOne
 	@JoinColumn(name = "codigo_paciente")
+	@NotNull
 	private Paciente paciente;
 
 	public Long getCodigo() {
@@ -45,28 +41,20 @@ public class Cirurgia {
 		this.codigo = codigo;
 	}
 
-	public String getMenbro() {
-		return menbro;
+	public String getObs() {
+		return obs;
 	}
 
-	public void setMenbro(String menbro) {
-		this.menbro = menbro;
+	public void setObs(String obs) {
+		this.obs = obs;
 	}
 
-	public LocalDate getData() {
-		return data;
+	public DoencaComum getDoencaComum() {
+		return doencaComum;
 	}
 
-	public void setData(LocalDate data) {
-		this.data = data;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setDoencaComum(DoencaComum doencaComum) {
+		this.doencaComum = doencaComum;
 	}
 
 	public Paciente getPaciente() {
@@ -93,7 +81,7 @@ public class Cirurgia {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cirurgia other = (Cirurgia) obj;
+		PacienteDoencasComuns other = (PacienteDoencasComuns) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;

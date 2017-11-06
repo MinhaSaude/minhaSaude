@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import io.minhasaude.msapi.model.Cirurgia;
+import io.minhasaude.msapi.model.Alergia;
 import io.minhasaude.msapi.model.Paciente;
 
-public interface CirurgiaRepository extends JpaRepository<Cirurgia, Long> {
+public interface AlergiaRepository extends JpaRepository<Alergia, Long>{
+	
+	List<Alergia> findByPaciente(Paciente paciente);
 
-	List<Cirurgia> findByPaciente(Paciente paciente);
 }
