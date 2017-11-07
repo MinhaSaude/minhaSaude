@@ -6,7 +6,6 @@ import * as firebase from 'firebase/app';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
-import { PacientesProvider } from './../../providers/pacientes/pacientes';
 
 
 @IonicPage()

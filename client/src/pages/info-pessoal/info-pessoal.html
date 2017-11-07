@@ -180,7 +180,7 @@
             <ion-col col-md-3>
             </ion-col>
             <ion-col col-md-3 col-12>
-              <button ion-button full type="submit" color="success" round form="salvarPaciente">Salvar</button>
+              <button ion-button full type="submit" color="success" round form="salvarPaciente" [disabled]="!pacienteForm.valid">Salvar</button>
             </ion-col>
           </ion-row>
         </ion-grid>

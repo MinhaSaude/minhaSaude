@@ -51,10 +51,10 @@ export class InfoPessoalPage {
 
     this.pacienteForm = this.formBuilder.group({
       nome: ['', Validators.required],
-      cpfCnpj: [''],
+      cpfCnpj: ['',[Validators.required, Validators.minLength(11)]],
       telefoneResidencial: [''],
       telefoneCelular: [''],
-      email: [''],
+      email: ['',Validators.required],
       endereco: [''],
       registroSus: [''],
       sexo: [''],
@@ -68,9 +68,6 @@ export class InfoPessoalPage {
       dataNascimento: ['']
     });
 
-  }
-
-  ionViewDidLoad() {
     this.global.getCurrentUser().then((user) => {
       if (user) {
         this.getPacienteByUid(user.uid);
