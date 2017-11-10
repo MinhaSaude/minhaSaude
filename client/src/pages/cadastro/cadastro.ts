@@ -126,7 +126,8 @@ export class CadastroPage {
     let toast = this.toastCtrl.create({
       message: m,
       showCloseButton: true,
-      closeButtonText: 'Ok'
+      closeButtonText: 'Ok',
+      duration: 3000
     });
     toast.present();
   }

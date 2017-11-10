@@ -57,12 +57,12 @@
 
                       <ion-item>
                         <ion-label floating>Telefone Residencial</ion-label>
-                        <ion-input type="text" formControlName="telefoneResidencial"></ion-input>
+                        <ion-input type="text" formControlName="telefoneResidencial" [(ngModel)]="user.telefoneResidencial"></ion-input>
                       </ion-item>
 
                       <ion-item>
                         <ion-label floating>Telefone Celular</ion-label>
-                        <ion-input type="text" formControlName="telefoneCelular"></ion-input>
+                        <ion-input type="text" formControlName="telefoneCelular" [(ngModel)]="user.telefoneCelular"></ion-input>
                       </ion-item>
 
                       <ion-item>
@@ -71,19 +71,65 @@
                       </ion-item>
 
                       <ion-item>
-                        <ion-label floating>Endereço</ion-label>
-                        <ion-input type="text" formControlName="endereco" [(ngModel)]="user.endereco"></ion-input>
+                        <ion-label floating>Cep</ion-label>
+                        <ion-input type="text" formControlName="cep" [(ngModel)]="user.cep"></ion-input>
                       </ion-item>
 
 
                       <ion-item>
-                        <ion-label floating>Registro SUS</ion-label>
-                        <ion-input type="text" formControlName="registroSus" [(ngModel)]="user.registroSus"></ion-input>
+                        <ion-label floating>Estados</ion-label>
+                        <ion-select [(ngModel)]="user.estado" formControlName="estado">
+                          <ion-option value="AC">Acre</ion-option>
+                          <ion-option value="AL">Alagoas</ion-option>
+                          <ion-option value="AP">Amapá</ion-option>
+                          <ion-option value="AM">Amazonas</ion-option>
+                          <ion-option value="BA">Bahia</ion-option>
+                          <ion-option value="CE">Ceará</ion-option>
+                          <ion-option value="DF">Distrito Federal</ion-option>
+                          <ion-option value="ES">Espírito Santo</ion-option>
+                          <ion-option value="GO">Goiás</ion-option>
+                          <ion-option value="MA">Maranhão</ion-option>
+                          <ion-option value="MT">Mato Grosso</ion-option>
+                          <ion-option value="MS">Mato Grosso do Sul</ion-option>
+                          <ion-option value="MG">Minas Gerais</ion-option>
+                          <ion-option value="PA">Pará</ion-option>
+                          <ion-option value="PB">Paraíba</ion-option>
+                          <ion-option value="PR">Paraná</ion-option>
+                          <ion-option value="PE">Pernambuco</ion-option>
+                          <ion-option value="PI">Piauí</ion-option>
+                          <ion-option value="RJ">Rio de Janeiro</ion-option>
+                          <ion-option value="RN">Rio Grande do Norte</ion-option>
+                          <ion-option value="RS">Rio Grande do Sul</ion-option>
+                          <ion-option value="RO">Rondônia</ion-option>
+                          <ion-option value="SC">Santa Catarina</ion-option>
+                          <ion-option value="RO">Rondônia</ion-option>
+                          <ion-option value="SP">São Paulo</ion-option>
+                          <ion-option value="SE">Sergipe</ion-option>
+                          <ion-option value="TO">Tocantins</ion-option>
+                        </ion-select>
+                      </ion-item>
+
+
+                      <ion-item>
+                        <ion-label floating>Cidade</ion-label>
+                        <ion-input type="text" formControlName="cidade" [(ngModel)]="user.cidade"></ion-input>
                       </ion-item>
 
                       <ion-item>
-                        <ion-label floating>Responsavel</ion-label>
-                        <ion-input type="text" formControlName="nomeResponsavel" [(ngModel)]="user.nomeResponsavel"></ion-input>
+                        <ion-label floating>Bairro</ion-label>
+                        <ion-input type="text" formControlName="bairro" [(ngModel)]="user.bairro"></ion-input>
+                      </ion-item>
+
+
+                      <ion-item>
+                        <ion-label floating>Logradouro</ion-label>
+                        <ion-input type="text" formControlName="logradouro" [(ngModel)]="user.logradouro"></ion-input>
+                      </ion-item>
+
+
+                      <ion-item>
+                        <ion-label floating>Complemento</ion-label>
+                        <ion-input type="text" formControlName="complemento" [(ngModel)]="user.complemento"></ion-input>
                       </ion-item>
 
 
@@ -114,7 +160,8 @@
 
                       <ion-item>
                         <ion-label floating>Data Nascimento</ion-label>
-                        <ion-datetime [(ngModel)]="user.dataNascimento" formControlName="dataNascimento"  displayFormat="DD/MM/YYYY" pickerFormat="MMM DD YYYY" monthShortNames='Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro'
+                        <ion-datetime [(ngModel)]="user.dataNascimento" formControlName="dataNascimento" displayFormat="DD/MM/YYYY" pickerFormat="MMM DD YYYY"
+                          monthShortNames='Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro'
                           doneText="Ok" cancelText="Cancelar"></ion-datetime>
                       </ion-item>
 
@@ -161,6 +208,16 @@
                           <ion-option value="DOUTORADO"> Doutorado</ion-option>
                           <ion-option value="POS_DOUTORADO">Pos Doutorado</ion-option>
                         </ion-select>
+                      </ion-item>
+
+                      <ion-item>
+                        <ion-label floating>Registro SUS</ion-label>
+                        <ion-input type="text" formControlName="registroSus" [(ngModel)]="user.registroSus"></ion-input>
+                      </ion-item>
+
+                      <ion-item>
+                        <ion-label floating>Responsavel</ion-label>
+                        <ion-input type="text" formControlName="nomeResponsavel" [(ngModel)]="user.nomeResponsavel"></ion-input>
                       </ion-item>
 
                     </ion-list>

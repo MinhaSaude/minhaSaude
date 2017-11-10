@@ -3,6 +3,7 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { GlobalProvider } from './../../providers/global/global';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+
 /*
 Aba de informações pessoais
 O caso de uso tem o objetivo de persistir as informações básicas do paciente (foto,
@@ -21,23 +22,28 @@ export class InfoPessoalPage {
 
   user = {
     uid: "",
-    foto: "./assets/images/profile.jpg",
+    foto: "",
     nome: "",
     cpfCnpj: "",
-    telefoneResidencial: "",
-    telefoneCelular: "",
     email: "",
-    endereco: "",
+    cep: "",
+    estado: "",
+    cidade: "",
+    bairro: "",
+    logradouro: "",
+    complemento: "",
     registroSus: "",
     sexo: "",
     estatoCivil: "",
-    tiposanguineo: "",
+    tipoSanguineo: "",
     altura: "",
     peso: "",
     ocupacaoProfissional: "",
-    escolaridade: "",
     nomeResponsavel: "",
-    dataNascimento: ""
+    dataNascimento: "",
+    grauEscolaridade: "",
+    telefoneResidencial: "",
+    telefoneCelular: ""
   };
 
   private pacienteForm: FormGroup;
@@ -45,17 +51,22 @@ export class InfoPessoalPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private global: GlobalProvider,
-    private pacientes: PacientesProvider,
     private formBuilder: FormBuilder,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public paciente: PacientesProvider) {
 
     this.pacienteForm = this.formBuilder.group({
       nome: ['', Validators.required],
-      cpfCnpj: ['',[Validators.required, Validators.minLength(11)]],
+      cpfCnpj: [''],
       telefoneResidencial: [''],
       telefoneCelular: [''],
-      email: ['',Validators.required],
-      endereco: [''],
+      email: [''],
+      cep: [''],
+      estado: [''],
+      cidade: [''],
+      bairro: [''],
+      logradouro: [''],
+      complemento: [''],
       registroSus: [''],
       sexo: [''],
       estatoCivil: [''],
@@ -70,30 +81,28 @@ export class InfoPessoalPage {
 
     this.global.getCurrentUser().then((user) => {
       if (user) {
-        this.getPacienteByUid(user.uid);
+        this.user.uid = user.uid;
+        this.user.nome = user.displayName;
+        this.user.foto = user.photoURL;
+        this.user.email = user.email;
+        let buscarPaciente = this.paciente.select(user.uid).snapshotChanges().subscribe(action => {
+          var dadosDoUsuario = action.payload.val();
+          if (dadosDoUsuario) {
+            this.user = action.payload.val();
+          }
+          buscarPaciente.unsubscribe();
+        });
+       
       } else {
         this.navCtrl.setRoot('HomePage');
       }
     });
-  }
 
-  getPacienteByUid(uid) {
-    this.pacientes.select(uid).subscribe(user => {
-      if (user.foto == "") {
-        user.foto = this.user.foto;
-      }
-      this.user = user;
-    }, error => {
-      this.showMessage("Ops ocorreu algum erro ao localizar o paciente.");
-    });
   }
 
   salvarPaciente(user) {
-    this.pacientes.update(user).subscribe(data => {
-      this.showMessage("Dados atualizados com sucesso");
-    }, error => {
-      this.showMessage("Ops ocorreu algum erro ao salvar o paciente.");
-    });
+    this.paciente.update(user);
+    this.showMessage("Dados atualizados com sucesso!");
   }
 
   uploadFoto(event) {
@@ -118,7 +127,8 @@ export class InfoPessoalPage {
     let toast = this.toastCtrl.create({
       message: m,
       showCloseButton: true,
-      closeButtonText: 'Ok'
+      closeButtonText: 'Ok',
+      duration: 3000
     });
     toast.present();
   }

@@ -7,9 +7,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
+
 import { AngularFireModule } from 'angularfire2';
-import { FIREBASE_CONFIG } from './app.firebase.config';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+
+import { FIREBASE_CONFIG } from './app.firebase.config';
+
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { GlobalProvider } from '../providers/global/global';
@@ -25,6 +29,7 @@ import { PacientesProvider } from '../providers/pacientes/pacientes';
     HttpModule,
     IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
