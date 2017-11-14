@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { PacientesProvider } from './../../providers/pacientes/pacientes';
 
 /**
   Aba de parentes (lista): (nome parente e 
@@ -20,7 +21,8 @@ export class ParentesPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public alertCtrl: AlertController,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private pacientes: PacientesProvider) {
     this.parentSegment = 'lista';
     this.parentesForm = this.formBuilder.group({
       cpf: ['', Validators.required],
@@ -40,7 +42,12 @@ export class ParentesPage {
   }
 
   addParentes() {
-    console.log(this.parentesForm.value);
+    let cpf = this.parentesForm.value.cpf;
+    this.pacientes.selectByCPF(cpf).snapshotChanges().subscribe(action => {
+      console.log(action);
+    });
+
+
   }
 
 }

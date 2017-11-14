@@ -228,6 +228,16 @@
           </ion-card-content>
         </ion-card>
 
+        <ion-card *ngIf="!pacienteForm.valid" class="error">
+          <ion-card-content>
+            <div *ngFor="let validation of validationMessages.cpfCnpj">
+              <div class="error-message" *ngIf="(pacienteForm.get('cpfCnpj').hasError(validation.type) || pacienteForm.get('cpfCnpj').hasError('minlength') && pacienteForm.get('cpfCnpj').touched)">
+                <p color="success">{{validation.message}}</p>
+              </div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+
         <ion-grid>
           <ion-row>
             <ion-col col-md-3>

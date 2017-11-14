@@ -46,6 +46,13 @@ export class InfoPessoalPage {
     telefoneCelular: ""
   };
 
+  validationMessages = {
+    'cpfCnpj': [
+      { type: 'required', message: 'CPF obrigatorio.' },
+      { type: 'minlength', message: 'CPF Deve possuir 11 números.' },
+    ]
+  };
+
   private pacienteForm: FormGroup;
   constructor(
     public navCtrl: NavController,
@@ -57,7 +64,7 @@ export class InfoPessoalPage {
 
     this.pacienteForm = this.formBuilder.group({
       nome: ['', Validators.required],
-      cpfCnpj: [''],
+      cpfCnpj: ['',[Validators.required, Validators.minLength(11)]],
       telefoneResidencial: [''],
       telefoneCelular: [''],
       email: [''],

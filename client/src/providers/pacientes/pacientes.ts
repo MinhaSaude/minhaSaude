@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { Subject } from 'rxjs/Subject';
 
 /*
   Generated class for the PacientesProvider provider.
@@ -17,6 +18,10 @@ export class PacientesProvider {
 
   select(uid) {
     return this.afDB.object('pacientes/' + uid);
+  }
+
+  selectByCPF(cpf) {
+    return this.afDB.list('pacientes/', ref => ref.orderByChild('cpfCnpj').equalTo(cpf));
   }
 
   update(paciente) {
