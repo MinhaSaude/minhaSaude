@@ -7,7 +7,7 @@
 
   <ion-content>
 
-    <ion-list [hidden]="!isAuthenticated">
+    <ion-list *ngIf="isAuthenticated && tipoUsuario == 'Paciente'">
       <button ion-item (click)="clickFichaMedica()">
         <img name="fichaMedica" src="./assets/icon/menu/ficha-medica.png" float-left class="app-icons">
         <span float-left>Ficha Médica</span>

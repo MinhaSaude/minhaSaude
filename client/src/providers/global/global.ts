@@ -18,6 +18,15 @@ export class GlobalProvider {
     this.storage.set('user', JSON.stringify(user));
   }
 
+  setTipoUsuario(tipo) {
+    this.storage.set('tipoUsuario', tipo);
+  }
+
+  async getTipoUsuario() {
+    const tipoUsuario = await this.storage.get('tipoUsuario');
+    return tipoUsuario;
+  }
+
   webServiceUrl() {
     return "https://teste-api-ms.herokuapp.com/";
   }

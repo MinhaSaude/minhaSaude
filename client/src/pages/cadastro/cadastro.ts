@@ -6,6 +6,7 @@ import * as firebase from 'firebase/app';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
+import { MedicosProvider } from './../../providers/medicos/medicos';
 
 
 @IonicPage()
@@ -28,7 +29,8 @@ export class CadastroPage {
     public loadingCtrl: LoadingController,
     private fb: Facebook,
     private googlePlus: GooglePlus,
-    private platform: Platform) {
+    private platform: Platform,
+    private medicoPv: MedicosProvider) {
 
     this.patient = this.formBuilder.group({
       email: ['', Validators.email],
@@ -53,6 +55,8 @@ export class CadastroPage {
     this.presentLoading();
     this.afAuth.auth.createUserWithEmailAndPassword(this.patient.value.email, this.patient.value.password)
       .then(user => {
+        console.log(user);
+
         this.loading.dismiss();
       }).catch(error => {
         this.loading.dismiss();
@@ -61,9 +65,20 @@ export class CadastroPage {
   }
 
   createUserWithEmailAndPassDoctor() {
+
     this.presentLoading();
-    this.afAuth.auth.createUserWithEmailAndPassword(this.patient.value.email, this.patient.value.password)
+    this.afAuth.auth.createUserWithEmailAndPassword(this.doctor.value.email, this.doctor.value.password)
       .then(res => {
+        console.log(res);
+        
+        var doctor = {
+          uid: res.uid,
+          crm: this.doctor.value.crm,
+          email: this.doctor.value.email
+        };
+
+        this.medicoPv.update(doctor);
+
         this.loading.dismiss();
       }).catch(error => {
         this.loading.dismiss();

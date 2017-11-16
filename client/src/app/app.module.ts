@@ -18,6 +18,9 @@ import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { GlobalProvider } from '../providers/global/global';
 import { PacientesProvider } from '../providers/pacientes/pacientes';
+import { DoencasCronicasProvider } from '../providers/doencas-cronicas/doencas-cronicas';
+import { MedicosProvider } from '../providers/medicos/medicos';
+import { ParentesProvider } from './../providers/parentes/parentes';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { PacientesProvider } from '../providers/pacientes/pacientes';
     Facebook,
     GooglePlus,
     GlobalProvider,
-    PacientesProvider
+    PacientesProvider,
+    DoencasCronicasProvider,
+    MedicosProvider,
+    ParentesProvider
   ]
 })
 export class AppModule { }
