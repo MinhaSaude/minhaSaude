@@ -72,8 +72,7 @@ export class LoginPage {
     let toast = this.toastCtrl.create({
       message: m,
       showCloseButton: true,
-      closeButtonText: 'Ok',
-      duration: 3000
+      closeButtonText: 'Ok'
     });
     toast.present();
   }

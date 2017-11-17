@@ -25,7 +25,8 @@
 // $SIDEMENU_BOTTOM: #247BA0;
 $SIDEMENU_TOP: #0D6BB9;
 $SIDEMENU_BOTTOM: #2A91D6;
-$FONT_COLOR: #EDF2F4;
+$FONT_COLOR:#FFFFFF;
+
 .toolbar-background-md,
 .toolbar-background-ios,
 .tabs-md .tabbar,
@@ -62,7 +63,7 @@ $FONT_COLOR: #EDF2F4;
 
 .menu-inner .content,
 .menu-principal .item {
-  background-color: #FFFFFF;
+  background-color: $FONT_COLOR;
 }
 
 .card {
@@ -134,10 +135,4 @@ $FONT_COLOR: #EDF2F4;
 
 .list-md {
   margin: 0px!important;
-}
-
-.error{
-  color: #721c24;
-  background-color: #f8d7da;
-  border-color: #f5c6cb;
 }

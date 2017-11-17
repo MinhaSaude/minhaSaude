@@ -3,7 +3,6 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { GlobalProvider } from './../../providers/global/global';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-
 /*
 Aba de informações pessoais
 O caso de uso tem o objetivo de persistir as informações básicas do paciente (foto,
@@ -22,35 +21,22 @@ export class InfoPessoalPage {
 
   user = {
     uid: "",
-    foto: "",
+    foto: "./assets/images/profile.jpg",
     nome: "",
     cpfCnpj: "",
+    telefoneResidencial: "",
+    telefoneCelular: "",
     email: "",
-    cep: "",
-    estado: "",
-    cidade: "",
-    bairro: "",
-    logradouro: "",
-    complemento: "",
-    registroSus: "",
+    endereco: "",
+    registro_sus: "",
+    convenio: "",
     sexo: "",
     estatoCivil: "",
-    tipoSanguineo: "",
+    tiposanguineo: "",
     altura: "",
     peso: "",
-    ocupacaoProfissional: "",
-    nomeResponsavel: "",
-    dataNascimento: "",
-    grauEscolaridade: "",
-    telefoneResidencial: "",
-    telefoneCelular: ""
-  };
-
-  validationMessages = {
-    'cpfCnpj': [
-      { type: 'required', message: 'CPF obrigatorio.' },
-      { type: 'minlength', message: 'CPF Deve possuir 11 números.' },
-    ]
+    profissao: "",
+    escolaridade: "",
   };
 
   private pacienteForm: FormGroup;
@@ -58,65 +44,64 @@ export class InfoPessoalPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private global: GlobalProvider,
+    private pacientes: PacientesProvider,
     private formBuilder: FormBuilder,
-    public toastCtrl: ToastController,
-    public paciente: PacientesProvider) {
+    public toastCtrl: ToastController) {
 
     this.pacienteForm = this.formBuilder.group({
       nome: ['', Validators.required],
-      cpfCnpj: ['',[Validators.required, Validators.minLength(11)]],
+      cpfCnpj: [''],
       telefoneResidencial: [''],
       telefoneCelular: [''],
       email: [''],
-      cep: [''],
-      estado: [''],
-      cidade: [''],
-      bairro: [''],
-      logradouro: [''],
-      complemento: [''],
+      endereco: [''],
       registroSus: [''],
+      convenio: [''],
       sexo: [''],
       estatoCivil: [''],
-      tipoSanguineo: [''],
+      tiposanguineo: [''],
       altura: [''],
       peso: [''],
-      ocupacaoProfissional: [''],
+      profissao: [''],
       escolaridade: [''],
-      nomeResponsavel: [''],
-      dataNascimento: ['']
-    });
-
-    this.global.getCurrentUser().then((user) => {
-      if (user) {
-        this.user.uid = user.uid;
-        this.user.nome = user.displayName;
-        this.user.foto = user.photoURL;
-        this.user.email = user.email;
-        let buscarPaciente = this.paciente.select(user.uid).snapshotChanges().subscribe(action => {
-          var dadosDoUsuario = action.payload.val();
-          if (dadosDoUsuario) {
-            this.user = action.payload.val();
-          }
-          buscarPaciente.unsubscribe();
-        });
-       
-      } else {
-        this.navCtrl.setRoot('HomePage');
-      }
     });
 
   }
 
+  ionViewDidLoad() {
+    this.global.getCurrentUser().then((user) => {
+      if (user) {
+        this.getPacienteByUid(user.uid);
+      } else {
+        this.navCtrl.setRoot('HomePage');
+      }
+    });
+  }
+
+  getPacienteByUid(uid) {
+    this.pacientes.getPacienteByUid(uid).subscribe(user => {
+      if (user.foto == "") {
+        user.foto = this.user.foto;
+      }
+      this.user = user;
+    }, error => {
+      this.showMessage("Ops ocorreu algum erro ao localizar o paciente.");
+    });
+  }
+
   salvarPaciente(user) {
-    this.paciente.update(user);
-    this.showMessage("Dados atualizados com sucesso!");
+    this.pacientes.setPacienteByUid(user).subscribe(data => {
+      this.showMessage("Dados atualizados com sucesso");
+    },error =>{
+      this.showMessage("Ops ocorreu algum erro, não foi possivel atualizar o paciente.");
+    });
   }
 
   uploadFoto(event) {
     this.readThis(event.target);
   }
 
-  readThis(inputValue: any) {
+  readThis(inputValue: any): void {
     var file: File = inputValue.files[0];
     var myReader: FileReader = new FileReader();
 
@@ -134,8 +119,7 @@ export class InfoPessoalPage {
     let toast = this.toastCtrl.create({
       message: m,
       showCloseButton: true,
-      closeButtonText: 'Ok',
-      duration: 3000
+      closeButtonText: 'Ok'
     });
     toast.present();
   }

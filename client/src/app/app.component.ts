@@ -4,7 +4,6 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { GlobalProvider } from './../providers/global/global';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { MedicosProvider } from '../providers/medicos/medicos';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,42 +15,25 @@ export class MyApp {
   fichaMedica: Array<{ title: string, component: any, image: string }>;
   fichaMedicaClick: boolean = false;
   isAuthenticated: boolean = false;
-  tipoUsuario: string;
+
   constructor(
     platform: Platform,
     statusBar: StatusBar,
     splashScreen: SplashScreen,
     private afAuth: AngularFireAuth,
-    private global: GlobalProvider,
-    private medicoPv: MedicosProvider) {
+    private global: GlobalProvider) {
     platform.ready().then(() => {
       this.init();
       afAuth.authState.subscribe(user => {
-
         if (user) {
           this.global.setCurrentUser(user);
           this.isAuthenticated = true;
-          let buscaMedico = this.medicoPv.select(user.uid).snapshotChanges().subscribe(action => {
-            var medico = action.payload.val();
-            if (medico) {
-              this.tipoUsuario = 'Medico';
-              this.menu(this.isAuthenticated, this.tipoUsuario);
-              this.global.setTipoUsuario(this.tipoUsuario);
-              this.openPage('InfoPessoalMedicoPage');
-            } else {
-              this.tipoUsuario = 'Paciente';
-              this.menu(this.isAuthenticated, this.tipoUsuario);
-              this.global.setTipoUsuario(this.tipoUsuario);
-              this.openPage('InfoPessoalPage');
-            }
-
-            buscaMedico.unsubscribe();
-          });
-
+          this.menu(this.isAuthenticated);
+          this.openPage('InfoPessoalPage');
         } else {
           this.global.setCurrentUser('');
           this.isAuthenticated = false;
-          this.menu(this.isAuthenticated, "Nenhum");
+          this.menu(this.isAuthenticated);
           this.openPage('HomePage');
         }
       });
@@ -63,13 +45,7 @@ export class MyApp {
   init() {
     this.global.getCurrentUser().then((user) => {
       if (user != '') {
-        this.global.getTipoUsuario().then((tipo => {
-          if (tipo == 'Medico') {
-            this.openPage('InfoPessoalMedicoPage');
-          } else {
-            this.openPage('InfoPessoalPage');
-          }
-        }));
+        this.openPage('InfoPessoalPage');
       } else {
         this.openPage('HomePage');
       }
@@ -77,9 +53,9 @@ export class MyApp {
 
   }
 
-  menu(isAuthenticated, tipoUsuario) {
+  menu(isAuthenticated) {
 
-    if (isAuthenticated && tipoUsuario == "Paciente") {
+    if (isAuthenticated) {
       this.fichaMedica = [
         { title: 'Informações Pessoais', component: 'InfoPessoalPage', image: './assets/icon/ficha-medica/informacoes_pessoais.png' },
         { title: 'Parentes', component: 'ParentesPage', image: './assets/icon/ficha-medica/parentes.png' },
@@ -93,12 +69,6 @@ export class MyApp {
         { title: 'Histórico', component: 'HistoricoPage', image: './assets/icon/menu/historico.png' },
         { title: 'Médicos', component: 'MedicosPage', image: './assets/icon/menu/medico.png' },
         { title: 'Cartão', component: 'CartaoPage', image: './assets/icon/menu/cartao.png' },
-        { title: 'Sobre', component: 'SobrePage', image: './assets/icon/menu/sobre.png' }
-      ];
-    } else if (isAuthenticated && tipoUsuario == "Medico") {
-      this.pages = [
-        { title: 'Informações Pessoais', component: 'InfoPessoalMedicoPage', image: './assets/icon/ficha-medica/informacoes_pessoais.png' },
-        { title: 'Consultar Pacientes', component: 'MedicosPage', image: './assets/icon/ficha-medica/consultar_pacientes.png' },
         { title: 'Sobre', component: 'SobrePage', image: './assets/icon/menu/sobre.png' }
       ];
     } else {
@@ -133,7 +103,7 @@ export class MyApp {
 
   deslogar() {
     this.afAuth.auth.signOut().then(() => {
-
+      this.nav.setRoot('HomePage');
     });
   }
 

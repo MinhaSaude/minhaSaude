@@ -1,105 +1,46 @@
 <ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle icon-only>
-      <ion-icon name='menu'></ion-icon>
-    </button>
-    <ion-title>
-      Minha Saúde
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
-
-<ion-content>
-
-  <ion-grid>
-    <ion-row offset-md-3>
-      <ion-col col-md-8>
-
-        <ion-card>
-          <ion-card-header>
-            <h2 text-justify>Doenças Cronicas</h2>
-          </ion-card-header>
-          <ion-card-content>
-
-
-            <div padding>
-              <ion-segment [(ngModel)]="doencasSegment">
-                <ion-segment-button value="lista">
-                  Lista
-                </ion-segment-button>
-                <ion-segment-button value="adicionar">
-                  Adicionar
-                </ion-segment-button>
-              </ion-segment>
-            </div>
-
-            <div [ngSwitch]="doencasSegment">
-              <ion-list *ngSwitchCase="'lista'">
-                <ion-item *ngFor="let p of doencas; let i = index; ">
-                  <button color="danger" item-end ion-button (click)="deleteDoencas(doencas, i)">
-                    <ion-icon name="trash"></ion-icon>
-                  </button>
-                  {{ p.nome }}  {{p.descricao}}
-                </ion-item>
-
-              </ion-list>
-
-              <ion-list *ngSwitchCase="'adicionar'">
-                <form [formGroup]="doencasForm" (ngSubmit)="addDoencas()" id="doencasForm">
-                  <ion-grid>
-                    <ion-row>
-                      <ion-col col-md-6 col-12>
-                        <ion-list>
-
-                          <ion-item>
-                            <ion-label floating>Nome</ion-label>
-                            <ion-input type="text" formControlName="nome"></ion-input>
-                          </ion-item>
-
-                        </ion-list>
-
-                      </ion-col>
-
-                      <ion-col col-md-6 col-12>
-                        <ion-list>
-
-                          <ion-item>
-                            <ion-label floating>Descrição</ion-label>
-                            <ion-input type="text" formControlName="descricao"></ion-input>
-                          </ion-item>
-
-                        </ion-list>
-                      </ion-col>
-                    </ion-row>
-                  </ion-grid>
-
-
-                </form>
-
-              </ion-list>
-            </div>
-
-
-
-          </ion-card-content>
-        </ion-card>
-
-        <ion-grid>
-          <ion-row>
-            <ion-col col-md-3>
-            </ion-col>
-            <ion-col col-md-3>
-            </ion-col>
-            <ion-col col-md-3>
-            </ion-col>
-            <ion-col col-md-3 col-12>
-              <button ion-button full color="success" round type="submit" [disabled]="!doencasForm.valid" form="doencasForm">Salvar</button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-col>
-
-    </ion-row>
-  </ion-grid>
-</ion-content>
+    <ion-navbar>
+      <button ion-button menuToggle icon-only>
+        <ion-icon name='menu'></ion-icon>
+      </button>
+      <ion-title>
+        Minha Saúde
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  
+  <ion-content>
+  
+    <ion-grid>
+      <ion-row offset-md-3>
+        <ion-col col-md-8>
+  
+          <ion-card>
+            <ion-card-header>
+              <h2 text-justify>Doenças Cronicas</h2>
+            </ion-card-header>
+            <ion-card-content>
+  
+  
+            </ion-card-content>
+          </ion-card>
+  
+          <ion-grid>
+            <ion-row>
+              <ion-col col-md-3>
+              </ion-col>
+              <ion-col col-md-3>
+              </ion-col>
+              <ion-col col-md-3>
+              </ion-col>
+              <ion-col col-md-3 col-12>
+                <button ion-button full color="success" round>Salvar</button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-col>
+  
+      </ion-row>
+    </ion-grid>
+  </ion-content>

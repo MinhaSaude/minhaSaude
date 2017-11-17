@@ -7,24 +7,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HttpModule } from '@angular/http';
 import { IonicStorageModule } from '@ionic/storage';
-
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-
 import { FIREBASE_CONFIG } from './app.firebase.config';
-
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { GlobalProvider } from '../providers/global/global';
 import { PacientesProvider } from '../providers/pacientes/pacientes';
-<<<<<<< HEAD
 import { AlergiasProvider } from '../providers/alergias/alergias';
-=======
-import { DoencasCronicasProvider } from '../providers/doencas-cronicas/doencas-cronicas';
-import { MedicosProvider } from '../providers/medicos/medicos';
-import { ParentesProvider } from './../providers/parentes/parentes';
->>>>>>> 7fb78d64851ad45c345c1e39aec795de3605d404
 
 @NgModule({
   declarations: [
@@ -36,7 +26,6 @@ import { ParentesProvider } from './../providers/parentes/parentes';
     HttpModule,
     IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireDatabaseModule,
     AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
@@ -51,13 +40,7 @@ import { ParentesProvider } from './../providers/parentes/parentes';
     GooglePlus,
     GlobalProvider,
     PacientesProvider,
-<<<<<<< HEAD
     AlergiasProvider
-=======
-    DoencasCronicasProvider,
-    MedicosProvider,
-    ParentesProvider
->>>>>>> 7fb78d64851ad45c345c1e39aec795de3605d404
   ]
 })
 export class AppModule { }

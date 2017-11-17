@@ -6,8 +6,6 @@ import * as firebase from 'firebase/app';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
-import { MedicosProvider } from './../../providers/medicos/medicos';
-
 
 @IonicPage()
 @Component({
@@ -29,8 +27,7 @@ export class CadastroPage {
     public loadingCtrl: LoadingController,
     private fb: Facebook,
     private googlePlus: GooglePlus,
-    private platform: Platform,
-    private medicoPv: MedicosProvider) {
+    private platform: Platform) {
 
     this.patient = this.formBuilder.group({
       email: ['', Validators.email],
@@ -54,9 +51,7 @@ export class CadastroPage {
   createUserWithEmailAndPassPatient() {
     this.presentLoading();
     this.afAuth.auth.createUserWithEmailAndPassword(this.patient.value.email, this.patient.value.password)
-      .then(user => {
-        console.log(user);
-
+      .then(res => {
         this.loading.dismiss();
       }).catch(error => {
         this.loading.dismiss();
@@ -65,20 +60,9 @@ export class CadastroPage {
   }
 
   createUserWithEmailAndPassDoctor() {
-
     this.presentLoading();
-    this.afAuth.auth.createUserWithEmailAndPassword(this.doctor.value.email, this.doctor.value.password)
+    this.afAuth.auth.createUserWithEmailAndPassword(this.patient.value.email, this.patient.value.password)
       .then(res => {
-        console.log(res);
-        
-        var doctor = {
-          uid: res.uid,
-          crm: this.doctor.value.crm,
-          email: this.doctor.value.email
-        };
-
-        this.medicoPv.update(doctor);
-
         this.loading.dismiss();
       }).catch(error => {
         this.loading.dismiss();
@@ -88,9 +72,9 @@ export class CadastroPage {
 
   signInWithFacebook(tipoUsuario) {
     if (this.platform.is('cordova')) {
-      this.fb.login(['email', 'public_profile']).then(res => {
+       this.fb.login(['email', 'public_profile']).then(res => {
         const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
-        firebase.auth().signInWithCredential(facebookCredential);
+         firebase.auth().signInWithCredential(facebookCredential);
       })
     }
     else {
@@ -114,7 +98,7 @@ export class CadastroPage {
       }).then(res => {
         this.loading.dismiss();
         const googleCredential = firebase.auth.GoogleAuthProvider.credential(res.idToken);
-        firebase.auth().signInWithCredential(googleCredential);
+         firebase.auth().signInWithCredential(googleCredential);
       }).catch(err => {
         this.loading.dismiss();
         this.showMessage("Falha na autenticação com o google, por favor, tente novamente.");
@@ -141,8 +125,7 @@ export class CadastroPage {
     let toast = this.toastCtrl.create({
       message: m,
       showCloseButton: true,
-      closeButtonText: 'Ok',
-      duration: 3000
+      closeButtonText: 'Ok'
     });
     toast.present();
   }
