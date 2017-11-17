@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 /**
 Aba de cirurgias 
-(membro, motivo, data), aba de parentes (lista):
-(nome parente e grau de parentesco).
-Os campos de informação básica são trazidos do cadastro do paciente.
+(membro, motivo, data)
 
  */
 
@@ -15,12 +14,29 @@ Os campos de informação básica são trazidos do cadastro do paciente.
   templateUrl: 'cirurgias.html',
 })
 export class CirurgiasPage {
+  private cirurgiasForm: FormGroup;
+  private cirurgiaSegment: any;
+    constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private formBuilder: FormBuilder) {
+    this.cirurgiaSegment = 'listaCirurgia'
+    this.cirurgiasForm =
+      this.formBuilder.group({
+        membro: ['', Validators.required], 
+        motivo: ['', Validators.required],
+        data: ['', Validators.required]
+      });
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CirurgiasPage');
+  }
+
+  addCirurgia() {
+
   }
 
 }

@@ -14,6 +14,7 @@ import { Facebook } from '@ionic-native/facebook';
 import { GooglePlus } from '@ionic-native/google-plus';
 import { GlobalProvider } from '../providers/global/global';
 import { PacientesProvider } from '../providers/pacientes/pacientes';
+import { AlergiasProvider } from '../providers/alergias/alergias';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { PacientesProvider } from '../providers/pacientes/pacientes';
     Facebook,
     GooglePlus,
     GlobalProvider,
-    PacientesProvider
+    PacientesProvider,
+    AlergiasProvider
   ]
 })
 export class AppModule { }
