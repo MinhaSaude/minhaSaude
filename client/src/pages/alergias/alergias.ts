@@ -3,7 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 /**
-Aba de alergia (tipo de alergia, descrição alergia)
+Aba de alergia (tipo de alergia, descrição alergia, medicamentos
+restritos: (RMS, nome comercial, fabricante, princípio ativo))
  */
 
 @IonicPage()
@@ -24,7 +25,8 @@ export class AlergiasPage {
       tipo: ['', Validators.required],
       descricao: ['', Validators.required]
     });
-    
+    this.alergias = [{ tipo: "Aliementar", descricao: "blablabla..." },
+    { tipo: "Respiratoria", descricao: "blablabla..." }];
   }
 
   ionViewDidLoad() {
@@ -33,7 +35,7 @@ export class AlergiasPage {
 
 
   deleteItem(list, index) {
-   
+    list.splice(index, 1);
   }
 
   addAlergias() {
