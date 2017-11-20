@@ -1,7 +1,7 @@
-import { GlobalProvider } from './../global/global';
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 
 /*
@@ -14,20 +14,26 @@ import 'rxjs/add/operator/map';
 export class AlergiasProvider {
   
     constructor(
-      private http: Http,
-      private global: GlobalProvider) {
+      public http: Http,
+      private afDB: AngularFireDatabase) {
       console.log('Hello AlergiasProvider Provider');
     }
   
-    getAleriaByid(id) {
-      return this.http.get(this.global.webServiceUrl() + 'alergias/' + id).map(res => res.json());
+    updateAlergia(alergias) {
+      const itemRef = this.afDB.list('alergias/');
+      itemRef.push(alergias);
+
+
     }
   
-    removeAlergia(alergia){
-      var url = this.global.webServiceUrl() + 'alergias/' + alergia.id;
-      return this.http.put(url, alergia).map(res => res.json());
-      
+    deleteAlergia(key){
+      const itemRef = this.afDB.list('alergias/');
+      itemRef.remove(key);
 
+    }
+
+    selectByUID(uid){
+      return this.afDB.list('alergias/', ref => ref.orderByChild('uid').equalTo(uid));
     }
   
   }

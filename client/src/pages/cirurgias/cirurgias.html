@@ -10,37 +10,85 @@
 </ion-header>
 
 
-<ion-content>
 
+<ion-content>
   <ion-grid>
     <ion-row offset-md-3>
       <ion-col col-md-8>
 
         <ion-card>
           <ion-card-header>
-            <h2 text-justify>Cirurgias</h2>
+            <h2 text-justify>Cirurgias Realizadas</h2>
           </ion-card-header>
+
           <ion-card-content>
+            <div padding>
+              <ion-segment [(ngModel)]="cirurgiaSegment">
+                <ion-segment-button value="listaCirurgia">
+                  Lista de Cirurgias
+                </ion-segment-button>
+                <ion-segment-button value="adicionarCirurgia">
+                  Adicionar Cirurgia
+                </ion-segment-button>
+              </ion-segment>
+            </div>
+
+            <div [ngSwitch]="cirurgiaSegment">
+              <ion-list *ngSwitchCase="'listaCirurgia'">
+
+                <ion-item *ngFor="let c of cirurgias; let i = index; ">
+                  <button color="danger" item-end ion-button (click)="deleteCirurgia(cirurgias, i)">
+                    <ion-icon name="trash"></ion-icon>
+                  </button>
+                  Membro: {{ c.membro }} - Data: {{c.data}}
+                </ion-item>
+
+              </ion-list>
+
+              <ion-list *ngSwitchCase="'adicionarCirurgia'">
+                <form [formGroup]="cirurgiasForm" (ngSubmit)="addCirurgia()" id="cirurgiasForm">
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col col-md-6 col-12>
+                        <ion-list>
+
+                          <ion-item>
+                            <ion-label floating>Membro</ion-label>
+                            <ion-input type="text" formControlName="membro"></ion-input>
+                          </ion-item>
+
+                          <ion-item>
+                            <ion-label floating>Motivo</ion-label>
+                            <ion-input type="text" formControlName="motivo"></ion-input>
+                          </ion-item>
+                        </ion-list>
+                      </ion-col>
+
+                      <ion-col col-md-6 col-12>
+                        <ion-list>
+                          <ion-item>
+                            <ion-label floating>Data da Cirurgia</ion-label>
+                            <ion-datetime formControlName="data" displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" monthShortNames='Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro'
+                              doneText="Ok" cancelText="Cancelar">
+                            </ion-datetime>
+                          </ion-item>
+                        </ion-list>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </form>
+              </ion-list>
+            </div>
+
 
 
           </ion-card-content>
         </ion-card>
 
-        <ion-grid>
-          <ion-row>
-            <ion-col col-md-3>
-            </ion-col>
-            <ion-col col-md-3>
-            </ion-col>
-            <ion-col col-md-3>
-            </ion-col>
-            <ion-col col-md-3 col-12>
-              <button ion-button full color="success" round>Salvar</button>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
+        <ion-col col-md-3 col-12>
+          <button ion-button full color="success" round type="submit" form="cirurgiasForm" [disabled]="!cirurgiasForm.valid">Salvar</button>
+        </ion-col>
       </ion-col>
-
     </ion-row>
   </ion-grid>
 </ion-content>

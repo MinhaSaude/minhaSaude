@@ -21,6 +21,9 @@ import { PacientesProvider } from '../providers/pacientes/pacientes';
 import { DoencasCronicasProvider } from '../providers/doencas-cronicas/doencas-cronicas';
 import { MedicosProvider } from '../providers/medicos/medicos';
 import { ParentesProvider } from './../providers/parentes/parentes';
+import { AlergiasProvider } from '../providers/alergias/alergias';
+import { MedUsoContinuoProvider } from '../providers/med-uso-continuo/med-uso-continuo';
+import { CirurgiasProvider } from '../providers/cirurgias/cirurgias';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,10 @@ import { ParentesProvider } from './../providers/parentes/parentes';
     PacientesProvider,
     DoencasCronicasProvider,
     MedicosProvider,
-    ParentesProvider
+    ParentesProvider,
+    AlergiasProvider,
+    MedUsoContinuoProvider,
+    CirurgiasProvider
   ]
 })
 export class AppModule { }
