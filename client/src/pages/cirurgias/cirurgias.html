@@ -68,7 +68,7 @@
                         <ion-list>
                           <ion-item>
                             <ion-label floating>Data da Cirurgia</ion-label>
-                            <ion-datetime formControlName="data" displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" monthShortNames='Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro'
+                            <ion-datetime formControlName="data" displayFormat="DD/MM/YYYY" pickerFormat="MMM DD YYYY" monthShortNames='Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro'
                               doneText="Ok" cancelText="Cancelar">
                             </ion-datetime>
                           </ion-item>
@@ -85,10 +85,23 @@
           </ion-card-content>
         </ion-card>
 
-        <ion-col col-md-3 col-12>
-          <button ion-button full color="success" round type="submit" form="cirurgiasForm" [disabled]="!cirurgiasForm.valid">Salvar</button>
-        </ion-col>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col col-md-3>
+            </ion-col>
+            <ion-col col-md-3>
+            </ion-col>
+            <ion-col col-md-3>
+            </ion-col>
+            <ion-col col-md-3 col-12>
+              <button ion-button full color="success" round type="submit" form="cirurgiasForm" [disabled]="!cirurgiasForm.valid">Salvar</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+
       </ion-col>
-    </ion-row>
+     </ion-row>
   </ion-grid>
 </ion-content>
