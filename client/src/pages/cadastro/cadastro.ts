@@ -55,8 +55,6 @@ export class CadastroPage {
     this.presentLoading();
     this.afAuth.auth.createUserWithEmailAndPassword(this.patient.value.email, this.patient.value.password)
       .then(user => {
-        console.log(user);
-
         this.loading.dismiss();
       }).catch(error => {
         this.loading.dismiss();
@@ -69,8 +67,7 @@ export class CadastroPage {
     this.presentLoading();
     this.afAuth.auth.createUserWithEmailAndPassword(this.doctor.value.email, this.doctor.value.password)
       .then(res => {
-        console.log(res);
-        
+
         var doctor = {
           uid: res.uid,
           crm: this.doctor.value.crm,
@@ -87,6 +84,7 @@ export class CadastroPage {
   }
 
   signInWithFacebook(tipoUsuario) {
+
     if (this.platform.is('cordova')) {
       this.fb.login(['email', 'public_profile']).then(res => {
         const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
@@ -96,6 +94,16 @@ export class CadastroPage {
     else {
       this.presentLoading();
       this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider()).then(res => {
+        if (tipoUsuario === 'M') {
+        
+          var doctor = {
+            uid: res.user.uid,
+            crm: this.socialNetwork.value.crm
+          };
+
+          this.medicoPv.update(doctor);
+        }
+
         this.loading.dismiss();
       }).catch(error => {
         this.loading.dismiss();
@@ -105,7 +113,7 @@ export class CadastroPage {
     }
   }
 
-  signInWithGoogle() {
+  signInWithGoogle(tipoUsuario) {
     this.presentLoading();
     if (this.platform.is('cordova')) {
       this.googlePlus.login({
@@ -124,6 +132,15 @@ export class CadastroPage {
       this.afAuth.auth
         .signInWithPopup(new firebase.auth.GoogleAuthProvider())
         .then(res => {
+          
+          if (tipoUsuario === 'M') {
+            var doctor = {
+              uid: res.user.uid,
+              crm: this.socialNetwork.value.crm
+            };
+
+            this.medicoPv.update(doctor);
+          }
           this.loading.dismiss();
         }).catch(error => {
           this.loading.dismiss();
@@ -137,7 +154,6 @@ export class CadastroPage {
 
   }
   showMessage(m) {
-    console.log(m);
     let toast = this.toastCtrl.create({
       message: m,
       showCloseButton: true,
