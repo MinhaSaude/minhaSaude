@@ -112,8 +112,8 @@
                           <ion-input type="text" formControlName="crm"></ion-input>
                         </ion-item>
                         <h2 text-center padding>Ou cadastre-se com um click</h2>
-                        <button ion-button full round color="danger" type="submit" [disabled]="!socialNetwork.valid">Google+</button>
-                        <button ion-button full round color="facebook" type="submit" [disabled]="!socialNetwork.valid">Facebook</button>
+                        <button ion-button full round color="danger" (click)="signInWithGoogle('M')" [disabled]="!socialNetwork.valid">Google+</button>
+                        <button ion-button full round color="facebook" (click)="signInWithFacebook('M')" [disabled]="!socialNetwork.valid">Facebook</button>
                       </form>
                     </ion-col>
                   </ion-row>
