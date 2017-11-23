@@ -3,10 +3,10 @@
   <img src="https://raw.githubusercontent.com/MinhaSaude/minhaSaude/master/client/resources/android/splash/drawable-land-ldpi-screen.png" alt="A Plataforma que descomplica a forma como os pacientes e hospitais mantem o histórico médico"/>
 </p>
 
-## PWA e APK
+## Site e Android APK 
 
-<p><a href="https://minhasaude.io" target="_blank">PWA link</a></p>
-<p><a href="https://drive.google.com/open?id=0ByiDi-nlXfgVZ1dOLUVUYTIySkU" target="_blank">APK link</a></p>
+<p><a href="https://minhasaude.io" target="_blank">minhasaude.io</a></p>
+<p><a href="https://drive.google.com/open?id=0ByiDi-nlXfgVZ1dOLUVUYTIySkU" target="_blank">Download</a></p>
 
 ## Justificativa do Projeto
 
@@ -20,22 +20,35 @@ Uma plataforma que conseguisse aumentar a velocidade no atendimento e permita o 
 
 ## Escopo
 ```
-1. Ficha Médica Unificada
-2. Inclusão de parentes (por CPF)
-3. Sintomas do paciente (sintomas)
-4. Histórico de Sintomas
-  4.1 Rastreabilidade de Consultas
-  4.2 Doenças e diagnósticos
-  4.3 Linha do tempo
-  4.4 Medicamentos
-  4.5 Histórico de anaminésia *
-5. Indicação por especialidade
-6. Filtro por Região 
-  6.1 Ranking por tratamento dos médicos *
-7. Sigilo de informações
-8. Cartão de Identificação do Paciente
+Paciente
+1. Ficha Médica
+ 1.1 Informações Pessoais
+ 1.2 Parentes
+ 1.3 Alergias
+ 1.4 Medicamentos de uso contínuo
+ 1.5 Doenças Cronicas
+ 1.6 Cirurgias
+2. Historico de Consultas
+3. Médicos
+4. Cartão Minha Saúde
+
+Médico
+5. Informações Pessoais
+6. Consultar Pacientes
 ```
-## Divisão do Projeto
 
+### Instalação:
 
-O projeto é dividido em três partes, documentação,servidor e cliente, cada um possui o seu repositorio especifico com documentação.
+Este é um projeto ionic, para realizar a instalação, baixe o projeto entre e instale as dependencias do nodejs, lembre-se é necessario possuir o ionic instalado, saiba mais em: https://ionicframework.com/getting-started/
+```bash
+$ npm install
+$ ionic serve
+```
+
+Depois, para compilar para algum dispositivo, entre no terminal e digite:
+
+```bash
+$ ionic cordova platform add android
+$ ionic cordova build android 
+```
+
