@@ -16,11 +16,13 @@ import { ParentesProvider } from '../../providers/parentes/parentes';
   templateUrl: 'parentes.html',
 })
 export class ParentesPage {
+
   buscarParentes: any;
   private parentesForm: FormGroup;
   private parentes: Array<{ nome: string, parentesco: string }>;
   private parentSegment: string;
   private uid: string;
+  
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,

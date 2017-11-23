@@ -1,3 +1,4 @@
+import { ConsultasProvider } from './../providers/consultas/consultas';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -24,6 +25,7 @@ import { ParentesProvider } from './../providers/parentes/parentes';
 import { AlergiasProvider } from '../providers/alergias/alergias';
 import { MedUsoContinuoProvider } from '../providers/med-uso-continuo/med-uso-continuo';
 import { CirurgiasProvider } from '../providers/cirurgias/cirurgias';
+import { ExamesProvider } from '../providers/exames/exames';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,9 @@ import { CirurgiasProvider } from '../providers/cirurgias/cirurgias';
     ParentesProvider,
     AlergiasProvider,
     MedUsoContinuoProvider,
-    CirurgiasProvider
+    CirurgiasProvider,
+    ConsultasProvider,
+    ExamesProvider
   ]
 })
 export class AppModule { }

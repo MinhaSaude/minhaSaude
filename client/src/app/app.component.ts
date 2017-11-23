@@ -90,7 +90,7 @@ export class MyApp {
       ];
 
       this.pages = [
-        { title: 'Histórico', component: 'HistoricoPage', image: './assets/icon/menu/historico.png' },
+        { title: 'Histórico', component: 'ConsultasPage', image: './assets/icon/menu/historico.png' },
         { title: 'Médicos', component: 'MedicosPage', image: './assets/icon/menu/medico.png' },
         { title: 'Cartão', component: 'CartaoPage', image: './assets/icon/menu/cartao.png' },
         { title: 'Sobre', component: 'SobrePage', image: './assets/icon/menu/sobre.png' }

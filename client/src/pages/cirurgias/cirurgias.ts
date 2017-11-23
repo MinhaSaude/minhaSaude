@@ -16,12 +16,14 @@ Aba de cirurgias
   templateUrl: 'cirurgias.html',
 })
 export class CirurgiasPage {
+
   buscaCirurgia: any;
   private cirurgiasForm: FormGroup;
   private cirurgiaSegment: string;
   private uid: string;
   private cirurgias: Array<{}>;
-    constructor(
+
+  constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private formBuilder: FormBuilder,
@@ -35,70 +37,66 @@ export class CirurgiasPage {
 
     this.cirurgiasForm =
       this.formBuilder.group({
-        membro: ['', Validators.required], 
+        membro: ['', Validators.required],
         motivo: ['', Validators.required],
         data: ['', Validators.required]
       });
 
-
-      this.global.getCurrentUser().then((user) => {
-        if (user){
-          this.uid = user.uid;
-          this.buscaCirurgia = this.cirurgiasPv.selectByUID(this.uid).snapshotChanges().subscribe(actions =>{
+    this.global.getCurrentUser().then((user) => {
+      if (user) {
+        this.uid = user.uid;
+        this.buscaCirurgia = this.cirurgiasPv.selectByUID(this.uid).snapshotChanges().subscribe(actions => {
           var data = [];
           actions.forEach(action => {
-             var items = action.payload.val();
-             items.key = action.key;
-             data.push(items);
-
+            var items = action.payload.val();
+            items.key = action.key;
+            data.push(items);
           });
-
           this.cirurgias = data;
+        });
 
-
-          });
-
-        }else{
-          this.navCtrl.setRoot('HomePage');
-        }
-      });
-    }
-
+      } else {
+        this.navCtrl.setRoot('HomePage');
+      }
+    });
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CirurgiasPage');
   }
 
-   ngOnDestroy(){
-     this.buscaCirurgia.unsubscribe();
-   }
+  ngOnDestroy() {
+    this.buscaCirurgia.unsubscribe();
+  }
 
   addCirurgia() {
-    var cirurgia={
+
+    var cirurgia = {
       uid: this.uid,
       membro: this.cirurgiasForm.value.membro,
       motivo: this.cirurgiasForm.value.motivo,
       data: this.cirurgiasForm.value.data
-}
-      this.cirurgiasPv.update(cirurgia);
-      this.cirurgiasForm.reset();
-      this.showMessage("Cirurgia salva com sucesso.");
-}
+    }
+
+    this.cirurgiasPv.update(cirurgia);
+    this.cirurgiasForm.reset();
+    this.showMessage("Cirurgia salva com sucesso.");
+  }
 
 
-deleteCirurgia(cirurgias, i){
-  this.cirurgiasPv.delete(cirurgias[i].key);
-}
+  deleteCirurgia(cirurgias, i) {
+    this.cirurgiasPv.delete(cirurgias[i].key);
+  }
 
-showMessage(m) {
-  let toast = this.toastCtrl.create({
-    message: m,
-    showCloseButton: true,
-    closeButtonText: 'Ok',
-    duration: 3000
-  });
-  toast.present();
-}
+  showMessage(m) {
+    let toast = this.toastCtrl.create({
+      message: m,
+      showCloseButton: true,
+      closeButtonText: 'Ok',
+      duration: 3000
+    });
+    toast.present();
+  }
 
 
 }

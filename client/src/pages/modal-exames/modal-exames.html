@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Exames</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="closeModal()">Fechar</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <div>
+        <ion-list>
+          <form [formGroup]="exameForm" (ngSubmit)="adiconarExame()" id="exameForm">
+            <ion-grid>
+              <ion-row>
+                <ion-col>
+                  <ion-list>
+
+                    <ion-item>
+                      <ion-label floating>Data</ion-label>
+                      <ion-datetime formControlName="data" displayFormat="DD/MM/YYYY" pickerFormat="MMM DD YYYY" monthShortNames='Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro'
+                        doneText="Ok" cancelText="Cancelar"></ion-datetime>
+                    </ion-item>
+
+                    <ion-item>
+                      <ion-label floating>Clínica</ion-label>
+                      <ion-input type="text" formControlName="clinica"></ion-input>
+                    </ion-item>
+
+                    <ion-item>
+                      <ion-label floating>Tipo</ion-label>
+                      <ion-select formControlName="tipo">
+                        <ion-option value="laboratoriais">Laboratoriais</ion-option>
+                        <ion-option value="radiologicos">Radiológicos</ion-option>
+                      </ion-select>
+                    </ion-item>
+
+                    <ion-item>
+                      <ion-label floating>Anexos</ion-label>
+                      <ion-input type="text" formControlName="anexos"></ion-input>
+                    </ion-item>
+
+                  </ion-list>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </form>
+        </ion-list>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-md-3>
+      </ion-col>
+      <ion-col col-md-3>
+      </ion-col>
+      <ion-col col-md-3>
+      </ion-col>
+      <ion-col col-md-3>
+        <button ion-button color="success" round type="submit" [disabled]="!exameForm.valid" form="exameForm">Adiconar</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
