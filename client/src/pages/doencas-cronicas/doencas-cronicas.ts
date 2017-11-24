@@ -37,23 +37,41 @@ export class DoencasCronicasPage {
       descricao: ['']
     });
 
-    this.global.getCurrentUser().then((user) => {
-      if (user) {
-        this.uid = user.uid;
-      this.buscaDoenca =   this.doencasPv.selectByUID(this.uid).snapshotChanges().subscribe(actions => {
-          var data = [];
-          actions.forEach(action => {
-            var items = action.payload.val();
-            items.key = action.key;
-            data.push(items);
+    if(typeof this.navParams.get('user') == 'undefined'){
+
+      this.global.getCurrentUser().then((user) => {
+        if (user) {
+          this.uid = user.uid;
+        this.buscaDoenca =   this.doencasPv.selectByUID(this.uid).snapshotChanges().subscribe(actions => {
+            var data = [];
+            actions.forEach(action => {
+              var items = action.payload.val();
+              items.key = action.key;
+              data.push(items);
+            });
+            this.doencas = data;
+          
           });
-          this.doencas = data;
-        
+        } else {
+          this.navCtrl.setRoot('HomePage');
+        }
+      });
+
+    } else {
+      var user = this.navParams.get('user');
+      this.uid = user.uid;
+      this.buscaDoenca =   this.doencasPv.selectByUID(this.uid).snapshotChanges().subscribe(actions => {
+        var data = [];
+        actions.forEach(action => {
+          var items = action.payload.val();
+          items.key = action.key;
+          data.push(items);
         });
-      } else {
-        this.navCtrl.setRoot('HomePage');
-      }
-    });
+        this.doencas = data;
+      
+      });
+    }
+    
 
   }
 
@@ -79,6 +97,16 @@ export class DoencasCronicasPage {
 
   deleteDoencas(doencas, i) {
     this.doencasPv.delete(doencas[i].key);
+  }
+
+  anterior(){
+    this.navCtrl.pop();
+  }
+
+  proxPagina(){
+    this.navCtrl.push('CirurgiasPage', {
+      user: this.navParams.get('user')
+    });
   }
 
   showMessage(m) {

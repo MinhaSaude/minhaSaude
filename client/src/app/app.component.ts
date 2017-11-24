@@ -98,7 +98,7 @@ export class MyApp {
     } else if (isAuthenticated && tipoUsuario == "Medico") {
       this.pages = [
         { title: 'Informações Pessoais', component: 'InfoPessoalMedicoPage', image: './assets/icon/ficha-medica/informacoes_pessoais.png' },
-        { title: 'Consultar Pacientes', component: 'MedicosPage', image: './assets/icon/ficha-medica/consultar_pacientes.png' },
+        { title: 'Consultar Pacientes', component: 'MedicoConsultaPacientePage', image: './assets/icon/ficha-medica/consultar_pacientes.png' },
         { title: 'Sobre', component: 'SobrePage', image: './assets/icon/menu/sobre.png' }
       ];
     } else {

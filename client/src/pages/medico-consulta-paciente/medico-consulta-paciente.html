@@ -1,0 +1,54 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle icon-only>
+        <ion-icon name='menu'></ion-icon>
+      </button>
+      <ion-title>
+        Minha Saúde
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row offset-md-3>
+      <ion-col col-md-8>
+        <ion-card>
+          <ion-card-header>
+            <h2 text-justify>Buscar Paciente</h2>
+          </ion-card-header>
+          <ion-card-content>
+            <div>
+              <form [formGroup]="buscarPacienteForm" id="buscarPacienteForm">
+                <ion-grid>
+                  <ion-row>
+                    <ion-col col-md-6 col-12>
+                        <ion-item>
+                            <ion-label floating>CPF</ion-label>
+                            <ion-input type="text" formControlName="CPF"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
+              </form>
+            </div>
+          </ion-card-content>
+        </ion-card>
+        <ion-grid>
+            <ion-row>
+              <ion-col col-md-3>
+              </ion-col>
+              <ion-col col-md-3>
+              </ion-col>
+              <ion-col col-md-3>
+              </ion-col>
+              <ion-col col-md-3 col-12>
+                <button ion-button full color="success" round type="submit" form="buscarPacienteForm" (click)="buscaPaciente()"> Buscar</button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

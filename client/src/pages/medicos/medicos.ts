@@ -1,13 +1,7 @@
+import { PacientesProvider } from './../../providers/pacientes/pacientes';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
-
-/**
- * Generated class for the MedicosPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 
 @IonicPage()
 @Component({
@@ -18,11 +12,13 @@ export class MedicosPage {
 
   private buscarMedicoForm: FormGroup;
   private buscarMedicoSegment: string;
+  private uid: String;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public toastCtrl: ToastController,    
-    private FormBuilder:FormBuilder) {
+    private FormBuilder:FormBuilder,
+    private pacientes:PacientesProvider) {
             
            this.buscarMedicoSegment= 'lista';
        

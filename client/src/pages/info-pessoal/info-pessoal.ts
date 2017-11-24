@@ -64,7 +64,7 @@ export class InfoPessoalPage {
 
     this.pacienteForm = this.formBuilder.group({
       nome: ['', Validators.required],
-      cpfCnpj: ['',[Validators.required, Validators.minLength(11)]],
+      cpfCnpj: ['', [Validators.required, Validators.minLength(11)]],
       telefoneResidencial: [''],
       telefoneCelular: [''],
       email: [''],
@@ -86,24 +86,41 @@ export class InfoPessoalPage {
       dataNascimento: ['']
     });
 
-    this.global.getCurrentUser().then((user) => {
-      if (user) {
-        this.user.uid = user.uid;
-        this.user.nome = user.displayName;
-        this.user.foto = user.photoURL;
-        this.user.email = user.email;
-        let buscarPaciente = this.paciente.select(user.uid).snapshotChanges().subscribe(action => {
-          var dadosDoUsuario = action.payload.val();
-          if (dadosDoUsuario) {
-            this.user = action.payload.val();
-          }
-          buscarPaciente.unsubscribe();
-        });
-       
-      } else {
-        this.navCtrl.setRoot('HomePage');
-      }
-    });
+    if(typeof this.navParams.get("paginaMedicoConsultaPaciente") == "undefined"){
+      this.global.getCurrentUser().then((user) => {
+        if (user) {
+          this.user.uid = user.uid;
+          this.user.nome = user.displayName;
+          this.user.foto = user.photoURL;
+          this.user.email = user.email;
+          let buscarPaciente = this.paciente.select(user.uid).snapshotChanges().subscribe(action => {
+            var dadosDoUsuario = action.payload.val();
+            if (dadosDoUsuario) {
+              this.user = action.payload.val();
+            }
+            buscarPaciente.unsubscribe();
+          });
+        } else {
+          this.navCtrl.setRoot('HomePage');
+        }
+      });
+    } else {
+      var user = this.navParams.get("user");
+      this.user.uid = user.uid;
+      this.user.nome = user.displayName;
+      this.user.foto = user.photoURL;
+      this.user.email = user.email;
+      let buscarPaciente = this.paciente.select(user.uid).snapshotChanges().subscribe(action => {
+        var dadosDoUsuario = action.payload.val();
+        if (dadosDoUsuario) {
+          this.user = action.payload.val();
+        }
+        buscarPaciente.unsubscribe();
+      });
+
+
+    }
+
 
   }
 
@@ -128,6 +145,12 @@ export class InfoPessoalPage {
 
   clickUploadFoto() {
     this.fileInput.nativeElement.click();
+  }
+
+  proxPagina(){
+    this.navCtrl.push("ParentesPage", {
+      user: this.navParams.get("user")
+    });
   }
 
   showMessage(m) {

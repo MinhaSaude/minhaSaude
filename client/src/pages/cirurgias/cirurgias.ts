@@ -42,23 +42,41 @@ export class CirurgiasPage {
         data: ['', Validators.required]
       });
 
-    this.global.getCurrentUser().then((user) => {
-      if (user) {
-        this.uid = user.uid;
-        this.buscaCirurgia = this.cirurgiasPv.selectByUID(this.uid).snapshotChanges().subscribe(actions => {
-          var data = [];
-          actions.forEach(action => {
-            var items = action.payload.val();
-            items.key = action.key;
-            data.push(items);
+    if(typeof this.navParams.get('user') == 'undefined'){
+      this.global.getCurrentUser().then((user) => {
+        if (user) {
+          this.uid = user.uid;
+          this.buscaCirurgia = this.cirurgiasPv.selectByUID(this.uid).snapshotChanges().subscribe(actions => {
+            var data = [];
+            actions.forEach(action => {
+              var items = action.payload.val();
+              items.key = action.key;
+              data.push(items);
+            });
+            this.cirurgias = data;
           });
-          this.cirurgias = data;
-        });
+  
+        } else {
+          this.navCtrl.setRoot('HomePage');
+        }
+      });
+    } else {
+      var user = this.navParams.get('user');
 
-      } else {
-        this.navCtrl.setRoot('HomePage');
-      }
-    });
+      this.uid = user.uid;
+      this.buscaCirurgia = this.cirurgiasPv.selectByUID(this.uid).snapshotChanges().subscribe(actions => {
+        var data = [];
+        actions.forEach(action => {
+          var items = action.payload.val();
+          items.key = action.key;
+          data.push(items);
+        });
+        this.cirurgias = data;
+      });
+
+    }
+
+    
   }
 
   ionViewDidLoad() {
@@ -86,6 +104,10 @@ export class CirurgiasPage {
 
   deleteCirurgia(cirurgias, i) {
     this.cirurgiasPv.delete(cirurgias[i].key);
+  }
+
+  anterior(){
+    this.navCtrl.pop();
   }
 
   showMessage(m) {

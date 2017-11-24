@@ -40,24 +40,43 @@ export class ParentesPage {
     });
     this.parentes = [];
 
-    this.global.getCurrentUser().then((user) => {
-      if (user) {
-        this.uid = user.uid;
-        this.buscarParentes = this.parentesPv.select(user.uid).snapshotChanges().subscribe(actions => {
-          var data = [];
-          actions.forEach(action => {
-            var parentes = action.payload.val();
-            parentes.key = action.key;
-            data.push(parentes);
+    if(typeof this.navParams.get("user") == 'undefined'){
+
+      this.global.getCurrentUser().then((user) => {
+        if (user) {
+          this.uid = user.uid;
+          this.buscarParentes = this.parentesPv.select(user.uid).snapshotChanges().subscribe(actions => {
+            var data = [];
+            actions.forEach(action => {
+              var parentes = action.payload.val();
+              parentes.key = action.key;
+              data.push(parentes);
+            });
+            this.parentes = data;
           });
-          this.parentes = data;
+  
+  
+        } else {
+          this.navCtrl.setRoot('HomePage');
+        }
+      });
+
+    } else {
+      var user = this.navParams.get('user');
+      
+      this.buscarParentes = this.parentesPv.select(user.uid).snapshotChanges().subscribe(actions => {
+        var data = [];
+        actions.forEach(action => {
+          var parentes = action.payload.val();
+          parentes.key = action.key;
+          data.push(parentes);
         });
+        this.parentes = data;
+      });
+      
 
+    }
 
-      } else {
-        this.navCtrl.setRoot('HomePage');
-      }
-    });
   }
 
   ngOnDestroy() {
@@ -110,6 +129,16 @@ export class ParentesPage {
       duration: 3000
     });
     toast.present();
+  }
+
+  proxPagina(){
+    this.navCtrl.push('AlergiasPage', {
+      user: this.navParams.get("user")
+    });
+  }
+
+  anterior(){
+    this.navCtrl.pop();
   }
 
 }

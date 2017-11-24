@@ -37,25 +37,40 @@ export class AlergiasPage {
       tipo: ['', Validators.required],
       descricao: ['', Validators.required]
     });
-    
-   this.global.getCurrentUser().then((user) => {
-       if(user){
-         this.uid = user.uid;
-         this.buscaAlergia = this.alergiasPv.selectByUID(this.uid).snapshotChanges().subscribe(actions =>{
-         var data = [];
-         actions.forEach(action =>{
-          var items = action.payload.val();
-          items.key = action.key;
-          data.push(items);    
-             });    
-             this.alergias = data; 
+    if(typeof this.navParams.get("user") == "undefined"){
+      this.global.getCurrentUser().then((user) => {
+        if(user){
+          this.uid = user.uid;
+          this.buscaAlergia = this.alergiasPv.selectByUID(this.uid).snapshotChanges().subscribe(actions =>{
+          var data = [];
+          actions.forEach(action =>{
+           var items = action.payload.val();
+           items.key = action.key;
+           data.push(items);    
+              });    
+              this.alergias = data; 
+ 
+          });
+        }else{
+         this.navCtrl.setRoot('HomePage');
+        }
+ 
+    });
+    }else {
+      var user = this.navParams.get("user");
+      this.uid = user.uid;
+      this.buscaAlergia = this.alergiasPv.selectByUID(this.uid).snapshotChanges().subscribe(actions =>{
+      var data = [];
+      actions.forEach(action =>{
+       var items = action.payload.val();
+       items.key = action.key;
+       data.push(items);    
+          });    
+          this.alergias = data; 
 
-         });
-       }else{
-        this.navCtrl.setRoot('HomePage');
-       }
+      });
+    } 
 
-   });
 
 
 
@@ -87,6 +102,16 @@ export class AlergiasPage {
 
   deleteAlergia(alergias, i) {
     this.alergiasPv.deleteAlergia(alergias[i].key);
+  }
+
+  anterior(){
+    this.navCtrl.pop();
+  }
+
+  proxPagina(){
+    this.navCtrl.push('MedUsoContinuoPage', {
+      user: this.navParams.get('user')
+    });
   }
 
   showMessage(m){

@@ -41,30 +41,46 @@ export class MedUsoContinuoPage {
 
     });
 
-         this.global.getCurrentUser().then((user) =>{
-           if (user){
-             this.uid = user.uid;
-             this.buscaMedicamento = this.medicamentosPv.selectByUID(this.uid).snapshotChanges().subscribe(actions =>{
-             var data = [];
-             actions.forEach(action =>{
+    if(typeof this.navParams.get('user') == "undefined"){
+      this.global.getCurrentUser().then((user) =>{
+        if (user){
+          this.uid = user.uid;
+          this.buscaMedicamento = this.medicamentosPv.selectByUID(this.uid).snapshotChanges().subscribe(actions =>{
+          var data = [];
+          actions.forEach(action =>{
+            
+           var items = action.payload.val();
+           items.key = action.key;
+           data.push(items);
+
+          });
                
-              var items = action.payload.val();
-              items.key = action.key;
-              data.push(items);
+          this.medicamentos = data;
 
-             });
-                  
-             this.medicamentos = data;
+      });
+      
 
-         });
-         
+        }else {
+          this.navCtrl.setRoot('HomePage');
+        }
+      });
+    } else {
+      var user = this.navParams.get('user');
 
-           }else {
-             this.navCtrl.setRoot('HomePage');
-           }
-         });
+      this.uid = user.uid;
+          this.buscaMedicamento = this.medicamentosPv.selectByUID(this.uid).snapshotChanges().subscribe(actions =>{
+          var data = [];
+          actions.forEach(action =>{
+            
+           var items = action.payload.val();
+           items.key = action.key;
+           data.push(items);
 
-
+          });
+               
+          this.medicamentos = data;
+        });
+    }
 
   }  
 
@@ -92,6 +108,16 @@ export class MedUsoContinuoPage {
    
   }
 
+  anterior() {
+    this.navCtrl.pop();
+  }
+
+  proxPagina(){
+    this.navCtrl.push('DoencasCronicasPage', {
+      user: this.navParams.get('user')
+    });
+  }
+
 showMessage(m){
   let toast = this.toastCtrl.create({
     message: m,
@@ -99,6 +125,7 @@ showMessage(m){
     closeButtonText:'Ok',
     duration: 3000
  });
+
 
  toast.present();
 }
