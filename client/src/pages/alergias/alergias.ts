@@ -19,6 +19,7 @@ export class AlergiasPage {
   buscaAlergia: any;
   private alergiasForm: FormGroup;
   private alergiaSegment: string;
+  private checkStatus: boolean = false;
   private uid: string;
   private alergias: Array<{}>;
   constructor(
@@ -28,6 +29,7 @@ export class AlergiasPage {
     private global: GlobalProvider,
     public toastCtrl: ToastController,
     private alergiasPv: AlergiasProvider) {
+    this.verificaCanGoBack();
 
     this.alergiaSegment = 'lista';
 
@@ -69,11 +71,8 @@ export class AlergiasPage {
           this.alergias = data; 
 
       });
-    } 
-
-
-
-
+    }
+  
   }
 
   ionViewDidLoad() {
@@ -82,6 +81,18 @@ export class AlergiasPage {
 
   ngOnDestroy(){
     this.buscaAlergia.unsubscribe();
+  }
+
+  /**
+  * O método canGoBack nativo do Ionic não estava funcionando, mesmo colocado no WillEnter, quando a
+  * aplicação terminou completamente de carregar ele retornava que havia uma página anterior.
+  * Só funciona no click e é terrível sumir com o botão só quando o usuário clicar.
+  */
+  verificaCanGoBack(){
+    console.log(this.navParams.get("canGoBack"));
+    if(typeof this.navParams.get("canGoBack") == 'undefined'){
+      this.checkStatus = true;
+    }
   }
 
 
@@ -110,7 +121,8 @@ export class AlergiasPage {
 
   proxPagina(){
     this.navCtrl.push('MedUsoContinuoPage', {
-      user: this.navParams.get('user')
+      user: this.navParams.get('user'),
+      canGoBack: true
     });
   }
 

@@ -18,6 +18,7 @@ export class DoencasCronicasPage {
   private doencasForm: FormGroup;
   private doencasSegment: string;
   private uid: string;
+  private checkStatus: boolean = false;
   private doencas: Array<{}>;
   constructor(
     public navCtrl: NavController,
@@ -30,6 +31,8 @@ export class DoencasCronicasPage {
     this.doencasSegment = 'lista';
 
     this.doencas = [];
+
+    this.verificaCanGoBack();
 
 
     this.doencasForm = this.formBuilder.group({
@@ -71,8 +74,17 @@ export class DoencasCronicasPage {
       
       });
     }
-    
+  }
 
+  /**
+  * O método canGoBack nativo do Ionic não estava funcionando, mesmo colocado no WillEnter, quando a
+  * aplicação terminou completamente de carregar ele retornava que havia uma página anterior.
+  * Só funciona no click e é terrível sumir com o botão só quando o usuário clicar.
+  */
+  verificaCanGoBack(){
+    if(typeof this.navParams.get("canGoBack") == 'undefined'){
+      this.checkStatus = true;
+    }
   }
 
   ionViewDidLoad() {
@@ -105,7 +117,8 @@ export class DoencasCronicasPage {
 
   proxPagina(){
     this.navCtrl.push('CirurgiasPage', {
-      user: this.navParams.get('user')
+      user: this.navParams.get('user'),
+      canGoBack: true
     });
   }
 

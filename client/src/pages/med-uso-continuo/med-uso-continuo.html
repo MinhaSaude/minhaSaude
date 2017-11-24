@@ -95,10 +95,10 @@
             <ion-col col-md-3>
             </ion-col>
             <ion-col col-md-3>
-                <button ion-button full type="submit" color="secondary" round (click)="anterior()">Anterior</button>
+                <button ion-button full type="submit" color="secondary" round (click)="anterior()" *ngIf="!checkStatus">Anterior</button>
             </ion-col>
             <ion-col col-md-3>
-                <button ion-button full type="submit" color="primary" round (click)="proxPagina()">Próxima</button>
+                <button ion-button full type="submit" color="primary" round (click)="proxPagina()" >Próxima</button>
             </ion-col>
             <ion-col col-md-3 col-12>
               <button ion-button full color="success" round type="submit" form="medContForm" [disabled]="!medContForm.valid" >Salvar</button>

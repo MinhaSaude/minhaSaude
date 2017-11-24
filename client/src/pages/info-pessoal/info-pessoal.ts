@@ -117,11 +117,7 @@ export class InfoPessoalPage {
         }
         buscarPaciente.unsubscribe();
       });
-
-
     }
-
-
   }
 
   salvarPaciente(user) {
@@ -149,7 +145,8 @@ export class InfoPessoalPage {
 
   proxPagina(){
     this.navCtrl.push("ParentesPage", {
-      user: this.navParams.get("user")
+      user: this.navParams.get("user"),
+      canGoBack: true
     });
   }
 

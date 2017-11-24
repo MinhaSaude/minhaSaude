@@ -4,11 +4,13 @@ import { IonicPage, NavController, NavParams, AlertController, ToastController }
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PacientesProvider } from './../../providers/pacientes/pacientes';
 import { ParentesProvider } from '../../providers/parentes/parentes';
+import { Platform } from 'ionic-angular/platform/platform';
 
 /**
   Aba de parentes (lista): (nome parente e 
     parentesco).
  */
+
 
 @IonicPage()
 @Component({
@@ -21,6 +23,7 @@ export class ParentesPage {
   private parentesForm: FormGroup;
   private parentes: Array<{ nome: string, parentesco: string }>;
   private parentSegment: string;
+  private checkStatus: boolean = false;
   private uid: string;
   
   constructor(
@@ -39,6 +42,8 @@ export class ParentesPage {
       parentesco: ['', Validators.required]
     });
     this.parentes = [];
+
+    this.verificaCanGoBack();
 
     if(typeof this.navParams.get("user") == 'undefined'){
 
@@ -73,10 +78,20 @@ export class ParentesPage {
         });
         this.parentes = data;
       });
-      
-
     }
 
+  }
+
+  /**
+  * O método canGoBack nativo do Ionic não estava funcionando, mesmo colocado no WillEnter, quando a
+  * aplicação terminou completamente de carregar ele retornava que havia uma página anterior.
+  * Só funciona no click e é terrível sumir com o botão só quando o usuário clicar.
+  */
+  verificaCanGoBack(){
+    console.log(this.navParams);
+    if(typeof this.navParams.get("canGoBack") == 'undefined'){
+      this.checkStatus = true;
+    }
   }
 
   ngOnDestroy() {
@@ -133,12 +148,15 @@ export class ParentesPage {
 
   proxPagina(){
     this.navCtrl.push('AlergiasPage', {
-      user: this.navParams.get("user")
+      user: this.navParams.get('user'),
+      canGoBack: true
     });
   }
 
   anterior(){
-    this.navCtrl.pop();
+    console.log(this.navCtrl.canGoBack());
+    if(this.navCtrl.canGoBack()){
+      this.navCtrl.pop();
+    }
   }
-
 }

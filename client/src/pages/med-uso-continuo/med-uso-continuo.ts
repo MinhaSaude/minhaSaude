@@ -17,6 +17,7 @@ export class MedUsoContinuoPage {
   buscaMedicamento: any;
   private medContForm: FormGroup;
   private medContSegment: string;
+  private checkStatus: boolean = false
   private medicamentos: Array<{}>;
   private uid: string;
 
@@ -27,6 +28,8 @@ export class MedUsoContinuoPage {
     public toastCtrl: ToastController,
     private formBuilder: FormBuilder,
     private medicamentosPv: MedUsoContinuoProvider) {
+
+    this.verificaCanGoBack();
 
     this.medContSegment = 'listaMedicamento'
 
@@ -84,6 +87,17 @@ export class MedUsoContinuoPage {
 
   }  
 
+  /**
+  * O método canGoBack nativo do Ionic não estava funcionando, mesmo colocado no WillEnter, quando a
+  * aplicação terminou completamente de carregar ele retornava que havia uma página anterior.
+  * Só funciona no click e é terrível sumir com o botão só quando o usuário clicar.
+  */
+  verificaCanGoBack(){
+    if(typeof this.navParams.get("canGoBack") == 'undefined'){
+      this.checkStatus = true;
+    }
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad MedUsoContinuoPage');
   }
@@ -114,7 +128,8 @@ export class MedUsoContinuoPage {
 
   proxPagina(){
     this.navCtrl.push('DoencasCronicasPage', {
-      user: this.navParams.get('user')
+      user: this.navParams.get('user'),
+      canGoBack: true
     });
   }
 
