@@ -4,11 +4,13 @@ import { IonicPage, NavController, NavParams, AlertController, ToastController }
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PacientesProvider } from './../../providers/pacientes/pacientes';
 import { ParentesProvider } from '../../providers/parentes/parentes';
+import { Platform } from 'ionic-angular/platform/platform';
 
 /**
   Aba de parentes (lista): (nome parente e 
     parentesco).
  */
+
 
 @IonicPage()
 @Component({
@@ -21,6 +23,7 @@ export class ParentesPage {
   private parentesForm: FormGroup;
   private parentes: Array<{ nome: string, parentesco: string }>;
   private parentSegment: string;
+  private checkStatus: boolean = false;
   private uid: string;
   
   constructor(
@@ -40,24 +43,55 @@ export class ParentesPage {
     });
     this.parentes = [];
 
-    this.global.getCurrentUser().then((user) => {
-      if (user) {
-        this.uid = user.uid;
-        this.buscarParentes = this.parentesPv.select(user.uid).snapshotChanges().subscribe(actions => {
-          var data = [];
-          actions.forEach(action => {
-            var parentes = action.payload.val();
-            parentes.key = action.key;
-            data.push(parentes);
+    this.verificaCanGoBack();
+
+    if(typeof this.navParams.get("user") == 'undefined'){
+
+      this.global.getCurrentUser().then((user) => {
+        if (user) {
+          this.uid = user.uid;
+          this.buscarParentes = this.parentesPv.select(user.uid).snapshotChanges().subscribe(actions => {
+            var data = [];
+            actions.forEach(action => {
+              var parentes = action.payload.val();
+              parentes.key = action.key;
+              data.push(parentes);
+            });
+            this.parentes = data;
           });
-          this.parentes = data;
+  
+  
+        } else {
+          this.navCtrl.setRoot('HomePage');
+        }
+      });
+
+    } else {
+      var user = this.navParams.get('user');
+      
+      this.buscarParentes = this.parentesPv.select(user.uid).snapshotChanges().subscribe(actions => {
+        var data = [];
+        actions.forEach(action => {
+          var parentes = action.payload.val();
+          parentes.key = action.key;
+          data.push(parentes);
         });
+        this.parentes = data;
+      });
+    }
 
+  }
 
-      } else {
-        this.navCtrl.setRoot('HomePage');
-      }
-    });
+  /**
+  * O método canGoBack nativo do Ionic não estava funcionando, mesmo colocado no WillEnter, quando a
+  * aplicação terminou completamente de carregar ele retornava que havia uma página anterior.
+  * Só funciona no click e é terrível sumir com o botão só quando o usuário clicar.
+  */
+  verificaCanGoBack(){
+    console.log(this.navParams);
+    if(typeof this.navParams.get("canGoBack") == 'undefined'){
+      this.checkStatus = true;
+    }
   }
 
   ngOnDestroy() {
@@ -112,4 +146,17 @@ export class ParentesPage {
     toast.present();
   }
 
+  proxPagina(){
+    this.navCtrl.push('AlergiasPage', {
+      user: this.navParams.get('user'),
+      canGoBack: true
+    });
+  }
+
+  anterior(){
+    console.log(this.navCtrl.canGoBack());
+    if(this.navCtrl.canGoBack()){
+      this.navCtrl.pop();
+    }
+  }
 }

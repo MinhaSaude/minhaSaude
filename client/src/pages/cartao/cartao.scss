@@ -1,3 +1,33 @@
 page-cartao {
-
+  .card-minhasaude {
+    height: 300px;
+    width: 600px;
+    background-color: #1771BB;
+    border-radius: 20px;
+    padding: 20px;
+  }
+  .profile {
+    border-radius: 5px;
+  }
+  .logo {
+    width: 128px;
+    height: 128px;
+  }
+  .card-minhasaude-content {
+    padding: 5px;
+    padding-top: 20px;
+  }
+  .card-minhasaude-content p {
+    font-size: 16px;
+    color: $FONT_COLOR !important;
+  }
+  .card-minhasaude-left {
+    width: 75%;
+    float: left;
+  }
+  .card-minhasaude-right {
+      padding-left:10px;
+    width: 25%;
+    float: right;
+  }
 }

@@ -20,6 +20,7 @@ export class CirurgiasPage {
   buscaCirurgia: any;
   private cirurgiasForm: FormGroup;
   private cirurgiaSegment: string;
+  private checkStatus: boolean = false;
   private uid: string;
   private cirurgias: Array<{}>;
 
@@ -30,6 +31,8 @@ export class CirurgiasPage {
     private global: GlobalProvider,
     public toastCtrl: ToastController,
     private cirurgiasPv: CirurgiasProvider) {
+
+      this.verificaCanGoBack();
 
     this.cirurgiaSegment = 'listaCirurgia';
 
@@ -42,23 +45,51 @@ export class CirurgiasPage {
         data: ['', Validators.required]
       });
 
-    this.global.getCurrentUser().then((user) => {
-      if (user) {
-        this.uid = user.uid;
-        this.buscaCirurgia = this.cirurgiasPv.selectByUID(this.uid).snapshotChanges().subscribe(actions => {
-          var data = [];
-          actions.forEach(action => {
-            var items = action.payload.val();
-            items.key = action.key;
-            data.push(items);
+    if(typeof this.navParams.get('user') == 'undefined'){
+      this.global.getCurrentUser().then((user) => {
+        if (user) {
+          this.uid = user.uid;
+          this.buscaCirurgia = this.cirurgiasPv.selectByUID(this.uid).snapshotChanges().subscribe(actions => {
+            var data = [];
+            actions.forEach(action => {
+              var items = action.payload.val();
+              items.key = action.key;
+              data.push(items);
+            });
+            this.cirurgias = data;
           });
-          this.cirurgias = data;
-        });
+  
+        } else {
+          this.navCtrl.setRoot('HomePage');
+        }
+      });
+    } else {
+      var user = this.navParams.get('user');
 
-      } else {
-        this.navCtrl.setRoot('HomePage');
-      }
-    });
+      this.uid = user.uid;
+      this.buscaCirurgia = this.cirurgiasPv.selectByUID(this.uid).snapshotChanges().subscribe(actions => {
+        var data = [];
+        actions.forEach(action => {
+          var items = action.payload.val();
+          items.key = action.key;
+          data.push(items);
+        });
+        this.cirurgias = data;
+      });
+
+    }
+    
+  }
+
+  /**
+  * O método canGoBack nativo do Ionic não estava funcionando, mesmo colocado no WillEnter, quando a
+  * aplicação terminou completamente de carregar ele retornava que havia uma página anterior.
+  * Só funciona no click e é terrível sumir com o botão só quando o usuário clicar.
+  */
+  verificaCanGoBack(){
+    if(typeof this.navParams.get("canGoBack") == 'undefined'){
+      this.checkStatus = true;
+    }
   }
 
   ionViewDidLoad() {
@@ -86,6 +117,10 @@ export class CirurgiasPage {
 
   deleteCirurgia(cirurgias, i) {
     this.cirurgiasPv.delete(cirurgias[i].key);
+  }
+
+  anterior(){
+    this.navCtrl.pop();
   }
 
   showMessage(m) {
