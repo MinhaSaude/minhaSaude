@@ -1,8 +1,7 @@
 import { ExamesProvider } from './../../providers/exames/exames';
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import { IonicPage, NavController, NavParams, ViewController, ToastController, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, ToastController, AlertController, ModalController } from 'ionic-angular';
 import { ConsultasProvider } from './../../providers/consultas/consultas';
 
 
@@ -15,6 +14,14 @@ export class ModalDetalhesConsultaPage {
 
   buscarExames: any;
 
+  consulta = {
+    data: "",
+    medico: "",
+    local: "",
+    anamnese: "",
+    sintomas: ""
+  }
+
   private exames: Array<{
     data: string,
     clinica: string,
@@ -23,30 +30,19 @@ export class ModalDetalhesConsultaPage {
     uidConsulta: string
   }>;
 
-  private consultaForm: FormGroup;
-
   constructor(
     public alertCtrl: AlertController,
     public navCtrl: NavController,
+    public modalCtrl: ModalController,
     public navParams: NavParams,
-    private formBuilder: FormBuilder,
     public viewCtrl: ViewController,
     public toastCtrl: ToastController,
     private consultasProvider: ConsultasProvider,
-    private examesProvide: ExamesProvider) {
-
-    this.consultaForm = this.formBuilder.group({
-      data: ['', Validators.required],
-      medico: ['', Validators.required],
-      local: ['', Validators.required],
-      anamnese: ['', Validators.required],
-      sintomas: ['', Validators.required]
-    });
-
+    private examesProvider: ExamesProvider) {
 
     this.exames = [];
-    
-    this.buscarExames = this.examesProvide.select(this.navParams.get('key')).snapshotChanges().subscribe(actions => {
+
+    this.buscarExames = this.examesProvider.getByUidConsulta(this.navParams.get('key')).snapshotChanges().subscribe(actions => {
       var data = [];
       actions.forEach(action => {
         var consultas = action.payload.val();
@@ -58,18 +54,11 @@ export class ModalDetalhesConsultaPage {
   }
 
   ionViewDidLoad() {
-
-    this.consultaForm.controls['data'].setValue(this.navParams.get('data'));
-    this.consultaForm.controls['medico'].setValue(this.navParams.get('medico'));
-    this.consultaForm.controls['local'].setValue(this.navParams.get('local'));
-    this.consultaForm.controls['anamnese'].setValue(this.navParams.get('anamnese'));
-    this.consultaForm.controls['sintomas'].setValue(this.navParams.get('sintomas'));
-  }
-
-  atualizarConsulta() {
-    this.consultasProvider.update(this.navParams.get('key'), this.consultaForm.value);
-    this.showMessage("Consulta atualizada com sucesso");
-    this.closeModal();
+    this.consulta.data = this.navParams.get('data');
+    this.consulta.medico = this.navParams.get('medico');
+    this.consulta.local = this.navParams.get('local');
+    this.consulta.anamnese = this.navParams.get('anamnese');
+    this.consulta.sintomas = this.navParams.get('sintomas');
   }
 
   deleteConsulta() {
@@ -103,6 +92,24 @@ export class ModalDetalhesConsultaPage {
       ]
     });
     alert.present();
+  }
+
+  addExame() {
+
+    let exameModal = this.modalCtrl.create('ModalExamesPage');
+    exameModal.present();
+
+    exameModal.onDidDismiss(data => {
+
+      if (data != null) {
+        this.exames.push(data);
+      }
+    });
+  }
+
+  detalhesExame(exame) {
+    let modal = this.modalCtrl.create('ModalDetalhesExamePage', exame);
+    modal.present();
   }
 
   showMessage(m) {

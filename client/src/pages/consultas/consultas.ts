@@ -133,6 +133,12 @@ export class ConsultasPage {
     });
   }
 
+  hideButton(): boolean{
+    if(this.parentSegment === "lista"){
+      return true;
+    }
+  }
+
   showMessage(m) {
     let toast = this.toastCtrl.create({
       message: m,

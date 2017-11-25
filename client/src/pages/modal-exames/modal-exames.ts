@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { IonicPage, ViewController } from 'ionic-angular';
@@ -11,6 +11,16 @@ import { ToastController } from 'ionic-angular/components/toast/toast-controller
 })
 export class ModalExamesPage {
 
+  @ViewChild('fileInp') fileInput: ElementRef;
+
+  exame = {
+    data: "",
+    clinica: "",
+    tipo: "",
+    anexos: "",
+    uidConsulta: ""
+  };
+
   private exameForm: FormGroup;
 
   constructor(
@@ -21,8 +31,7 @@ export class ModalExamesPage {
     this.exameForm = this.formBuilder.group({
       data: ['', [Validators.required]],
       clinica: ['', [Validators.required, Validators.minLength(3)]],
-      tipo: ['', [Validators.required]],
-      anexos: ['']
+      tipo: ['', [Validators.required]]
     });
   }
 
@@ -30,16 +39,31 @@ export class ModalExamesPage {
 
   adiconarExame() {
 
-    var exame = {
-      data: this.exameForm.value.data,
-      clinica: this.exameForm.value.clinica,
-      tipo: this.exameForm.value.tipo,
-      anexos: this.exameForm.value.anexos,
-      uidConsulta: ''
-    }
+
+    this.exame.data = this.exameForm.value.data;
+    this.exame.clinica = this.exameForm.value.clinica;
+    this.exame.tipo = this.exameForm.value.tipo;
 
     this.showMessage("Exame adiconado.");
-    this.viewCtrl.dismiss(exame);
+    this.viewCtrl.dismiss(this.exame);
+  }
+
+  uploadFoto(event) {
+    this.readThis(event.target);
+  }
+
+  readThis(inputValue: any) {
+    var file: File = inputValue.files[0];
+    var myReader: FileReader = new FileReader();
+
+    myReader.onloadend = (e) => {
+      this.exame.anexos = myReader.result;
+    }
+    myReader.readAsDataURL(file);
+  }
+
+  clickUploadFoto() {
+    this.fileInput.nativeElement.click();
   }
 
   closeModal() {

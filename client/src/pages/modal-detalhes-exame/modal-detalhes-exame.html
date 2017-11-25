@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Detalhes Exame</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="closeModal()">Fechar</button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card>
+    <ion-card-content>
+      <div>
+        <ion-list>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-md-6 col-12>
+                <ion-list>
+                  <ion-item>
+                    <ion-label floating>Data</ion-label>
+                    <ion-input type="text" [disabled]="true" [(ngModel)]="exame.data"></ion-input>
+                  </ion-item>
+
+                  <ion-item>
+                    <ion-label floating>Clínica</ion-label>
+                    <ion-input type="text" [disabled]="true" [(ngModel)]="exame.clinica"></ion-input>
+                  </ion-item>
+
+                  <ion-item>
+                    <ion-label floating>Tipo</ion-label>
+                    <ion-input type="text" [disabled]="true" [(ngModel)]="exame.tipo"></ion-input>
+                  </ion-item>
+
+                </ion-list>
+              </ion-col>
+
+              <ion-col col-md-6 col-12>
+                <ion-list>
+
+                  <ion-card>
+                    <ion-card-header text-center>
+                      Imagem
+                    </ion-card-header>
+                    <ion-card-content>
+
+                      <img src="{{exame.anexos}}" class="profile" padding>
+                      <input type="file" (change)="uploadFoto($event)" id="file-input" style="opacity: 0" #fileInp accept="image/x-png,image/jpeg">
+
+                    </ion-card-content>
+                  </ion-card>
+
+                </ion-list>
+              </ion-col>
+
+            </ion-row>
+          </ion-grid>
+        </ion-list>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

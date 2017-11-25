@@ -10,6 +10,21 @@
 <ion-content>
   <ion-card>
     <ion-card-content>
+
+      <img src="{{exame.anexos}}" class="profile" padding>
+      <input type="file" (change)="uploadFoto($event)" id="file-input" style="opacity: 0" #fileInp accept="image/x-png,image/jpeg">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-md-5>
+          </ion-col>
+          <ion-col col-md-2 col-12>
+            <button ion-button full color="primary" round (click)="clickUploadFoto()">Upload</button>
+          </ion-col>
+          <ion-col col-md-5>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
       <div>
         <ion-list>
           <form [formGroup]="exameForm" (ngSubmit)="adiconarExame()" id="exameForm">
@@ -32,14 +47,10 @@
                     <ion-item>
                       <ion-label floating>Tipo</ion-label>
                       <ion-select formControlName="tipo">
-                        <ion-option value="laboratoriais">Laboratoriais</ion-option>
-                        <ion-option value="radiologicos">Radiológicos</ion-option>
+                        <ion-option value="Laboratoriais">Laboratoriais</ion-option>
+                        <ion-option value="Radiológicos">Radiológicos</ion-option>
+                        <ion-option value="Outros">Outros</ion-option>
                       </ion-select>
-                    </ion-item>
-
-                    <ion-item>
-                      <ion-label floating>Anexos</ion-label>
-                      <ion-input type="text" formControlName="anexos"></ion-input>
                     </ion-item>
 
                   </ion-list>

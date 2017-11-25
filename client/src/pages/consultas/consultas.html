@@ -69,12 +69,6 @@
                             <ion-input type="text" formControlName="local"></ion-input>
                           </ion-item>
 
-                        </ion-list>
-                      </ion-col>
-
-                      <ion-col col-md-6 col-12>
-                        <ion-list>
-
                           <ion-item>
                             <ion-label floating>Anamnese</ion-label>
                             <ion-input type="text" formControlName="anamnese"></ion-input>
@@ -84,6 +78,12 @@
                             <ion-label floating>Sintomas</ion-label>
                             <ion-input type="text" formControlName="sintomas"></ion-input>
                           </ion-item>
+
+                        </ion-list>
+                      </ion-col>
+
+                      <ion-col col-md-6 col-12>
+                        <ion-list>
 
                           <ion-card>
                             <ion-card-header text-center>
@@ -111,11 +111,19 @@
 
                 </form>
 
-                <ion-row>
-                  <ion-col col-md-3 col-12>
-                    <button ion-button small color="default" round (click)="addExame()">Add</button>
-                  </ion-col>
-                </ion-row>
+                <ion-grid>
+                  <ion-row>
+                    <ion-col col-md-3>
+                    </ion-col>
+                    <ion-col col-md-3>
+                    </ion-col>
+                    <ion-col col-md-3>
+                    </ion-col>
+                    <ion-col col-md-3 col-12>
+                      <button ion-button full color="default" round (click)="addExame()">Add exame</button>
+                    </ion-col>
+                  </ion-row>
+                </ion-grid>
 
               </ion-list>
             </div>
@@ -132,7 +140,7 @@
             <ion-col col-md-3>
             </ion-col>
             <ion-col col-md-3 col-12>
-              <button ion-button full color="success" round type="submit" [disabled]="!consultasForm.valid" form="consultasForm">Salvar</button>
+              <button ion-button full color="success" round type="submit" [hidden]="hideButton()" [disabled]="!consultasForm.valid" form="consultasForm">Salvar</button>
             </ion-col>
           </ion-row>
         </ion-grid>

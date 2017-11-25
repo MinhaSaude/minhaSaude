@@ -13,71 +13,66 @@
     <ion-card-content>
       <div>
         <ion-list>
-          <form [formGroup]="consultaForm" (ngSubmit)="atualizarConsulta()" id="atualizarConsulta">
-            <ion-grid>
-              <ion-row>
-                <ion-col col-md-6 col-12>
-                  <ion-list>
 
-                    <ion-item>
-                      <ion-label floating>Data</ion-label>
-                      <ion-datetime formControlName="data" displayFormat="DD/MM/YYYY" pickerFormat="MMM DD YYYY" monthShortNames='Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro'
-                        doneText="Ok" cancelText="Cancelar"></ion-datetime>
-                    </ion-item>
+          <ion-grid>
+            <ion-row>
+              <ion-col col-md-6 col-12>
+                <ion-list>
+                  <ion-item>
+                    <ion-label floating>Data</ion-label>
+                    <ion-input type="text" [disabled]="true" [(ngModel)]="consulta.data"></ion-input>
+                  </ion-item>
 
-                    <ion-item>
-                      <ion-label floating>Medico</ion-label>
-                      <ion-input type="text" formControlName="medico"></ion-input>
-                    </ion-item>
+                  <ion-item>
+                    <ion-label floating>Médico</ion-label>
+                    <ion-input type="text" [disabled]="true" [(ngModel)]="consulta.medico"></ion-input>
+                  </ion-item>
 
-                    <ion-item>
-                      <ion-label floating>Local</ion-label>
-                      <ion-input type="text" formControlName="local"></ion-input>
-                    </ion-item>
+                  <ion-item>
+                    <ion-label floating>Local</ion-label>
+                    <ion-input type="text" [disabled]="true" [(ngModel)]="consulta.local"></ion-input>
+                  </ion-item>
 
-                  </ion-list>
-                </ion-col>
+                  <ion-item>
+                    <ion-label floating>Anamnese</ion-label>
+                    <ion-input type="text" [disabled]="true" [(ngModel)]="consulta.anamnese"></ion-input>
+                  </ion-item>
 
-                <ion-col col-md-6 col-12>
-                  <ion-list>
+                  <ion-item>
+                    <ion-label floating>Sintomas</ion-label>
+                    <ion-input type="text" [disabled]="true" [(ngModel)]="consulta.sintomas"></ion-input>
+                  </ion-item>
+                </ion-list>
+              </ion-col>
 
-                    <ion-item>
-                      <ion-label floating>Anamnese</ion-label>
-                      <ion-input type="text" formControlName="anamnese"></ion-input>
-                    </ion-item>
+              <ion-col col-md-6 col-12>
+                <ion-list>
 
-                    <ion-item>
-                      <ion-label floating>Sintomas</ion-label>
-                      <ion-input type="text" formControlName="sintomas"></ion-input>
-                    </ion-item>
+                  <ion-card>
+                    <ion-card-header text-center>
+                      Exames
+                    </ion-card-header>
+                    <ion-card-content>
 
-                    <ion-card>
-                      <ion-card-header text-center>
-                        Exames
-                      </ion-card-header>
-                      <ion-card-content>
+                      <ion-list>
+                        <ion-item *ngFor="let e of exames;">
+                          <button color="default" item-end ion-button (click)="detalhesExame(e)">
+                            <ion-icon name="ios-play-outline"></ion-icon>
+                          </button>
+                          <p>Data: {{ e.data }}</p>
+                          <p>Clínica: {{ e.clinica }}</p>
+                          <p>Tipo: {{e.tipo}}</p>
+                        </ion-item>
+                      </ion-list>
 
-                        <ion-list>
-                          <ion-item *ngFor="let e of exames;">
-                            <button color="default" item-end ion-button (click)="detalhesExame(e)">
-                              <ion-icon name="ios-play-outline"></ion-icon>
-                            </button>
-                            <p>Data: {{ e.data }}</p>
-                            <p>Clínica: {{ e.clinica }}</p>
-                            <p>Tipo: {{e.tipo}}</p>
-                          </ion-item>
-                        </ion-list>
+                    </ion-card-content>
+                  </ion-card>
 
-                      </ion-card-content>
-                    </ion-card>
+                </ion-list>
+              </ion-col>
 
-                  </ion-list>
-
-                </ion-col>
-
-              </ion-row>
-            </ion-grid>
-          </form>
+            </ion-row>
+          </ion-grid>
         </ion-list>
       </div>
     </ion-card-content>
@@ -86,14 +81,13 @@
   <ion-grid>
     <ion-row>
       <ion-col col-md-3>
+      </ion-col>
+      <ion-col col-md-3>
+      </ion-col>
+      <ion-col col-md-3>
+      </ion-col>
+      <ion-col col-md-3>
         <button ion-button color="danger" round (click)="confirmarExclusao()">Excluir</button>
-      </ion-col>
-      <ion-col col-md-3>
-      </ion-col>
-      <ion-col col-md-3>
-      </ion-col>
-      <ion-col col-md-3>
-        <button ion-button color="success" round type="submit" [disabled]="!consultaForm.valid" form="atualizarConsulta">Atualizar</button>
       </ion-col>
     </ion-row>
   </ion-grid>

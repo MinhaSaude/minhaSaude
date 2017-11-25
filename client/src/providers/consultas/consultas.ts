@@ -6,6 +6,8 @@ import { AngularFireDatabase } from 'angularfire2/database';
 @Injectable()
 export class ConsultasProvider {
 
+  retorno: any;
+
   constructor(
     public http: Http,
     private afDB: AngularFireDatabase) { }
@@ -19,17 +21,23 @@ export class ConsultasProvider {
     return itemRef.push(consulta);
   }
 
-  update(uid: string, consulta) {
-    const itemRef = this.afDB.object('consultas/' + uid);
+  update(consulta) {
+    const itemRef = this.afDB.object('consultas/' + consulta.uid);
     itemRef.update(consulta);
   }
 
   delete(uid) {
 
-    console.log("id consulta: "+uid);
+    this.afDB.list('exames/', ref => ref.orderByChild('uidConsulta').equalTo(uid)).snapshotChanges().subscribe(actions => {
+      var data = [];
+      actions.forEach(action => {
+        var exame = action.payload.val();
+        exame.key = action.key;
 
-    const examesRef = this.afDB.list('exames/', ref => ref.orderByChild('uidConsulta').equalTo(uid));
-    examesRef.remove();
+        this.afDB.list('exames/').remove(exame.key);
+
+      });
+    });
 
     const itemRef = this.afDB.list('consultas/' + uid);
     itemRef.remove();

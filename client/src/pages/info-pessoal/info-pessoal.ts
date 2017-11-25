@@ -16,6 +16,7 @@ altura, peso, convênio, estado civil, endereço, e-mail, telefone, profissão, 
   templateUrl: 'info-pessoal.html',
 })
 export class InfoPessoalPage {
+
   @ViewChild('fileInp') fileInput: ElementRef;
   displayName: string;
   page: any;

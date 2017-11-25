@@ -3,12 +3,6 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { AngularFireDatabase } from 'angularfire2/database';
 
-/*
-  Generated class for the ExamesProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 
 @Injectable()
 export class ExamesProvider {
@@ -19,13 +13,25 @@ export class ExamesProvider {
     console.log('Hello ExamesProvider Provider');
   }
 
-  select(uidConsulta) {
+  select(uid) {
+    return this.afDB.list('exames/' + uid);
+  }
+
+  getByUidConsulta(uidConsulta) {
     return this.afDB.list('exames/', ref => ref.orderByChild('uidConsulta').equalTo(uidConsulta));
   }
 
   save(exame) {
     const itemRef = this.afDB.list('exames/');
     itemRef.push(exame);
+  }
+
+  update(uidConsulta, exames){
+    const examesRef = this.afDB.list('exames/', ref => ref.orderByChild('uidConsulta').equalTo(uidConsulta));
+    examesRef.remove();
+
+    const itemRef = this.afDB.list('exames/');
+    itemRef.push(exames);
   }
 
   delete(key) {
