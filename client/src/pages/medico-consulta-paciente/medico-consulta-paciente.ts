@@ -26,12 +26,11 @@ export class MedicoConsultaPacientePage {
   buscaPaciente(){
     let cpf = this.buscarPacienteForm.value.CPF;
 
-    this.pacientes.selectByCPF(cpf).snapshotChanges().subscribe(actions => {
+    let buscaPaciente = this.pacientes.selectByCPF(cpf).snapshotChanges().subscribe(actions => {
         if(actions.length > 0){
           actions.forEach(action => {
             var dadosUsuario = action.payload.val();
             
-            //this.showMessage("CPF existe na base de dados.");
             this.navCtrl.push('InfoPessoalPage', {
               user: dadosUsuario,
               paginaMedicoConsultaPaciente: true
@@ -40,7 +39,7 @@ export class MedicoConsultaPacientePage {
         } else {
           this.showMessage("CPF não existe na base de dados.");
         }
-        this.pacientes.unsubscribe();
+        buscaPaciente.unsubscribe();
     });
   }
 
