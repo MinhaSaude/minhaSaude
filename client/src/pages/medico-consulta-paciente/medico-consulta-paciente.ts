@@ -40,6 +40,7 @@ export class MedicoConsultaPacientePage {
         } else {
           this.showMessage("CPF não existe na base de dados.");
         }
+        this.pacientes.unsubscribe();
     });
   }
 
