@@ -8,20 +8,15 @@
     </ion-title>
   </ion-navbar>
 </ion-header>
-
-
 <ion-content>
-
   <ion-grid>
     <ion-row offset-md-3>
       <ion-col col-md-8>
-
         <ion-card>
           <ion-card-header>
             <h2 text-justify>Informações Pessoais</h2>
           </ion-card-header>
           <ion-card-content>
-
             <img src="{{user.foto}}" class="profile" padding>
             <input type="file" (change)="uploadFoto($event)" id="file-input" style="opacity: 0" #fileInp accept="image/x-png,image/jpeg">
             <ion-grid>
@@ -37,8 +32,6 @@
             </ion-grid>
 
             <form [formGroup]="pacienteForm" (ngSubmit)="salvarPaciente(user)" id="salvarPaciente">
-
-
               <ion-grid>
                 <ion-row>
                   <ion-col>
@@ -245,7 +238,7 @@
             <ion-col col-md-3>
             </ion-col>
             <ion-col col-md-3>
-                <button ion-button full type="submit" color="primary" round (click)="proxPagina()">Próxima</button>
+                <button ion-button full type="submit" color="primary" round (click)="proxPagina()">Parentes (2/6)</button>
             </ion-col>
             <ion-col col-md-3 col-12>
               <button ion-button full type="submit" color="success" round form="salvarPaciente" [disabled]="!pacienteForm.valid">Salvar</button>
@@ -253,7 +246,7 @@
           </ion-row>
         </ion-grid>
       </ion-col>
-
     </ion-row>
   </ion-grid>
 </ion-content>
+

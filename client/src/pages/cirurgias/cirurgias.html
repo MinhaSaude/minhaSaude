@@ -9,18 +9,14 @@
   </ion-navbar>
 </ion-header>
 
-
-
 <ion-content>
   <ion-grid>
     <ion-row offset-md-3>
       <ion-col col-md-8>
-
         <ion-card>
           <ion-card-header>
             <h2 text-justify>Cirurgias Realizadas</h2>
           </ion-card-header>
-
           <ion-card-content>
             <div padding>
               <ion-segment [(ngModel)]="cirurgiaSegment">
@@ -79,12 +75,8 @@
                 </form>
               </ion-list>
             </div>
-
-
-
           </ion-card-content>
         </ion-card>
-
 
         <ion-grid>
           <ion-row>
@@ -93,7 +85,7 @@
             <ion-col col-md-3>
             </ion-col>
             <ion-col col-md-3>
-                <button ion-button full type="submit" color="secondary" round (click)="anterior()" *ngIf="!checkStatus">Anterior</button>
+                <button ion-button full type="submit" color="secondary" round (click)="anterior()" *ngIf="!checkStatus">Doenças Crônicas (5/6)</button>
             </ion-col>
             <ion-col col-md-3 col-12>
               <button ion-button full color="success" round type="submit" form="cirurgiasForm" [disabled]="!cirurgiasForm.valid">Salvar</button>
