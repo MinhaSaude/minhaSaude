@@ -15,16 +15,17 @@ export class MedicosProvider {
   constructor(
     public http: Http,
     private afDB: AngularFireDatabase) {
-    console.log('Hello MedicosProvider Provider');
+
   }
 
   select(uid) {
     return this.afDB.object('medicos/' + uid);
   }
 
-  update(medico){
+  update(medico) {
+    //console.log(medico);
     const itemRef = this.afDB.object('medicos/' + medico.uid);
-    delete medico.uid;
+    //delete medico.uid;
     itemRef.update(medico);
   }
 
