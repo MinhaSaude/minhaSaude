@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { GlobalProvider } from '../../providers/global/global';
 import { MedUsoContinuoProvider } from '../../providers/med-uso-continuo/med-uso-continuo';
 

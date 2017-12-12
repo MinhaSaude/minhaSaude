@@ -29,7 +29,6 @@ export class ConsultasProvider {
   delete(uid) {
 
     this.afDB.list('exames/', ref => ref.orderByChild('uidConsulta').equalTo(uid)).snapshotChanges().subscribe(actions => {
-      var data = [];
       actions.forEach(action => {
         var exame = action.payload.val();
         exame.key = action.key;

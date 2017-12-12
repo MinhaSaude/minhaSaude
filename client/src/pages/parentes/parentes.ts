@@ -4,7 +4,6 @@ import { IonicPage, NavController, NavParams, AlertController, ToastController }
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PacientesProvider } from './../../providers/pacientes/pacientes';
 import { ParentesProvider } from '../../providers/parentes/parentes';
-import { Platform } from 'ionic-angular/platform/platform';
 
 /**
   Aba de parentes (lista): (nome parente e 
