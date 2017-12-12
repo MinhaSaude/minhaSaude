@@ -68,7 +68,12 @@ export class InfoPessoalMedicoPage {
       if (user) {
         this.user.uid = user.uid;
         this.user.nome = user.displayName;
-        this.user.foto = user.photoURL;
+        
+        if (user.photoURL == undefined  || user.photoURL == null) {
+          this.user.foto = "../assets/images/profile.jpg";
+        } else {
+          this.user.foto = user.photoURL;
+        } 
         this.user.email = user.email;
         this.user.telefoneResidencial = user.telefoneResidencial;
         this.user.telefoneCelular = user.telefoneCelular;
@@ -80,11 +85,10 @@ export class InfoPessoalMedicoPage {
         this.user.complemento = user.complemento;
         this.user.estado = user.estado;
         this.user.dataNascimento = user.dataNascimento;
-        
+
         let buscarMedico = this.medico.select(user.uid).snapshotChanges().subscribe(action => {
           var dadosDoUsuario = action.payload.val();
           if (dadosDoUsuario) {
-           // this.user.uid = user.uid;
             this.user = action.payload.val();
             this.user.uid = user.uid;
 
@@ -101,7 +105,7 @@ export class InfoPessoalMedicoPage {
   }
 
   salvarMedico(user) {
-    
+
     this.medico.update(user);
     this.showMessage("Dados atualizados com sucesso!");
   }

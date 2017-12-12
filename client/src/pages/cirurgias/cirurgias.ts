@@ -119,6 +119,8 @@ export class CirurgiasPage {
     this.cirurgiasPv.delete(cirurgias[i].key);
   }
 
+  
+
   anterior(){
     this.navCtrl.pop();
   }

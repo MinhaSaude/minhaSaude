@@ -26,6 +26,7 @@ import { AlergiasProvider } from '../providers/alergias/alergias';
 import { MedUsoContinuoProvider } from '../providers/med-uso-continuo/med-uso-continuo';
 import { CirurgiasProvider } from '../providers/cirurgias/cirurgias';
 import { ExamesProvider } from '../providers/exames/exames';
+import { BuscarMedicoProvider } from '../providers/buscar-medico/buscar-medico';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { ExamesProvider } from '../providers/exames/exames';
     MedUsoContinuoProvider,
     CirurgiasProvider,
     ConsultasProvider,
-    ExamesProvider
+    ExamesProvider,
+    BuscarMedicoProvider
   ]
 })
 export class AppModule { }

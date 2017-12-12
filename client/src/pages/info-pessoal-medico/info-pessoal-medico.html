@@ -11,73 +11,125 @@
 
 
 <ion-content>
-  
-    <ion-grid>
-      <ion-row offset-md-3>
-        <ion-col col-md-8>
-  
-          <ion-card>
-            <ion-card-header>
-              <h2 text-justify>Informações Pessoais</h2>
-            </ion-card-header>
-            <ion-card-content>
-  
-              <img src="{{user.foto}}" class="profile" padding>
-              <input type="file" (change)="uploadFoto($event)" id="file-input" style="opacity: 0" #fileInp accept="image/x-png,image/jpeg">
+
+  <ion-grid>
+    <ion-row offset-md-3>
+      <ion-col col-md-8>
+
+        <ion-card>
+          <ion-card-header>
+            <h2 text-justify>Informações Pessoais</h2>
+          </ion-card-header>
+          <ion-card-content>
+
+            <img src="{{user.foto}}" class="profile" padding>
+            <input type="file" (change)="uploadFoto($event)" id="file-input" style="opacity: 0" #fileInp accept="image/x-png,image/jpeg">
+            <ion-grid>
+              <ion-row>
+                <ion-col col-md-5>
+                </ion-col>
+                <ion-col col-md-2 col-12>
+                  <button ion-button full color="primary" round (click)="clickUploadFoto()">Upload</button>
+                </ion-col>
+                <ion-col col-md-5>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+            <form [formGroup]="medicoForm" (ngSubmit)="salvarMedico(user)" id="salvarMedico">
+
+
+
               <ion-grid>
                 <ion-row>
-                  <ion-col col-md-5>
+                  <ion-col>
+                    <ion-list>
+
+                      <ion-item>
+                        <ion-label floating>Nome</ion-label>
+                        <ion-input type="text" formControlName="nome" [(ngModel)]="user.nome"></ion-input>
+                      </ion-item>
+
+                      <ion-item>
+                        <ion-label floating>CPF</ion-label>
+                        <ion-input type="text" formControlName="cpfCnpj" [(ngModel)]="user.cpfCnpj"></ion-input>
+                      </ion-item>
+
+
+                      <ion-item>
+                        <ion-label floating>Especialidade</ion-label>
+                        <ion-select formControlName="especialidade" [(ngModel)]="user.especialidade">
+                          <ion-option value="anestologia">Anestologia</ion-option>
+                          <ion-option value="cardiologia">Cardiologia</ion-option>
+                          <ion-option value="cirurgiaCardiaca">Cirurgia Cardiaca</ion-option>
+                          <ion-option value="cirurgiaGeral">Cirurgia Geral</ion-option>
+                          <ion-option value="cirurgiaPlastica">Cirurgia Plastica</ion-option>
+                          <ion-option value="clinicaGeral">Clinica Geral</ion-option>
+                          <ion-option value="clinicaMedica">Clinica Medica</ion-option>
+                          <ion-option value="dermatologia">Dermatologia</ion-option>
+                          <ion-option value="ecocardiografia">Ecocardiografia</ion-option>
+                          <ion-option value="eletrofisiologia">Eletrofisiologia</ion-option>
+                          <ion-option value="endocrionologia">Endocrinologia</ion-option>
+                          <ion-option value="fonoaudiologia">Fonoaudiologia</ion-option>
+                          <ion-option value="gastroenterologia">Gastroenterologia</ion-option>
+                          <ion-option value="ginecologia">Ginecologia</ion-option>
+                          <ion-option value="hemodinamica">Hemodinâmica</ion-option>
+                          <ion-option value="infectologia">Infectologia</ion-option>
+                          <ion-option value="internista">Internista</ion-option>
+                          <ion-option value="neurocirurgia">Neurocirurgia</ion-option>
+                          <ion-option value="neurologia">Neurologia</ion-option>
+                          <ion-option value="oncologia">Oncologia</ion-option>
+                          <ion-option value="ortopediaTraumatologia">Ortopedia e Traumatologia</ion-option>
+                          <ion-option value="otorrinolaringologia">Otorrinolaringologia</ion-option>
+                          <ion-option value="pediatria">Pediatria</ion-option>
+                          <ion-option value="terapiaIntensiva">Terapia Intensiva</ion-option>
+                          <ion-option value="urologia">Urologia</ion-option>
+                        </ion-select>
+                      </ion-item>
+
+                      <ion-item>
+                        <ion-label floating>Data Nascimento</ion-label>
+                        <ion-datetime [(ngModel)]="user.dataNascimento" formControlName="dataNascimento" displayFormat="DD/MM/YYYY" pickerFormat="MMM DD YYYY"
+                          monthShortNames='Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro'
+                          doneText="Ok" cancelText="Cancelar"></ion-datetime>
+                      </ion-item>
+
+
+                      <ion-item>
+                        <ion-label floating>Telefone Residencial</ion-label>
+                        <ion-input type="text" formControlName="telefoneResidencial" [(ngModel)]="user.telefoneResidencial"></ion-input>
+                      </ion-item>
+
+                      <ion-item>
+                        <ion-label floating>Telefone Celular</ion-label>
+                        <ion-input type="text" formControlName="telefoneCelular" [(ngModel)]="user.telefoneCelular"></ion-input>
+                      </ion-item>
+
+                      <ion-item>
+                        <ion-label floating>E-mail</ion-label>
+                        <ion-input type="text" formControlName="email" [(ngModel)]="user.email"></ion-input>
+                      </ion-item>
+
+
+                     
+
+
+
+
+
+                    </ion-list>
+
                   </ion-col>
-                  <ion-col col-md-2 col-12>
-                    <button ion-button full color="primary" round (click)="clickUploadFoto()">Upload</button>
-                  </ion-col>
-                  <ion-col col-md-5>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
-  
-              <form [formGroup]="medicoForm" (ngSubmit)="salvarMedico(user)" id="salvarMedico">
-                
-  
-  
-                <ion-grid>
-                  <ion-row>
-                    <ion-col>
-                      <ion-list>
-  
-                        <ion-item>
-                          <ion-label floating>Nome</ion-label>
-                          <ion-input type="text" formControlName="nome" [(ngModel)]="user.nome"></ion-input>
-                        </ion-item>
-  
-                        <ion-item>
-                          <ion-label floating>CPF</ion-label>
-                          <ion-input type="text" formControlName="cpfCnpj" [(ngModel)]="user.cpfCnpj"></ion-input>
-                        </ion-item>
-  
-  
-                        <ion-item>
-                          <ion-label floating>Telefone Residencial</ion-label>
-                          <ion-input type="text" formControlName="telefoneResidencial" [(ngModel)]="user.telefoneResidencial"></ion-input>
-                        </ion-item>
-  
-                        <ion-item>
-                          <ion-label floating>Telefone Celular</ion-label>
-                          <ion-input type="text" formControlName="telefoneCelular" [(ngModel)]="user.telefoneCelular"></ion-input>
-                        </ion-item>
-  
-                        <ion-item>
-                          <ion-label floating>E-mail</ion-label>
-                          <ion-input type="text" formControlName="email" [(ngModel)]="user.email"></ion-input>
-                        </ion-item>
-  
-                        <ion-item>
-                          <ion-label floating>Cep</ion-label>
-                          <ion-input type="text" formControlName="cep" [(ngModel)]="user.cep"></ion-input>
-                        </ion-item>
-  
-  
-                        <ion-item>
+
+                  <ion-col>
+                    <ion-list>
+
+                      <ion-item>
+                        <ion-label floating>Cep</ion-label>
+                        <ion-input type="text" formControlName="cep" [(ngModel)]="user.cep"></ion-input>
+                      </ion-item>
+
+                      <ion-item>
                           <ion-label floating>Estados</ion-label>
                           <ion-select [(ngModel)]="user.estado" formControlName="estado">
                             <ion-option value="AC">Acre</ion-option>
@@ -109,83 +161,67 @@
                             <ion-option value="TO">Tocantins</ion-option>
                           </ion-select>
                         </ion-item>
-  
-  
-                        <ion-item>
-                          <ion-label floating>Cidade</ion-label>
-                          <ion-input type="text" formControlName="cidade" [(ngModel)]="user.cidade"></ion-input>
-                        </ion-item>
-  
-                        <ion-item>
-                          <ion-label floating>Bairro</ion-label>
-                          <ion-input type="text" formControlName="bairro" [(ngModel)]="user.bairro"></ion-input>
-                        </ion-item>
-  
-  
-                        <ion-item>
-                          <ion-label floating>Logradouro</ion-label>
-                          <ion-input type="text" formControlName="logradouro" [(ngModel)]="user.logradouro"></ion-input>
-                        </ion-item>
-  
-  
-                        <ion-item>
-                          <ion-label floating>Complemento</ion-label>
-                          <ion-input type="text" formControlName="complemento" [(ngModel)]="user.complemento"></ion-input>
-                        </ion-item>
-  
-  
-                      </ion-list>
-  
-                    </ion-col>
-  
-                    <ion-col>
-                      <ion-list>
-                        
-                        <ion-item>
-                          <ion-label floating>Data Nascimento</ion-label>
-                          <ion-datetime [(ngModel)]="user.dataNascimento" formControlName="dataNascimento" displayFormat="DD/MM/YYYY" pickerFormat="MMM DD YYYY"
-                            monthShortNames='Janeiro, Fevereiro, Março, Abril, Maio, Junho, Julho, Agosto, Setembro, Outubro, Novembro, Dezembro'
-                            doneText="Ok" cancelText="Cancelar"></ion-datetime>
-                        </ion-item>
-  
-                        <ion-item>
-                          <ion-label floating>Especialidade</ion-label>
-                          <ion-input type="text" formControlName="especialidade" [(ngModel)]="user.especialidade"></ion-input>
-                        </ion-item>
 
-                      </ion-list>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-              </form>
-            </ion-card-content>
-          </ion-card>
-  
-          <ion-card *ngIf="!medicoForm.valid" class="error">
-            <ion-card-content>
-              <div *ngFor="let validation of validationMessages.cpfCnpj">
-                <div class="error-message" *ngIf="(medicoForm.get('cpfCnpj').hasError(validation.type) || medicoForm.get('cpfCnpj').hasError('minlength') && medicoForm.get('cpfCnpj').touched)">
-                  <p color="success">{{validation.message}}</p>
-                </div>
+
+                      <ion-item>
+                        <ion-label floating>Cidade</ion-label>
+                        <ion-input type="text" formControlName="cidade" [(ngModel)]="user.cidade"></ion-input>
+                      </ion-item>
+
+                      <ion-item>
+                        <ion-label floating>Bairro</ion-label>
+                        <ion-input type="text" formControlName="bairro" [(ngModel)]="user.bairro"></ion-input>
+                      </ion-item>
+
+
+                      <ion-item>
+                        <ion-label floating>Logradouro</ion-label>
+                        <ion-input type="text" formControlName="logradouro" [(ngModel)]="user.logradouro"></ion-input>
+                      </ion-item>
+
+
+                      <ion-item>
+                        <ion-label floating>Complemento</ion-label>
+                        <ion-input type="text" formControlName="complemento" [(ngModel)]="user.complemento"></ion-input>
+                      </ion-item>
+
+
+
+                    </ion-list>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </form>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card *ngIf="!medicoForm.valid" class="error">
+          <ion-card-content>
+            <div *ngFor="let validation of validationMessages.cpfCnpj">
+              <div class="error-message" *ngIf="(medicoForm.get('cpfCnpj').hasError(validation.type) || medicoForm.get('cpfCnpj').hasError('minlength') && medicoForm.get('cpfCnpj').touched)">
+                <p color="success">{{validation.message}}</p>
               </div>
-              
-              
-            </ion-card-content>
-          </ion-card>
-  
-          <ion-grid>
-            <ion-row>
-              <ion-col col-md-3>
-              </ion-col>
-              <ion-col col-md-3>
-              </ion-col>             
-              <ion-col col-md-3 col-12>
-                <button ion-button full type="submit" color="success" round form="salvarMedico" [disabled]="!medicoForm.valid">Salvar</button>
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-col>
-  
-      </ion-row>
-    </ion-grid>
-  </ion-content>
+            </div>
+
+
+          </ion-card-content>
+        </ion-card>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col col-md-3>
+            </ion-col>
+            <ion-col col-md-3>
+            </ion-col>
+            <ion-col col-md-3>
+            </ion-col>
+            <ion-col col-md-3 col-12>
+              <button ion-button full type="submit" color="success" round form="salvarMedico" [disabled]="!medicoForm.valid">Salvar</button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+</ion-content>

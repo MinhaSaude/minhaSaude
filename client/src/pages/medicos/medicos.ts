@@ -12,7 +12,6 @@ export class MedicosPage {
 
   private buscarMedicoForm: FormGroup;
   private buscarMedicoSegment: string;
-  private uid: String;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -23,8 +22,8 @@ export class MedicosPage {
            this.buscarMedicoSegment= 'lista';
        
           this.buscarMedicoForm = this.FormBuilder.group({
-            especialidades: [''],
-            estados:['']           
+            especialidades: ['',Validators.required],
+            estados:['',Validators.required]           
           });
         
 

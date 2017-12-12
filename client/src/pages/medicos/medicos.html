@@ -18,93 +18,105 @@
           <ion-card-header>
             <h2 text-justify>Buscar Medico</h2>
           </ion-card-header>
-        <ion-card-content>
+          <ion-card-content>
 
-          <div>
-            <ion-list>
+            <div>
+              <ion-list>
 
-              <form [formGroup]="buscarMedicoForm" id="buscarMedicoForm">
-                <ion-grid>
-                  <ion-row>
-                    <ion-col col-md-6 col-12>
-                      <ion-list>
-                        <ion-item>
-                          <ion-label floating>Estado</ion-label>
-                          <ion-select formControlName="estados">
-                            <ion-option value="AC">Acre</ion-option>
-                            <ion-option value="AL">Alagoas</ion-option>
-                            <ion-option value="AP">Amapá</ion-option>
-                            <ion-option value="AM">Amazonas</ion-option>
-                            <ion-option value="BA">Bahia</ion-option>
-                            <ion-option value="CE">Ceará</ion-option>
-                            <ion-option value="DF">Distrito Federal</ion-option>
-                            <ion-option value="ES">Espírito Santo</ion-option>
-                            <ion-option value="GO">Goiás</ion-option>
-                            <ion-option value="MA">Maranhão</ion-option>
-                            <ion-option value="MT">Mato Grosso</ion-option>
-                            <ion-option value="MS">Mato Grosso do Sul</ion-option>
-                            <ion-option value="MG">Minas Gerais</ion-option>
-                            <ion-option value="PA">Pará</ion-option>
-                            <ion-option value="PB">Paraíba</ion-option>
-                            <ion-option value="PR">Paraná</ion-option>
-                            <ion-option value="PE">Pernambuco</ion-option>
-                            <ion-option value="PI">Piauí</ion-option>
-                            <ion-option value="RJ">Rio de Janeiro</ion-option>
-                            <ion-option value="RN">Rio Grande do Norte</ion-option>
-                            <ion-option value="RS">Rio Grande do Sul</ion-option>
-                            <ion-option value="RO">Rondônia</ion-option>
-                            <ion-option value="SC">Santa Catarina</ion-option>
-                            <ion-option value="RO">Rondônia</ion-option>
-                            <ion-option value="SP">São Paulo</ion-option>
-                            <ion-option value="SE">Sergipe</ion-option>
-                            <ion-option value="TO">Tocantins</ion-option>
-                          </ion-select>
-                        </ion-item>
-                      </ion-list>
-                    </ion-col>
+                <form [formGroup]="buscarMedicoForm" id="buscarMedicoForm">
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col col-md-6 col-12>
+                        <ion-list>
+                          <ion-item>
+                            <ion-label floating>Estado</ion-label>
+                            <ion-select formControlName="estados">
+                              <ion-option value="AC">Acre</ion-option>
+                              <ion-option value="AL">Alagoas</ion-option>
+                              <ion-option value="AP">Amapá</ion-option>
+                              <ion-option value="AM">Amazonas</ion-option>
+                              <ion-option value="BA">Bahia</ion-option>
+                              <ion-option value="CE">Ceará</ion-option>
+                              <ion-option value="DF">Distrito Federal</ion-option>
+                              <ion-option value="ES">Espírito Santo</ion-option>
+                              <ion-option value="GO">Goiás</ion-option>
+                              <ion-option value="MA">Maranhão</ion-option>
+                              <ion-option value="MT">Mato Grosso</ion-option>
+                              <ion-option value="MS">Mato Grosso do Sul</ion-option>
+                              <ion-option value="MG">Minas Gerais</ion-option>
+                              <ion-option value="PA">Pará</ion-option>
+                              <ion-option value="PB">Paraíba</ion-option>
+                              <ion-option value="PR">Paraná</ion-option>
+                              <ion-option value="PE">Pernambuco</ion-option>
+                              <ion-option value="PI">Piauí</ion-option>
+                              <ion-option value="RJ">Rio de Janeiro</ion-option>
+                              <ion-option value="RN">Rio Grande do Norte</ion-option>
+                              <ion-option value="RS">Rio Grande do Sul</ion-option>
+                              <ion-option value="RO">Rondônia</ion-option>
+                              <ion-option value="SC">Santa Catarina</ion-option>
+                              <ion-option value="RO">Rondônia</ion-option>
+                              <ion-option value="SP">São Paulo</ion-option>
+                              <ion-option value="SE">Sergipe</ion-option>
+                              <ion-option value="TO">Tocantins</ion-option>
+                            </ion-select>
+                          </ion-item>
+                        </ion-list>
+                      </ion-col>
 
-                    <ion-col col-md-6 col-12>
-                      <ion-list>
-                        <ion-item>
-                          <ion-label floating>Especialidade</ion-label>
-                          <ion-select formControlName="especialidades">
-                            <ion-option value="anestologia">Anestologia</ion-option>
-                            <ion-option value="cardiologia">Cardiologia</ion-option>
-                            <ion-option value="cirurgiaCardiaca">Cirurgia Cardiaca</ion-option>
-                            <ion-option value="cirurgiaGeral">Cirurgia Geral</ion-option>
-                            <ion-option value="cirurgiaPlastica">Cirurgia Plastica</ion-option>
-                            <ion-option value="clinicaGeral">Clinica Geral</ion-option>
-                            <ion-option value="clinicaMedica">Clinica Medica</ion-option>
-                            <ion-option value="dermatologia">Dermatologia</ion-option>
-                            <ion-option value="ecocardiografia">Ecocardiografia</ion-option>
-                            <ion-option value="eletrofisiologia">Eletrofisiologia</ion-option>
-                            <ion-option value="endocrionologia">Endocrinologia</ion-option>
-                            <ion-option value="fonoaudiologia">Fonoaudiologia</ion-option>
-                            <ion-option value="gastroenterologia">Gastroenterologia</ion-option>
-                            <ion-option value="ginecologia">Ginecologia</ion-option>
-                            <ion-option value="hemodinamica">Hemodinâmica</ion-option>
-                            <ion-option value="infectologia">Infectologia</ion-option>
-                            <ion-option value="internista">Internista</ion-option>
-                            <ion-option value="neurocirurgia">Neurocirurgia</ion-option>
-                            <ion-option value="neurologia">Neurologia</ion-option>
-                            <ion-option value="oncologia">Oncologia</ion-option>
-                            <ion-option value="ortopediaTraumatologia">Ortopedia e Traumatologia</ion-option>
-                            <ion-option value="otorrinolaringologia">Otorrinolaringologia</ion-option>
-                            <ion-option value="pediatria">Pediatria</ion-option>
-                            <ion-option value="terapiaIntensiva">Terapia Intensiva</ion-option>
-                            <ion-option value="urologia">Urologia</ion-option>
-                          </ion-select>
-                        </ion-item>
-                      </ion-list>
-                    </ion-col>
-                  </ion-row>
-                </ion-grid>
-              </form>
-            </ion-list>
-          </div>
+                      <ion-col col-md-6 col-12>
+                        <ion-list>
+                          <ion-item>
+                            <ion-label floating>Especialidade</ion-label>
+                            <ion-select formControlName="especialidades">
+                              <ion-option value="anestologia">Anestologia</ion-option>
+                              <ion-option value="cardiologia">Cardiologia</ion-option>
+                              <ion-option value="cirurgiaCardiaca">Cirurgia Cardiaca</ion-option>
+                              <ion-option value="cirurgiaGeral">Cirurgia Geral</ion-option>
+                              <ion-option value="cirurgiaPlastica">Cirurgia Plastica</ion-option>
+                              <ion-option value="clinicaGeral">Clinica Geral</ion-option>
+                              <ion-option value="clinicaMedica">Clinica Medica</ion-option>
+                              <ion-option value="dermatologia">Dermatologia</ion-option>
+                              <ion-option value="ecocardiografia">Ecocardiografia</ion-option>
+                              <ion-option value="eletrofisiologia">Eletrofisiologia</ion-option>
+                              <ion-option value="endocrionologia">Endocrinologia</ion-option>
+                              <ion-option value="fonoaudiologia">Fonoaudiologia</ion-option>
+                              <ion-option value="gastroenterologia">Gastroenterologia</ion-option>
+                              <ion-option value="ginecologia">Ginecologia</ion-option>
+                              <ion-option value="hemodinamica">Hemodinâmica</ion-option>
+                              <ion-option value="infectologia">Infectologia</ion-option>
+                              <ion-option value="internista">Internista</ion-option>
+                              <ion-option value="neurocirurgia">Neurocirurgia</ion-option>
+                              <ion-option value="neurologia">Neurologia</ion-option>
+                              <ion-option value="oncologia">Oncologia</ion-option>
+                              <ion-option value="ortopediaTraumatologia">Ortopedia e Traumatologia</ion-option>
+                              <ion-option value="otorrinolaringologia">Otorrinolaringologia</ion-option>
+                              <ion-option value="pediatria">Pediatria</ion-option>
+                              <ion-option value="terapiaIntensiva">Terapia Intensiva</ion-option>
+                              <ion-option value="urologia">Urologia</ion-option>
+                            </ion-select>
+                          </ion-item>
+                        </ion-list>
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </form>
+              </ion-list>
+            </div>
           </ion-card-content>
 
         </ion-card>
+
+
+        <ion-card>
+          <ion-card-content>
+            <ion-item *ngFor="let b of buscarMedico; let i = index; ">
+              
+            </ion-item>
+
+
+          </ion-card-content>
+        </ion-card>
+
 
 
         <ion-grid>
@@ -116,7 +128,8 @@
             <ion-col col-md-3>
             </ion-col>
             <ion-col col-md-3 col-12>
-              <button ion-button full color="success" round type="submit" form="buscarMedicoForm" (click)="aviso()"> Buscar</button>
+              <button ion-button full color="success" round type="submit" form="buscarMedicoForm" [disabled]="!buscarMedicoForm.valid"
+                (click)="aviso()"> Buscar</button>
             </ion-col>
           </ion-row>
         </ion-grid>

@@ -1,15 +1,15 @@
 <ion-header>
-    <ion-navbar>
-      <button ion-button menuToggle icon-only>
-        <ion-icon name='menu'></ion-icon>
-      </button>
-      <ion-title>
-        Minha Saúde
-      </ion-title>
-    </ion-navbar>
-  </ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>
+      Minha Saúde
+    </ion-title>
+  </ion-navbar>
+</ion-header>
 
-  
+
 <ion-content>
   <ion-grid>
     <ion-row offset-md-3>
@@ -17,7 +17,7 @@
 
         <ion-card>
           <ion-card-header>
-           <h2 text-justify>Medicamentos de uso Contínuo</h2> 
+            <h2 text-justify>Medicamentos de uso Contínuo</h2>
           </ion-card-header>
           <ion-card-content>
 
@@ -34,47 +34,37 @@
 
             <div [ngSwitch]="medContSegment">
               <ion-list *ngSwitchCase="'listaMedicamento'">
-                 <ion-item *ngFor="let m of medicamentos; let i = index; ">
+                <ion-item *ngFor="let m of medicamentos; let i = index; ">
                   <button color="danger" item-end ion-button (click)="removeMedicamento(medicamentos, i)">
                     <ion-icon name="trash"></ion-icon>
                   </button>
-               RMS: {{m.rms}} -  Nome:{{ m.nomeComercial }} -  Principio: {{m.principioAtivo}} - Fabricante: {{m.fabricante}}
+                  Nome Comercial:{{ m.nomeComercial }} - Principio: {{m.principioAtivo}}
                 </ion-item>
 
               </ion-list>
 
               <ion-list *ngSwitchCase="'adicionarMedicamento'">
-                <form [formGroup]="medContForm" (ngSubmit)="addMedicamento()" id="medContForm" >
+                <form [formGroup]="medContForm" (ngSubmit)="addMedicamento()" id="medContForm">
                   <ion-grid>
                     <ion-row>
                       <ion-col col-md-6 col-12>
                         <ion-list>
 
                           <ion-item>
-                            <ion-label floating>RMS</ion-label>
-                            <ion-input type="text" formControlName="rms"></ion-input>
-                          </ion-item>
-
-                          <ion-item>
                             <ion-label floating>Nome Comercial</ion-label>
                             <ion-input type="text" formControlName="nomeComercial"></ion-input>
                           </ion-item>
                         </ion-list>
-                        </ion-col>
+                      </ion-col>
 
-                        <ion-col col-md-6 col-12>
-                          <ion-list>
-                          <ion-item>
-                            <ion-label floating>Fabricante</ion-label>
-                            <ion-input type="text" formControlName="fabricante"></ion-input>
-                          </ion-item>
+                      <ion-col col-md-6 col-12>
+                        <ion-list>
 
                           <ion-item>
                             <ion-label floating>Principio Ativo</ion-label>
                             <ion-input type="text" formControlName="principioAtivo"></ion-input>
                           </ion-item>
-
-
+                          
                         </ion-list>
                       </ion-col>
                     </ion-row>
@@ -95,13 +85,13 @@
             <ion-col col-md-3>
             </ion-col>
             <ion-col col-md-3>
-                <button ion-button full type="submit" color="secondary" round (click)="anterior()" *ngIf="!checkStatus">Alergias (4/6) </button>
+              <button ion-button full type="submit" color="secondary" round (click)="anterior()" *ngIf="!checkStatus">Alergias (4/6) </button>
             </ion-col>
             <ion-col col-md-3>
-                <button ion-button full type="submit" color="primary" round (click)="proxPagina()" >Doenças Crônicas (5/6) </button>
+              <button ion-button full type="submit" color="primary" round (click)="proxPagina()">Doenças Crônicas (5/6) </button>
             </ion-col>
             <ion-col col-md-3 col-12>
-              <button ion-button full color="success" round type="submit" form="medContForm" [disabled]="!medContForm.valid" >Salvar</button>
+              <button ion-button full color="success" round type="submit" form="medContForm" [disabled]="!medContForm.valid">Salvar</button>
             </ion-col>
           </ion-row>
         </ion-grid>

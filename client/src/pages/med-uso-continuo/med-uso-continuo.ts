@@ -5,7 +5,7 @@ import { GlobalProvider } from '../../providers/global/global';
 import { MedUsoContinuoProvider } from '../../providers/med-uso-continuo/med-uso-continuo';
 
 /**
-Aba de medicamentos de uso contínuo: (RMS, nome comercial, fabricante, princípio ativo) **/
+Aba de medicamentos de uso contínuo: (nome comercial e princípio ativo) **/
   
 @IonicPage()
 @Component({
@@ -37,11 +37,8 @@ export class MedUsoContinuoPage {
   
     this.medContForm =
     this.formBuilder.group({
-      nomeComercial: ['', Validators.required], 
-      rms: ['', Validators.required],
-      principioAtivo: ['', Validators.required],
-      fabricante: ['', Validators.required]
-
+      nomeComercial: [''], 
+      principioAtivo: ['']
     });
 
     if(typeof this.navParams.get('user') == "undefined"){
@@ -105,8 +102,6 @@ export class MedUsoContinuoPage {
   addMedicamento() {
     var medicamento={
     uid: this.uid,
-    rms: this.medContForm.value.rms,
-    fabricante: this.medContForm.value.fabricante,
     nomeComercial: this.medContForm.value.nomeComercial,
     principioAtivo: this.medContForm.value.principioAtivo
     }
@@ -120,6 +115,10 @@ export class MedUsoContinuoPage {
   removeMedicamento(medicamentos, i){
     this.medicamentosPv.deleteMedicamento(medicamentos[i].key);
    
+  }
+
+  ngOnDestroy(){
+    this.buscaMedicamento.unsubscribe();
   }
 
   anterior() {
