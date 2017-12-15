@@ -22,6 +22,10 @@ export class MedicosProvider {
     return this.afDB.object('medicos/' + uid);
   }
 
+  selectEstadoeEspecialidade(estado) {
+    return this.afDB.list('medicos/', ref => ref.orderByChild('estado').equalTo(estado));
+  }
+
   update(medico) {
     //console.log(medico);
     const itemRef = this.afDB.object('medicos/' + medico.uid);

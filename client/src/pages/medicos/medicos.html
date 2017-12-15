@@ -67,7 +67,7 @@
                         <ion-list>
                           <ion-item>
                             <ion-label floating>Especialidade</ion-label>
-                            <ion-select formControlName="especialidades">
+                            <ion-select formControlName="especialidade">
                               <ion-option value="anestologia">Anestologia</ion-option>
                               <ion-option value="cardiologia">Cardiologia</ion-option>
                               <ion-option value="cirurgiaCardiaca">Cirurgia Cardiaca</ion-option>
@@ -109,10 +109,13 @@
 
         <ion-card>
           <ion-card-content>
-            <ion-item *ngFor="let b of buscarMedico; let i = index; ">
-              
-            </ion-item>
-
+            <ion-list>
+              <ion-item *ngFor="let b of listaMedicos; let i = index; ">
+              <p><b>Nome:</b>  {{b.nome}}</p>
+              <p><b>Telefone:</b> {{b.telefoneCelular || b.telefoneResidencial}}</p>
+              <p><b>Especialidade:</b>  {{b.especialidade}}</p>
+              </ion-item>
+            </ion-list>
 
           </ion-card-content>
         </ion-card>
@@ -129,7 +132,7 @@
             </ion-col>
             <ion-col col-md-3 col-12>
               <button ion-button full color="success" round type="submit" form="buscarMedicoForm" [disabled]="!buscarMedicoForm.valid"
-                (click)="aviso()"> Buscar</button>
+                (click)="buscarMedicos()"> Buscar</button>
             </ion-col>
           </ion-row>
         </ion-grid>

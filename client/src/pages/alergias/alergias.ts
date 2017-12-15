@@ -39,47 +39,48 @@ export class AlergiasPage {
       tipo: ['', Validators.required],
       descricao: ['', Validators.required]
     });
-    if(typeof this.navParams.get("user") == "undefined"){
+    if (typeof this.navParams.get("user") == "undefined") {
       this.global.getCurrentUser().then((user) => {
-        if(user){
+        if (user) {
           this.uid = user.uid;
-          this.buscaAlergia = this.alergiasPv.selectByUID(this.uid).snapshotChanges().subscribe(actions =>{
-          var data = [];
-          actions.forEach(action =>{
-           var items = action.payload.val();
-           items.key = action.key;
-           data.push(items);    
-              });    
-              this.alergias = data; 
- 
+          this.buscaAlergia = this.alergiasPv.selectByUID(this.uid).snapshotChanges().subscribe(actions => {
+            var data = [];
+            actions.forEach(action => {
+              var items = action.payload.val();
+              items.key = action.key;
+              data.push(items);
+            });
+
+            this.alergias = data;
+
           });
-        }else{
-         this.navCtrl.setRoot('HomePage');
+        } else {
+          this.navCtrl.setRoot('HomePage');
         }
- 
-    });
-    }else {
+
+      });
+    } else {
       var user = this.navParams.get("user");
       this.uid = user.uid;
-      this.buscaAlergia = this.alergiasPv.selectByUID(this.uid).snapshotChanges().subscribe(actions =>{
-      var data = [];
-      actions.forEach(action =>{
-       var items = action.payload.val();
-       items.key = action.key;
-       data.push(items);    
-          });    
-          this.alergias = data; 
+      this.buscaAlergia = this.alergiasPv.selectByUID(this.uid).snapshotChanges().subscribe(actions => {
+        var data = [];
+        actions.forEach(action => {
+          var items = action.payload.val();
+          items.key = action.key;
+          data.push(items);
+        });
+        this.alergias = data;
 
       });
     }
-  
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AlergiasPage');
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.buscaAlergia.unsubscribe();
   }
 
@@ -88,25 +89,25 @@ export class AlergiasPage {
   * aplicação terminou completamente de carregar ele retornava que havia uma página anterior.
   * Só funciona no click e é terrível sumir com o botão só quando o usuário clicar.
   */
-  verificaCanGoBack(){
+  verificaCanGoBack() {
     console.log(this.navParams.get("canGoBack"));
-    if(typeof this.navParams.get("canGoBack") == 'undefined'){
+    if (typeof this.navParams.get("canGoBack") == 'undefined') {
       this.checkStatus = true;
     }
   }
 
 
- 
+
   addAlergias() {
     var alergia = {
-     uid: this.uid,
-     tipo: this.alergiasForm.value.tipo,
-     descricao: this.alergiasForm.value.descricao
-      }
+      uid: this.uid,
+      tipo: this.alergiasForm.value.tipo,
+      descricao: this.alergiasForm.value.descricao
+    }
 
-      this.alergiasPv.updateAlergia(alergia);
-      this.alergiasForm.reset();
-      this.showMessage("Registro salvo com sucesso.");
+    this.alergiasPv.updateAlergia(alergia);
+    this.alergiasForm.reset();
+    this.showMessage("Registro salvo com sucesso.");
 
   }
 
@@ -115,25 +116,25 @@ export class AlergiasPage {
     this.alergiasPv.deleteAlergia(alergias[i].key);
   }
 
-  anterior(){
+  anterior() {
     this.navCtrl.pop();
   }
 
-  proxPagina(){
+  proxPagina() {
     this.navCtrl.push('MedUsoContinuoPage', {
       user: this.navParams.get('user'),
       canGoBack: true
     });
   }
 
-  showMessage(m){
-   let toast = this.toastCtrl.create({
-    message: m,
-    showCloseButton: true,
-    closeButtonText: 'Ok',
-    duration: 3000
-  });
-  toast.present();
+  showMessage(m) {
+    let toast = this.toastCtrl.create({
+      message: m,
+      showCloseButton: true,
+      closeButtonText: 'Ok',
+      duration: 3000
+    });
+    toast.present();
 
   }
 
