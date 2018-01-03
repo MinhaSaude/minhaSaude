@@ -6,7 +6,6 @@
 ## Site e Android APK 
 
 <p><a href="https://minhasaude.io" target="_blank">minhasaude.io</a></p>
-<p><a href="https://drive.google.com/open?id=0ByiDi-nlXfgVZ1dOLUVUYTIySkU" target="_blank">Download</a></p>
 
 ## Justificativa do Projeto
 
